@@ -1,0 +1,752 @@
+{
+ "westgate": [
+  {
+   "cat": "Brows",
+   "items": [
+    "Tweeze"
+   ]
+  },
+  {
+   "cat": "Brows and Lashes",
+   "items": [
+    "Lashes - Cluster Lashes (R200)",
+    "Lashes - Cluster Lashes Own (R150)",
+    "Lashes - Soak Off (R80)"
+   ]
+  },
+  {
+   "cat": "Hair - Braids",
+   "items": [
+    "Afro Twist Adult - Short bob (R650)",
+    "Afro Twist Kids - bra strap length (R750)",
+    "Afro Twist Kids - Short (R500)",
+    "Box Braids Adult - Long (R850)",
+    "Box Braids Adult - Medium (R650)",
+    "Box Braids Adult - Mohawk Bra Line(R400)",
+    "Box Braids Adult - Mohawk Waist (R600)",
+    "Box Braids Kids - Long (R750)",
+    "Box Braids Kids - Medium (R550)",
+    "Box Braids Kids - Mohawk Bra Line (R300)",
+    "Box Braids Kids - Mohawk Waist (R500)",
+    "BOYS BRAIDS FULL HEAD",
+    "BOYS BRAIDS-HALF HEAD",
+    "Braids - Crochet (R550)",
+    "Braids - Faux Locs (R750)",
+    "Braids Adult - Bob (R500)",
+    "Braids Adult - Pick & Drop (R550)",
+    "Braids Kids - Bob (R400)",
+    "Braids Kids - Pick & Drop (R450)",
+    "Butterfly Locs - Bra Strap (R1100)",
+    "Butterfly Locs - Crochet (R900)",
+    "Butterfly Locs - Waist Length (R1400)",
+    "Butterfly Locs Crochet- Shoulder (R900)",
+    "French curls- Shoulder long R800",
+    "French curls- Waistline long R1200",
+    "Gel up- Straight Hairpiece",
+    "Goodess shoulder length 650",
+    "Goodess shoulder length 750",
+    "Goodess waist length R950",
+    "HALF & HALF BRA ADULTS",
+    "HALF & HALF BRA KIDS",
+    "HALF & HALF BUM ADULTS",
+    "HALF & HALF BUM KIDS",
+    "HALF & HALF WAIST ADULTS",
+    "HALF & HALF WAIST KIDS",
+    "HALF& HALF BOB KIDS",
+    "HALF&HALF BOB ADULT",
+    "Knotless Braids - Tribal (R950)",
+    "Knotless Braids - Tribal Bra Stra (R750)",
+    "Knotless Braids Adult - Bra Line (R700)",
+    "Knotless Braids Adult - Waist Line(R900)",
+    "Knotless Braids Kids - Bra Line (R600)",
+    "Knotless Braids Kids - Waist Line (R800)",
+    "Loose braids",
+    "Milano curl",
+    "Soft dread- short R550",
+    "Twist Braids Adult - Bra Line (R800)",
+    "Twist Braids Adult - Waist Line (R1000)",
+    "Twist Braids Kids - Bra Line (R600)",
+    "Twist Braids Kids - Waist Line (R800)"
+   ]
+  },
+  {
+   "cat": "Hair - Cornrows",
+   "items": [
+    "Beads - Add for (R20)",
+    "Benny & Betty - Kids (R150)",
+    "Benny & Betty - Tribal (R200)",
+    "BOYS CORNROWS HALF HEAD- TRIBAL",
+    "BOYS CORNROWS PLAIN HALF HEAD( R150)",
+    "Fishbone Adult -2Line no Hairpiece(R330)",
+    "Fishbone Adult- 2Line w Hairpiece (R380)",
+    "Fishbone Kids - 2Line no Hairpiece(R250)",
+    "Fishbone Kids - 2Line w Hairpiece (R350)",
+    "Freehand - Add a Hair Piece (R280)",
+    "Freehand - HalfHead 8Lines or Less(R150)",
+    "Freehand - HalfHead 8Lines or More(R180)",
+    "Freehand - Medium Lines (R220)",
+    "Freehand - Thin Lines (R250)",
+    "Freehand - Wig Lines (R180)",
+    "Freehand Adult - Ending w Braids (R400)",
+    "Freehand Adult - Tribal (R280)",
+    "Freehand Kids - 2 Buns (R250)",
+    "Freehand Kids - 2Bun End Hairpiece(R350)",
+    "Freehand Kids - Ending w Braids (R300)",
+    "Freehand Kids - Tribal (R250)",
+    "Gel up - double hairpiece",
+    "Half weave half gel up",
+    "Needle - Plait (R250)",
+    "Unplait - Benny & Betty & 10 Lines (R40)",
+    "Unplait - Braids (R100)",
+    "Unplait - Freehand (R90)",
+    "Unplait - Twist or Faux Locs (R150)"
+   ]
+  },
+  {
+   "cat": "Hair - Dreadlocks",
+   "items": [
+    "Dreadlocks - Add Own Lock (R10/Dread)",
+    "Dreadlocks - Crochet (From R350)",
+    "Dreadlocks - Crochet Start Up (R550)",
+    "Dreadlocks - Hot Oil Treatment (R100)",
+    "Dreadlocks - Own Hair Piece (Minus R150)",
+    "Dreadlocks - Style Only Flower & Double",
+    "Dreadlocks - Style Only No Wash (R150)",
+    "Dreadlocks - Style Only Spiral (R200)",
+    "Dreadlocks - Trimming (R150)",
+    "Dreadlocks - Twist & Style (R270)",
+    "Dreadlocks - Twist & Style Double (R250)",
+    "Dreadlocks - Twist & Style Flower (R350)",
+    "Dreadlocks - Twist & Style w Cut(R300)",
+    "Dreadlocks - Twist &Style HalfHead(R200)",
+    "Dreadlocks - Twist Start Up (R400)",
+    "Dreadlocks - Wash Only (R150)",
+    "Dreadlocks Adult - Join w OwnLock(R1000)",
+    "Dreadlocks Kids - Join w Own Lock (R900)"
+   ]
+  },
+  {
+   "cat": "Hair - Perming",
+   "items": [
+    "Hair - Perming (R450)"
+   ]
+  },
+  {
+   "cat": "Hair - Relaxers",
+   "items": [
+    "Design Esentials sensitive relaxer R450",
+    "Mizani relaxer with Treatment (R600)",
+    "ORS/Organic relaxer",
+    "Own Relaxer - R200",
+    "Relax and curly Pondo -R550",
+    "Relaxers - Dark n Lovely & Treat (R350)",
+    "Relaxers - Dark n Lovely (R250)",
+    "Relaxers - Mizani Regular (R400)",
+    "Relaxers - Mizani Sensitive (R450)",
+    "STEP 1 Relaxer",
+    "StraightBack Adult - Thick Lines 7-12"
+   ]
+  },
+  {
+   "cat": "Hair - Straightback",
+   "items": [
+    "1/2 Straightback - Small Singles Bra",
+    "1/2 Straightback - Small Singles Waist",
+    "1/2 Straightback Adult - Long (R850)",
+    "1/2 Straightback Adult - Medium (R600)",
+    "1/2 Straightback Adult - Shorter (R500)",
+    "1/2 Straightback Adult - XLong (R1000)",
+    "1/2 Straightback Kids - Long (R750)",
+    "1/2 Straightback Kids - Medium (R500)",
+    "1/2 Straightback Kids - Shorter (R400)",
+    "1/2 Straightback Kids - XLong (R900)",
+    "Straight Up - Bantu Knots w Hairpiece",
+    "Straight Up - Thin Lines Bra Strap(R480)",
+    "Straight Up - Thin Lines Waist (R550)",
+    "Straight Up Adult - Long Lines (R480)",
+    "Straight Up Adult - Medium Line (R430)",
+    "Straight Up Adult - Stitch Lines (R400)",
+    "Straight Up Adult - Thick Lines (R350)",
+    "Straight Up Adult - Tribal (R550)",
+    "Straight Up Kids - Long Lines (R450)",
+    "Straight Up Kids - Medium Line (R380)",
+    "Straight Up Kids - Stitch Lines (R380)",
+    "Straight Up Kids - Thick Lines (R300)",
+    "Straight Up Kids - Tribal (R450)",
+    "StraightBack - Plain 2 Lines (R200)",
+    "StraightBack - Tribal 2 Lines &Gel(R250)",
+    "StraightBack - Tribal 2 Lines (R220)",
+    "StraightBack Adult - Medium (R380)",
+    "StraightBack Adult - ThickLines 6or Less",
+    "StraightBack Adult - Tribal (R480)",
+    "StraightBack Adult - Waistline (R430)",
+    "StraightBack Kids - Medium (R350)",
+    "StraightBack Kids - Thick Lines 6or Less",
+    "StraightBack Kids - Thick Lines 7-12",
+    "StraightBack Kids - Tribal (R450)",
+    "StraightBack Kids - Waistline (R400)"
+   ]
+  },
+  {
+   "cat": "Hair - Styling",
+   "items": [
+    "Blow Out - Sta Soft Fro (R200)",
+    "Blow Wave - Natural Hair (R300)",
+    "Blow Wave - Relaxed Hair (R250)",
+    "Blow Wave Adult - Caucasian Long (R600)",
+    "Blow Wave Adult - Caucasian Med (R450)",
+    "Blow Wave Adult - Caucasian Short (R350)",
+    "Blow Wave Kids - Caucasian Long (R550)",
+    "Blow Wave Kids - Caucasian Med (R400)",
+    "Bob Cut - Full Service (R450)",
+    "Bob Cut - Style Only -No Relaxer (R250)",
+    "Bob cut style- no cutting",
+    "Chinese bob- Full head",
+    "Cut and paste- pixie - micro rings",
+    "Dry Curl - Relaxed Hair (R250)",
+    "Dry Curl Adult - Natural Hair (R300)",
+    "Dry Curl Kids - Natural Hair (R250)",
+    "Frontal Ponytail - 850",
+    "Pop corn- no relaxer",
+    "Razor cut",
+    "Relax & cut R350",
+    "Relax & style R400",
+    "Relax and popcorn",
+    "Styling - Braids Only (R120)",
+    "Styling - Finger Coil 300",
+    "Styling - Finger Wave (R200)",
+    "Styling - Gel Human Hair w Fringe (R500)",
+    "Styling - Gel Up & Hairpiece (R350)",
+    "Styling - Gel Up Own Piece (R250)",
+    "Styling - GelUp Straight Hairpiece(R400)",
+    "Styling - Mizani Silk Press (R450)",
+    "Styling - Wash & Wrap NO Relaxer (R150)"
+   ]
+  },
+  {
+   "cat": "Hair - Technique",
+   "items": [
+    "Mizani Moisture treatment (R280)",
+    "Technique - Bleach per App (R150)",
+    "Technique - Colour DNL/Inecto (R180/box)",
+    "Technique - Colour Grey & Cut (R450)",
+    "Technique - Mizani Strength Fusion Treat",
+    "Technique - Mizani Wash (R150)",
+    "Technique - S Curl & Cut (R250)",
+    "Technique - S Curl (R200)",
+    "Technique -Sew in Installation (R350) your bundles"
+   ]
+  },
+  {
+   "cat": "Hair - Twists",
+   "items": [
+    "AFRO TWIST BRA STRAP",
+    "Own Hair - Twist Half Head (R200)",
+    "Own Hair - Twist/3 Braid FreeHand (R250)",
+    "PASSION TWIST  LONG R900"
+   ]
+  },
+  {
+   "cat": "Hair - Wigs",
+   "items": [
+    "LACE CLEANING (WIG) R50",
+    "LACE WIG REMOVING",
+    "MICRO-RINGS HAIR",
+    "STRAIGHT WIG 14 INCH",
+    "WIG BLEACHING- EXCLUDING TREATMENT",
+    "Wig Curls Styling Only -R150",
+    "WIG CUT AND STRAIGHTEN",
+    "WIG CUT ONLY",
+    "WIG LACE TRIM",
+    "WIG PLUCKING",
+    "WIG STYLING -R100",
+    "Wigs - Curls Styling Long (R400)",
+    "Wigs - Curls Styling S & M (R350)",
+    "Wigs - Curly Treatment (R270)",
+    "Wigs - Cut & Paste with Own Piece (R450)",
+    "Wigs - Cut and Paste (R600)",
+    "Wigs - Installation (From R250)",
+    "Wigs - Installation Sew In (R350)",
+    "Wigs - Installation with Closure (R400)",
+    "Wigs - Making with Own Piece (R450)",
+    "Wigs - Plucking (R150)",
+    "Wigs - Straighten Only (R150)",
+    "Wigs - Style 2 Lines (R150)",
+    "Wigs - Treat & Straighten Long (R300)",
+    "Wigs - Treat & Straighten S & M (R270)"
+   ]
+  },
+  {
+   "cat": "Hair Colour",
+   "items": [
+    "Cut & Color- Inecto/Dark and Lovely R280",
+    "Hair Colour - Dark n Lovely (R50)",
+    "Own color- R150"
+   ]
+  },
+  {
+   "cat": "Hair Treatments",
+   "items": [
+    "Design Essential wash (R150)",
+    "Hair Wash (R120)",
+    "Mizani strenghth fusion treatment",
+    "Treatments - Aunt Jackies (R220)",
+    "Treatments - Cholesterol (R220)",
+    "Treatments - Dark n Lovely (R250)",
+    "Treatments - DeepPenetrating Scalp(R220)",
+    "Treatments - Design Essentials Scalp",
+    "Treatments - Hair Mayonnaise (R220)",
+    "Treatments - Hot Oil (R220)",
+    "Treatments - Mizani Wash (R150)",
+    "Treatments - Own (R180)"
+   ]
+  },
+  {
+   "cat": "Haircuts",
+   "items": [
+    "Cuts - Chiskop & Shave Clipper (R130)",
+    "Cuts - Chiskop & Shave Powder (R150)",
+    "Cuts - Chiskop with Powder (R150)",
+    "Cuts - Chiskop with Treatment (R130)",
+    "Cuts - Fade & Shave (R130)",
+    "Cuts - Shave Only Clipper (R30)",
+    "Cuts - Shave Only Powder (R40)",
+    "Cuts - Trim Edges (R30)",
+    "Cuts - Trimming Split Ends (R50)",
+    "Cuts Adult - Chiskop Clipper/Brush(R100)",
+    "Cuts Adult - Fade 3 Step (R100)",
+    "Cuts Kids - Chiskop Clipper/Brush (R90)",
+    "Cuts Kids - Fade 3 Step (R90)",
+    "Executive Cut -With facial steaming"
+   ]
+  },
+  {
+   "cat": "Hands and Feet",
+   "items": [
+    "3D Art - R20 Per Nail",
+    "Acrylic combo",
+    "ACRYLIC TIPS FRENCH R400",
+    "Add french R50",
+    "Feet - Gel (R200)",
+    "Feet - Gel Spa Pedicure (R350)",
+    "Feet - Pedicure Scrub (R200)",
+    "Feet - Princess Pedicure (R120)",
+    "Gel combo",
+    "Gel Soak Off Only- R70",
+    "Hands - Express Manicure (R80)",
+    "Hands - Gel & Acrylic Dip w Tips(R350)",
+    "Hands - Gel (R220)",
+    "Hands - Gel Overlay (R250)",
+    "Hands - Gel Spa Manicure (R300)",
+    "Hands - Gel XL Tips (R450)",
+    "Hands - Kids Gel Princess Manicure (R120)",
+    "Hands - Nail Repair Gel (R20/Nail)",
+    "Hands - Nail Repair Tip (R40/Nail)",
+    "Hands - Ombre (R400)",
+    "Hands/Feet - Buff & Shield (R150)",
+    "Hands/Feet - Buff & Shine (R100)",
+    "Nail art per nail",
+    "NAIL ART X 2",
+    "NAIL TIPS- TOES R300",
+    "Refill - Acrylic (R250)",
+    "Refill - Art per Nail (R10)",
+    "Refill - Gel Dip (R250)",
+    "Soak Off - Acrylic (R100)",
+    "Soak Off - Acrylic with New App (R70)"
+   ]
+  },
+  {
+   "cat": "Lashes",
+   "items": [
+    "Brow shape and Tint",
+    "Own strip lash",
+    "Strip lashes"
+   ]
+  },
+  {
+   "cat": "Makeup",
+   "items": [
+    "Full makeup with strip lashes"
+   ]
+  }
+ ],
+ "allensnek": [
+  {
+   "cat": "Brows",
+   "items": [
+    "Brows shape & tint",
+    "Tweeze"
+   ]
+  },
+  {
+   "cat": "Brows and Lashes",
+   "items": [
+    "Lashes - Cluster Lashes (R200)",
+    "Lashes - Cluster Lashes Own (R150)",
+    "Lashes - Individual Lash Ext (R400)",
+    "Lashes - Refill (R200)",
+    "Lashes - Soak Off (R80)",
+    "Lashes strip own(50)",
+    "Lashes strip(R100)"
+   ]
+  },
+  {
+   "cat": "Hair - Braids",
+   "items": [
+    "1/2 Straightback - Small Singles Bra",
+    "Afro Twist Adult - Mid Back (R800)",
+    "Afro Twist Adult - Short (R650)",
+    "Afro Twist Kids - Mid Back (R750)",
+    "Afro Twist Kids - Short (R500)",
+    "Big Block Knotless- waistline-R750",
+    "Big Blocks Knotless- Bra strap-R650",
+    "Box Braids Adult - Long (R850)",
+    "Box Braids Adult - Medium (R650)",
+    "Box Braids Adult - Mohawk Bra Line(R400)",
+    "Box Braids Adult - Mohawk Waist (R600)",
+    "Box Braids Kids - Long (R750)",
+    "Box Braids Kids - Medium (R550)",
+    "Box Braids Kids - Mohawk Bra Line (R300)",
+    "Box Braids Kids - Mohawk Waist (R500)",
+    "BOYS BRAIDS HALF HEAD BOB 450",
+    "Braids - Crochet (R550)",
+    "Braids - Faux Locs (R750)",
+    "Braids Adult - Bob (R500)",
+    "Braids Adult - MEDIUM Pick & Drop (R550)",
+    "Braids Adult - MINI Pick & Drop (R550)",
+    "BRAIDS HALF HEAD SHORT HAIRPIECE 3505",
+    "Braids Kids - Bob (R400)",
+    "Braids Kids - Pick & Drop Xpress (R450)",
+    "Butterfly Locs - Bra Strap (R1100)",
+    "Butterfly Locs - Crochet (R900)",
+    "Butterfly Locs - Shoulder (R900)",
+    "Butterfly Locs - Waist Length (R1400)",
+    "french curls short- R800",
+    "french curls waist length- R1200",
+    "Fulani braid -bum-length (R1200)",
+    "Fulani braid -waist-length (R1000)",
+    "Fulani-goddess braid-bra length",
+    "Goddess Braids bob R650",
+    "Goddess knotless kids - bum R1050",
+    "HALF & HALF BRA ADULTS(600)",
+    "HALF & HALF BRA KIDS(500)",
+    "HALF & HALF BUM ADULTS91000)",
+    "HALF & HALF BUM KIDS",
+    "HALF & HALF WAIST ADULTS",
+    "HALF & HALF WAIST KIDS",
+    "Half Head Braids Repair - incl wash R450",
+    "HALF& HALF BOB KIDS",
+    "HALF&HALF BOB ADULT",
+    "HALF&HALF Goddess BRAIDS BRA STRAP R750",
+    "HALF&HALF TRIBAL BRAIDS BRA STRAP R700",
+    "HALF&HALF TRIBAL BRAIDS BRA STRAP R700",
+    "HALF&HALF TRIBAL BRAIDS WAIST LENTH R950",
+    "Knotless Braids - Tribal (R950)",
+    "Knotless Braids - Tribal Bra Stra (R750)",
+    "Knotless Braids Adult - Bra Line (R700)",
+    "Knotless Braids Adult - Waist Line(R900)",
+    "Knotless Braids Kids - Bra Line (R600)",
+    "Knotless Braids Kids - Waist Line (R800)",
+    "Knotless Braids Kids Tibal - Bra Line",
+    "Koroba braids bra-size(R800)",
+    "Koroba braids waist(R900)",
+    "Koroba knotless bra-size(R1000)",
+    "Koroba knotless waist(R1200)",
+    "Make french curls knotless",
+    "Milano curl-R800",
+    "Pick n drop - SMALL",
+    "River Locs",
+    "Thick Block Braids - Bra strap -R550",
+    "Thick Block Braids - waistline-R650",
+    "Thick knotless bra-length(R650)",
+    "Thick knotless waist -length(R7000)",
+    "Twist Braids Adult - Bra Line (R800)",
+    "Twist Braids Adult - Waist Line (R1000)",
+    "Twist Braids Kids - Bra Line (R600)",
+    "Twist Braids Kids - Waist Line (R800)"
+   ]
+  },
+  {
+   "cat": "Hair - Cornrows",
+   "items": [
+    "Beads only - Add for (R20)",
+    "Benny & Betty - Adult Plain blocks(R150)",
+    "Benny & Betty - Kids (R200)",
+    "Benny & Betty - Tribal (R200)",
+    "Fishbone Adult -2Line no Hairpiece(R330)",
+    "Fishbone Adult- 2Line w Hairpiece (R380)",
+    "Fishbone Kids - 2Line no Hairpiece(R250)",
+    "Fishbone Kids - 2Line w Hairpiece (R350)",
+    "Freehand - Add a Hair Piece (R280)",
+    "Freehand - HalfHead 8Lines or Less(R150)",
+    "Freehand - HalfHead 8Lines or More(R180)",
+    "Freehand - Medium Lines (R220)",
+    "Freehand - Thin Lines (R250)",
+    "Freehand - Wig Lines (R180)",
+    "Freehand Adult - Ending w Braids (R400)",
+    "Freehand Adult - Tribal (R280)",
+    "Freehand Kids - 2 Buns (R250)",
+    "Freehand Kids - 2Bun End Hairpiece(R350)",
+    "Freehand Kids - Ending w Braids (R300)",
+    "Freehand Kids - Tribal (R250)",
+    "Needle - Plait (R250)",
+    "Unplait - Benny & Betty & 10 Lines (R40)",
+    "Unplait - Braids (R100)",
+    "Unplait - Freehand (R90)",
+    "UNPLAIT - French curls/singles/pickndrop",
+    "Unplait - Twist or Faux Locs (R150)"
+   ]
+  },
+  {
+   "cat": "Hair - Dreadlocks",
+   "items": [
+    "Dreadlocks - Add Own Lock (R10/Dread)",
+    "Dreadlocks - Crochet (From R350)",
+    "Dreadlocks - Crochet Start Up (R550)",
+    "Dreadlocks - Crochet Start Up (R550)",
+    "Dreadlocks - Interlocking (R350)",
+    "Dreadlocks - Style Only Flower & Double",
+    "Dreadlocks - Style Only No Wash (R150)",
+    "Dreadlocks - Style Only Spiral (R200)",
+    "Dreadlocks - Trimming (R150)",
+    "Dreadlocks - Twist & Style (R270)",
+    "Dreadlocks - Twist & Style Double (R350)",
+    "Dreadlocks - Twist & Style Flower (R350)",
+    "Dreadlocks - Twist & Style w Cut(R300)",
+    "Dreadlocks - Twist &Style HalfHead(R200)",
+    "Dreadlocks - Twist Start Up (R400)",
+    "Dreadlocks - Wash Only (R150)",
+    "Dreadlocks Adult - Join w OwnLock(R1000)",
+    "Dreadlocks Kids - Join w Own Lock (R900)"
+   ]
+  },
+  {
+   "cat": "Hair - Perming",
+   "items": [
+    "Hair - Perming (R450)"
+   ]
+  },
+  {
+   "cat": "Hair - Relaxers",
+   "items": [
+    "Design essentials sensitive relaxer",
+    "Lush No-Lye",
+    "ORS/Organic relaxer",
+    "Relaxers - Dark n Lovely & Treat (R350)",
+    "Relaxers - Dark n Lovely (R250)",
+    "Relaxers - Design Essential (R350)",
+    "Relaxers - Mizani Regular (R400)",
+    "Relaxers - Mizani Sensitive (R450)",
+    "Sensetive relaxer and treat 650)",
+    "Technique - Mizani with Treatment (R600)"
+   ]
+  },
+  {
+   "cat": "Hair - Straightback",
+   "items": [
+    "1/2 Straightback - Small Singles Bra",
+    "1/2 Straightback - Small Singles Waist",
+    "Flower no hairpiece(380)",
+    "Flower with hairpiece(R480)",
+    "Straight Up - Bantu Knots w Hairpiece",
+    "Straight Up - Thin Lines Bra Strap(R480)",
+    "Straight Up - Thin Lines Waist (R550)",
+    "Straight Up Adult - Long Lines (R480)",
+    "Straight Up Adult - Medium Line (R430)",
+    "Straight Up Adult - Stitch Lines (R400)",
+    "Straight Up Adult - Thick Lines (R350)",
+    "Straight Up Adult - Tribal (R550)",
+    "Straight Up Kids - Long Lines (R450)",
+    "Straight Up Kids - Medium Line (R380)",
+    "Straight Up Kids - Stitch Lines (R380)",
+    "Straight Up Kids - Thick Lines (R300)",
+    "Straight Up Kids - Tribal (R450)",
+    "StraightBack - Tribal 2 Lines &Gel(R250)",
+    "StraightBack - Tribal 2 Lines (R220)",
+    "StraightBack Adult - Medium (R380)",
+    "StraightBack Adult - Thick Lines 7-12",
+    "StraightBack Adult - ThickLines 6or Less",
+    "StraightBack Adult - Tribal Waist(R480)",
+    "StraightBack Adult - Waistline (R430)",
+    "StraightBack Kids - Medium (R350)",
+    "StraightBack Kids - Thick Lines 6or Less",
+    "StraightBack Kids - Thick Lines 7-12",
+    "StraightBack Kids - Tribal (R450)",
+    "StraightBack Kids - Waistline (R400)",
+    "tribal StraightBack- bra strap length"
+   ]
+  },
+  {
+   "cat": "Hair - Styling",
+   "items": [
+    "Blow Out - Sta Soft Fro (R200)",
+    "Blow Wave - Natural Hair (R300)",
+    "Blow Wave - Relaxed Hair (R250)",
+    "Blow Wave Adult - Caucasian Long (R600)",
+    "Blow Wave Adult - Caucasian Med (R450)",
+    "Blow Wave Adult - Caucasian Short (R350)",
+    "Blow Wave Kids - Caucasian Long (R550)",
+    "Blow Wave Kids - Caucasian Med (R400)",
+    "Blow Wave Kids - Caucasian Short (R300)",
+    "Bob Cut - Full Service (R450)",
+    "Bob Cut - Style Only No Relaxer (R250)",
+    "Dry Curl - Relaxed Hair (R250)",
+    "Dry Curl Adult - Natural Hair (R300)",
+    "Dry Curl Kids - Natural Hair (R250)",
+    "Styling - Braids Only (R120)",
+    "Styling - Finger Coil (R350)",
+    "Styling - Finger Wave (R200)",
+    "Styling - Gel Human Hair w Fringe (R500)",
+    "Styling - Gel Up Pondo & Hairpiece(R350)",
+    "Styling - GelUp Pondo Own Piece (R250)",
+    "Styling - GelUp Straight Hairpiece(R400)",
+    "Styling - Mizani Silk Press (R450)",
+    "Styling - Wash & Wrap NO Relaxer (R150)"
+   ]
+  },
+  {
+   "cat": "Hair - Technique",
+   "items": [
+    "Mizani Strength Fusion Treat(280)",
+    "BEERD BLEACH (R80)",
+    "Design Essential Wash (R150)",
+    "Own color (150)",
+    "Technique - Bleach per App (R150)",
+    "Technique - Colour DNL/Inecto (R180/box)",
+    "Technique - Colour Grey & Cut (R450)",
+    "Technique - Mizani Moisture (R280)",
+    "Technique - Mizani Wash (R150)",
+    "Technique - S Curl & Cut (R250)",
+    "Technique - S Curl (R200)",
+    "Unplait singles/pick n drop"
+   ]
+  },
+  {
+   "cat": "Hair - Twists",
+   "items": [
+    "Goddess Twist Waist length 1100",
+    "Goddess Twists bra length",
+    "Goddess Twists Bum Lenth 1300",
+    "Own Hair - Twist Half Head (R200)",
+    "Own Hair - Twist/3 Braid FreeHand (R250)",
+    "Passion twist- 900"
+   ]
+  },
+  {
+   "cat": "Hair - Wigs",
+   "items": [
+    "Microrings Medium full head(R1400)",
+    "Microrings pixie(R850)",
+    "Microrings Treat&style(R500)",
+    "Microrings wash&style(R350)",
+    "SEW IN WITH A CLOSURE",
+    "WIG DEBONDING/REMOVAL(50)",
+    "Wigs - Curls Styling Long (R400)",
+    "Wigs - Curls Styling S & M (R350)",
+    "Wigs - Curly Treatment (R270)",
+    "Wigs - Cut & Paste with Own Piece (R450)",
+    "Wigs - Cut and Paste (R650)",
+    "Wigs - Installation (From R250)",
+    "Wigs - Installation Sew In (R350)",
+    "Wigs - Making with Own Piece (R450)",
+    "Wigs - Plucking (R150)",
+    "Wigs - Straighten Only (R150)",
+    "Wigs - Style 2 Lines (R150)",
+    "Wigs - Treat & Straighten Long (R300)",
+    "Wigs - Treat & Straighten S & M (R270)"
+   ]
+  },
+  {
+   "cat": "Hair Colour",
+   "items": [
+    "Hair Colour - Dark n Lovely (R50)"
+   ]
+  },
+  {
+   "cat": "Hair Treatments",
+   "items": [
+    "BRAIDS WASH",
+    "Design Essentials treatment",
+    "Detangling",
+    "Treatments - Aunt Jackies (R220)",
+    "Treatments - Cholesterol (R220)",
+    "Treatments - DeepPenetrating Scalp(R220)",
+    "Treatments - Hair Mayonnaise (R220)",
+    "Treatments - Hair Wash (R120)",
+    "Treatments - Hot Oil (R220)",
+    "Treatments - Own (R180)",
+    "Treatments -Design Essentials Scalp R280"
+   ]
+  },
+  {
+   "cat": "Haircuts",
+   "items": [
+    "Cut AND Colour (280)",
+    "Cuts - Chiskop & Shave Clipper (R130)",
+    "Cuts - Chiskop & Shave Powder (R150)",
+    "Cuts - Chiskop with Treatment (R130)",
+    "Cuts - Fade & Shave (R130)",
+    "Cuts - Shave Only Clipper (R30)",
+    "Cuts - Shave Only Powder (R40)",
+    "Cuts - Trim Edges (R30)",
+    "Cuts - Trimming Split Ends (R50)",
+    "Cuts Adult - Chiskop Clipper/Brush(R100)",
+    "Cuts Adult - Fade 3 Step (R100)",
+    "Cuts Kids - Chiskop Clipper/Brush (R90)",
+    "Cuts Kids - Fade 3 Step (R90)"
+   ]
+  },
+  {
+   "cat": "Hands and Feet",
+   "items": [
+    "Acrylic combo (R450)",
+    "ADD OVERLAY(50)",
+    "Buff & Shield (R150)",
+    "Buff & Shine (R100)",
+    "Feet - Gel (R180)",
+    "Feet - Gel Spa Pedicure (R350)",
+    "Feet - Pedicure Scrub (R200)",
+    "Feet - Princess Pedicure (R120)",
+    "FRENCH ART(50)",
+    "French tips R400",
+    "Gel hands and feet combo R300",
+    "GEL(200)- Hands only",
+    "Hands - Gel & Acrylic Dip w Tips(R350)",
+    "Hands - Gel Overlay (R250)",
+    "Hands - Gel XL Tips (R450)",
+    "Hands - Nail Repair Gel (R20/Nail)",
+    "Hands - Nail Repair Tip (R40/Nail)",
+    "Hands - Ombre (R400)",
+    "Hands - Princess Manicure (R120)",
+    "Nail art per nail(10)",
+    "Pedi peel for Cracked Heels",
+    "Refill - Acrylic (R250)",
+    "Refill - Art per Nail (R10)",
+    "Refill - Gel Dip (R250)",
+    "Soak Off - (R70)",
+    "Soak Off - Acrylic (R100)"
+   ]
+  },
+  {
+   "cat": "Massage",
+   "items": [
+    "Massage - Aromatherapy FB 60m (R300)",
+    "Massage - Back Neck Shoulder 30m (R200)",
+    "Massage - Back Neck Shoulder 45m (R250)",
+    "Massage - Foot 15m (R100)"
+   ]
+  },
+  {
+   "cat": "Promotions",
+   "items": [
+    "Make-up (R300)"
+   ]
+  },
+  {
+   "cat": "Tinting",
+   "items": [
+    "Brows - Shape & Tint (R120)"
+   ]
+  }
+ ]
+}

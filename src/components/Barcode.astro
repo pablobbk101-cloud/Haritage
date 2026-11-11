@@ -1,0 +1,17 @@
+---
+// Deterministic decorative barcode. aria-hidden.
+interface Props { seed?: number; bars?: number; class?: string }
+const { seed = 7, bars = 90, class: cls = '' } = Astro.props;
+let s = seed * 9301 + 49297;
+const rnd = () => ((s = (s * 9301 + 49297) % 233280) / 233280);
+let x = 0;
+const rects: { x: number; w: number }[] = [];
+for (let i = 0; i < bars; i++) {
+  const w = [1, 1, 2, 3, 5][Math.floor(rnd() * 5)];
+  rects.push({ x, w });
+  x += w + [1, 2, 2, 3][Math.floor(rnd() * 4)];
+}
+---
+<svg class={`bc ${cls}`} viewBox={`0 0 ${x} 20`} preserveAspectRatio="none" aria-hidden="true" focusable="false">
+  {rects.map((r) => <rect x={r.x} y="0" width={r.w} height="20" />)}
+</svg>

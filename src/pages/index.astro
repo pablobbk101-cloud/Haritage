@@ -1,0 +1,233 @@
+---
+import Base from '../layouts/Base.astro';
+import { BRANCHES, CATEGORIES, HOURS, SERVICES, STAFF, catStats } from '../data/site';
+
+const total = SERVICES.length;
+const priced = SERVICES.filter((s) => s.price).length;
+const staffCount = STAFF.westgate.length + STAFF.allensnek.length;
+// mini day-barcode for the explainer (decorative)
+let seed = 5;
+const rnd = () => ((seed = (seed * 9301 + 49297) % 233280) / 233280);
+const mini = Array.from({ length: 22 }, () => rnd() < 0.34);
+---
+<Base title="HAIRitage Salon99 | Hair & beauty in Roodepoort, book your slot online" hd="paper">
+  <section class="hero t-paper sec-bg" data-hd="paper">
+    <div class="wrap hero-in">
+      <div class="hero-copy">
+        <p class="lbl" data-reveal>Roodepoort · Westgate + Allen's Nek · Open 7 days</p>
+        <h1 class="d hero-h" data-lines>
+          <span class="ln"><span>Your hair.</span></span>
+          <span class="ln"><span>Your heritage.</span></span>
+          <span class="ln"><span class="laser">Your slot.</span></span>
+        </h1>
+        <p class="lede" data-reveal data-delay="0.15">
+          Braids, locs, relaxers, wigs, nails and lashes at two HAIRitage salons. Pick the exact time, hold it with a small deposit, then walk in and sit down.
+        </p>
+        <div class="cta-row" data-reveal data-delay="0.25">
+          <a class="btn btn--laser" href="/book/"><span>Book a slot</span>
+            <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
+          </a>
+          <a class="btn" href="/services/"><span>See all {total} services</span></a>
+        </div>
+      </div>
+      <div class="hero-logo" data-scan>
+        <svg viewBox="0 0 884 1200" role="img" aria-label="HAIRitage Salon logo: two faces in an afro that sheds a barcode"><use href="#hs-logo-path" /></svg>
+      </div>
+    </div>
+    <canvas class="shed" id="shed" aria-hidden="true"></canvas>
+  </section>
+
+  <section class="how t-ink sec-bg" data-hd="ink">
+    <div class="wrap">
+      <div class="grid">
+        <h2 class="d d-xl how-h" data-lines>
+          <span class="ln"><span>Every bar</span></span>
+          <span class="ln"><span>is a slot.</span></span>
+        </h2>
+        <div class="how-side">
+          <p class="lede" data-reveal>
+            The salon's logo turns hair into a barcode. We took it literally: your day is a row of bars, each one a 30 minute start time. Tall bars are free. Short stubs are taken. Tap one and it prints your receipt.
+          </p>
+        </div>
+      </div>
+
+      <div class="mini-wrap" data-reveal>
+        <div class="mini" id="mini" aria-hidden="true">
+          {mini.map((taken) => <i class={taken ? 'taken' : 'free'} />)}
+        </div>
+        <p class="lbl mini-cap"><span>Saturday</span><span>08:00 to 17:00</span><span class="laser">Tall = free</span></p>
+      </div>
+
+      <ol class="steps">
+        <li data-reveal>
+          <span class="lbl">Step 1</span>
+          <h3 class="d d-m">Choose a salon and a service</h3>
+          <p>Westgate or Allen's Nek. {total} services are listed and {priced} of them carry a price.</p>
+        </li>
+        <li data-reveal data-delay="0.1">
+          <span class="lbl">Step 2</span>
+          <h3 class="d d-m">Pick your bar</h3>
+          <p>Seven days a week, from 08:00 on Saturdays. Choose the time that suits your hair day.</p>
+        </li>
+        <li data-reveal data-delay="0.2">
+          <span class="lbl">Step 3</span>
+          <h3 class="d d-m">Pay the deposit, sit down</h3>
+          <p>A small deposit holds the slot and comes off your final bill. The rest you settle in the chair.</p>
+        </li>
+      </ol>
+
+      <dl class="stats">
+        <div data-reveal><dt class="lbl">Services listed</dt><dd class="d">{total}</dd></div>
+        <div data-reveal data-delay="0.08"><dt class="lbl">With a price</dt><dd class="d">{priced}</dd></div>
+        <div data-reveal data-delay="0.16"><dt class="lbl">Salons</dt><dd class="d">2</dd></div>
+        <div data-reveal data-delay="0.24"><dt class="lbl">Stylists &amp; techs</dt><dd class="d">{staffCount}</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="idx t-paper sec-bg sec" data-hd="paper">
+    <div class="wrap">
+      <div class="idx-head">
+        <h2 class="d d-xl" data-lines>
+          <span class="ln"><span>The price</span></span>
+          <span class="ln"><span>list, live.</span></span>
+        </h2>
+        <p class="lede" data-reveal>Prices come from the salons' own booking lists. Hair is charged by length and style, so some services are quoted in the chair.</p>
+      </div>
+      <ul class="idx-list">
+        {CATEGORIES.map((c) => {
+          const st = catStats(c.id);
+          return (
+            <li data-reveal>
+              <a class="sweep row" href={`/services/?cat=${c.id}`}>
+                <span class="d d-m row-t">{c.label}</span>
+                <span class="row-b">{c.blurb}</span>
+                <span class="lbl row-n">{st.count} services</span>
+                <span class="mono row-p">{st.min ? `from R${st.min}` : 'Quoted'}</span>
+                <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+  </section>
+
+  <section class="salons t-bone sec-bg sec" data-hd="paper">
+    <div class="wrap">
+      <h2 class="d d-xl" data-lines style="margin-bottom:clamp(2rem,5vw,4rem)">
+        <span class="ln"><span>Two doors,</span></span>
+        <span class="ln"><span>one standard.</span></span>
+      </h2>
+      <div class="salon-grid">
+        {Object.values(BRANCHES).map((b, i) => (
+          <article class="salon" data-scan data-delay={i * 0.12}>
+            <p class="lbl">Branch {i + 1} · {STAFF[b.id].length} on the team</p>
+            <h3 class="d d-l">{b.name}</h3>
+            <address>
+              {b.address.map((l) => <span>{l}</span>)}
+              <span class="muted">{b.where}</span>
+            </address>
+            <ul class="hrs">{HOURS.map(([d, h]) => <li><span>{d}</span><span class="mono">{h}</span></li>)}</ul>
+            <div class="salon-cta">
+              <a class="btn btn--solid btn--sm" href={`/book/?branch=${b.id}`}><span>Book {b.name}</span></a>
+              <a class="btn btn--sm" href={`tel:${b.tel}`}><span>{b.phone}</span></a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero{position:relative;z-index:3;min-height:max(88svh,700px);padding-top:calc(var(--hd) + 1.5rem)}
+  .hero-in{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,.7fr);gap:clamp(1rem,4vw,4rem);align-items:start;padding-bottom:calc(clamp(180px,34vh,360px) * .12 + 3rem)}
+  .hero-h{font-size:clamp(3.5rem,9.6vw,10.5rem);margin:1.4rem 0 1.6rem}
+  .hero .lede{margin-bottom:2rem}
+  .cta-row{display:flex;flex-wrap:wrap;gap:.8rem}
+  .hero-logo{justify-self:end;width:min(100%,430px);color:var(--ink);padding-top:.5rem}
+  .hero-logo svg{width:100%;height:auto;aspect-ratio:884/1200;max-height:64svh}
+  .shed{position:absolute;left:0;bottom:0;transform:translateY(calc(100% - 1px));width:100%;height:clamp(180px,34vh,360px);pointer-events:none;z-index:5;display:block}
+
+  .how{z-index:1;padding-top:calc(clamp(180px,34vh,360px) + 4rem);padding-bottom:clamp(4rem,9vw,8rem)}
+  .how-h{grid-column:1 / span 8;font-size:clamp(3.4rem,11vw,11.5rem)}
+  .how-side{grid-column:9 / span 4;align-self:end}
+  .mini-wrap{margin-top:clamp(3rem,6vw,5rem)}
+  .mini{display:flex;align-items:flex-end;gap:clamp(4px,.8vw,10px);height:clamp(110px,16vw,190px)}
+  .mini i{flex:1;background:var(--paper);height:100%;transition:background .25s,height .5s var(--ease)}
+  .mini i.taken{height:16%;opacity:.5}
+  .mini i.hot{background:var(--laser)}
+  .mini-cap{display:flex;justify-content:space-between;gap:1rem;margin-top:.9rem;border-top:1px solid var(--line);padding-top:.7rem}
+  .steps{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(1.2rem,3vw,3rem);margin-top:clamp(3rem,7vw,6rem)}
+  .steps li{border-top:1px solid var(--line);padding-top:1rem}
+  .steps h3{margin:.8rem 0 .6rem}
+  .steps p{color:rgba(239,237,230,.72);max-width:24rem}
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:clamp(3.5rem,8vw,7rem);border-top:1px solid var(--line);padding-top:1.4rem}
+  .stats dd{font-size:clamp(3.4rem,9vw,8.5rem);line-height:.9;margin-top:.3rem}
+
+  .idx-head{display:grid;grid-template-columns:repeat(12,1fr);gap:1rem;align-items:end;margin-bottom:clamp(2.5rem,6vw,5rem)}
+  .idx-head h2{grid-column:1 / span 8}
+  .idx-head .lede{grid-column:9 / span 4}
+  .idx-list{list-style:none;border-bottom:1px solid var(--line)}
+  .row{display:grid;grid-template-columns:minmax(0,2.4fr) minmax(0,3fr) 1fr 1fr 28px;gap:1rem;align-items:center;padding:1.05rem .6rem;border-top:1px solid var(--line)}
+  .row-t{font-size:clamp(1.7rem,3.2vw,2.8rem)}
+  .row-b{font-size:.95rem;opacity:.75}
+  .row-n{opacity:.75}
+  .row-p{text-align:right;font-size:.95rem}
+
+  .salon-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1rem,2vw,2rem)}
+  .salon{background:var(--ink);color:var(--paper);padding:clamp(1.4rem,3vw,2.6rem);display:flex;flex-direction:column;gap:1.1rem;--line:rgba(239,237,230,.22)}
+  .salon address{font-style:normal;display:grid;gap:.1rem}
+  .salon address .muted{color:rgba(239,237,230,.6);font-size:.9rem}
+  .hrs{list-style:none;border-top:1px solid var(--line)}
+  .hrs li{display:flex;justify-content:space-between;gap:1rem;padding:.55rem 0;border-bottom:1px solid var(--line);font-size:.95rem}
+  .salon .btn--solid{background:var(--paper);color:var(--ink);border-color:var(--paper)}
+  .salon-cta{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:auto;padding-top:.6rem}
+
+  @media (max-width: 900px){
+    .hero{min-height:0}
+    .hero-in{grid-template-columns:1fr;padding-bottom:3rem}
+    .hero-logo{position:absolute;right:var(--pad);top:calc(var(--hd) + 1rem);width:34vw;max-width:170px;opacity:1}
+    .hero-h{margin-top:clamp(7rem,38vw,11rem)}
+    .how-h,.how-side,.idx-head h2,.idx-head .lede{grid-column:1 / -1}
+    .how-side{margin-top:1.5rem}
+    .steps,.salon-grid{grid-template-columns:1fr}
+    .stats{grid-template-columns:repeat(2,1fr)}
+    .row{grid-template-columns:1fr auto;row-gap:.2rem}
+    .row-b{grid-column:1 / -1;grid-row:2}
+    .row-n{display:none}
+    .row-p{text-align:right}
+    .row .arrow{display:none}
+  }
+</style>
+
+<script>
+  import gsap from 'gsap';
+  import { shed } from '../scripts/shed';
+  import { reduce } from '../scripts/engine';
+
+  const canvas = document.getElementById('shed') as HTMLCanvasElement | null;
+  if (canvas) shed(canvas);
+
+  // mini barcode: the laser reads it on loop
+  const bars = Array.from(document.querySelectorAll<HTMLElement>('#mini i'));
+  if (bars.length && !reduce) {
+    const o = { p: 0 };
+    let last = -1;
+    gsap.to(o, {
+      p: bars.length,
+      duration: 7,
+      ease: 'none',
+      repeat: -1,
+      onUpdate() {
+        const i = Math.floor(o.p);
+        if (i !== last) {
+          bars[last]?.classList.remove('hot');
+          if (bars[i] && !bars[i].classList.contains('taken')) bars[i].classList.add('hot');
+          last = i;
+        }
+      },
+    });
+  }
+</script>

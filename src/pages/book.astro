@@ -1,0 +1,440 @@
+---
+import Base from '../layouts/Base.astro';
+import { BRANCHES, CATEGORIES, SERVICES } from '../data/site';
+
+const services = SERVICES.map((s) => ({ id: s.id, c: s.cat, n: s.name, p: s.price, f: s.from, b: s.branches }));
+const cats = CATEGORIES.map((c) => ({ id: c.id, l: c.label }));
+const branches = Object.values(BRANCHES).map((b) => ({ id: b.id, name: b.name, tel: b.tel, wa: b.wa, phone: b.phone }));
+---
+<Base title="Book your slot" description="Book your exact slot at HAIRitage Salon99 Westgate or Allen's Nek in Roodepoort. Pick a bar, pay a small deposit, walk in." hd="paper">
+  <section class="head t-paper sec-bg" data-hd="paper">
+    <div class="wrap">
+      <p class="lbl" data-reveal>Westgate + Allen's Nek · deposit comes off your bill</p>
+      <h1 class="d d-mega" data-lines>
+        <span class="ln"><span>Pick a</span></span>
+        <span class="ln"><span class="laser">bar.</span></span>
+      </h1>
+    </div>
+  </section>
+
+  <section class="ui t-paper sec-bg" data-hd="paper">
+    <div class="wrap ui-grid">
+      <form class="steps" id="form" novalidate autocomplete="off">
+        <!-- 1 -->
+        <fieldset class="step" id="s1">
+          <legend><span class="lbl">1</span><span class="d d-m">Salon</span></legend>
+          <div class="pick">
+            {branches.map((b) => (
+              <button type="button" class="opt" data-branch={b.id} aria-pressed="false">
+                <span class="d d-m">{b.name}</span><span class="lbl">{b.phone}</span>
+              </button>
+            ))}
+          </div>
+        </fieldset>
+
+        <!-- 2 -->
+        <fieldset class="step locked" id="s2" disabled>
+          <legend><span class="lbl">2</span><span class="d d-m">Service</span></legend>
+          <div class="svc-tools">
+            <label class="sr" for="sq">Search services</label>
+            <input id="sq" class="q" type="search" placeholder="Search: knotless, gel, wig, fade..." />
+            <label class="sr" for="scat">Category</label>
+            <select id="scat" class="sel">
+              <option value="all">All categories</option>
+              {cats.map((c) => <option value={c.id}>{c.l}</option>)}
+            </select>
+          </div>
+          <ul class="svc-list" id="svcList" aria-label="Services"></ul>
+          <p class="chosen lbl" id="chosen" hidden></p>
+        </fieldset>
+
+        <!-- 3 -->
+        <fieldset class="step locked" id="s3" disabled>
+          <legend><span class="lbl">3</span><span class="d d-m">Day</span></legend>
+          <div class="days" id="days" role="group" aria-label="Choose a day"></div>
+        </fieldset>
+
+        <!-- 4 -->
+        <fieldset class="step locked" id="s4" disabled>
+          <legend><span class="lbl">4</span><span class="d d-m">Your bar</span></legend>
+          <p class="hint" id="hint">Tall bars are free start times. Short stubs are taken.</p>
+          <div class="bcday" id="bcday">
+            <div class="bars" id="bars" role="group" aria-label="Start times"></div>
+            <div class="axis" id="axis" aria-hidden="true"></div>
+          </div>
+          <p class="nofree" id="nofree" hidden>No free bars that day for this service. Try another day.</p>
+        </fieldset>
+
+        <!-- 5 -->
+        <fieldset class="step locked" id="s5" disabled>
+          <legend><span class="lbl">5</span><span class="d d-m">You</span></legend>
+          <div class="fields">
+            <label class="f"><span class="lbl">Full name</span><input id="fn" type="text" autocomplete="name" required /></label>
+            <label class="f"><span class="lbl">Cell number</span><input id="fp" type="tel" inputmode="tel" autocomplete="tel" placeholder="071 234 5678" required /></label>
+            <label class="f wide"><span class="lbl">Hair notes (optional)</span><input id="fnote" type="text" placeholder="Length, current style, anything we should know" /></label>
+          </div>
+          <p class="err" id="err" role="alert"></p>
+          <button class="btn btn--laser" id="pay" type="submit" disabled><span id="payTxt">Pay deposit and book</span></button>
+          <p class="demo lbl">Demo mode: availability and payment are simulated until the salon connects its calendar and a payment provider.</p>
+        </fieldset>
+      </form>
+
+      <aside class="rc-wrap" aria-label="Receipt">
+        <div class="receipt" id="receipt">
+          <p class="rc-t d d-m">HAIRitage Salon99</p>
+          <p class="lbl rc-s">Booking slip</p>
+          <dl class="rc-l" id="rc">
+            <div><dt>Salon</dt><dd id="r-branch">Not chosen</dd></div>
+            <div><dt>Service</dt><dd id="r-svc">Not chosen</dd></div>
+            <div><dt>Day</dt><dd id="r-day">Not chosen</dd></div>
+            <div><dt>Time</dt><dd id="r-time">Not chosen</dd></div>
+            <div><dt>Price</dt><dd id="r-price">Not chosen</dd></div>
+          </dl>
+          <div class="rc-dep"><span class="lbl">Deposit due now</span><strong id="r-dep" class="d">R0</strong></div>
+          <p class="lbl rc-n" id="r-bal">Balance is settled at the salon.</p>
+          <svg class="rc-bc" id="rcbc" viewBox="0 0 200 20" preserveAspectRatio="none" aria-hidden="true"></svg>
+          <p class="lbl rc-ref" id="r-ref">Ref pending</p>
+          <div class="done" id="done" hidden>
+            <p class="stamp d">Booked</p>
+            <div class="done-cta">
+              <a class="btn btn--solid btn--sm" id="wa" target="_blank" rel="noopener" data-no-transition><span>Send to the salon on WhatsApp</span></a>
+              <a class="btn btn--sm" id="ics" download="hairitage-booking.ics" data-no-transition><span>Add to calendar</span></a>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <script id="book-data" type="application/json" set:html={JSON.stringify({ services, cats, branches })} />
+</Base>
+
+<style is:global>
+  .head{padding-top:calc(var(--hd) + clamp(2.5rem,6vw,5rem));padding-bottom:clamp(1.5rem,4vw,3rem)}
+  .head h1{margin-top:1rem}
+  .ui{padding-bottom:clamp(4rem,9vw,8rem)}
+  .ui-grid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(280px,.8fr);gap:clamp(1.5rem,5vw,5rem);align-items:start}
+  .step{border:0;border-top:3px solid var(--ink);padding:1rem 0 2.2rem;min-width:0;transition:opacity .4s}
+  .step.locked{opacity:.32}
+  .step legend{display:flex;align-items:baseline;gap:.9rem;padding-right:1rem}
+  .step legend .lbl{border:1.5px solid var(--ink);padding:.15rem .5rem}
+  .pick{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-top:.8rem}
+  .opt{display:flex;flex-direction:column;align-items:flex-start;gap:.3rem;border:1.5px solid var(--ink);padding:1rem 1.1rem;text-align:left;transition:background .3s,color .3s;position:relative;isolation:isolate;overflow:hidden}
+  .opt::before{content:'';position:absolute;inset:0;background:var(--ink);transform:scaleX(0);transform-origin:left;transition:transform .45s var(--ease);z-index:-1}
+  .opt:hover::before,.opt[aria-pressed="true"]::before{transform:scaleX(1)}
+  .opt:hover,.opt[aria-pressed="true"]{color:var(--paper)}
+  .svc-tools{display:grid;grid-template-columns:1fr 12rem;gap:.8rem;margin:.8rem 0}
+  .q,.sel{border:0;border-bottom:2px solid var(--ink);background:transparent;padding:.65rem 0;font:700 1rem var(--f-m);border-radius:0;width:100%}
+  .q::placeholder{color:var(--mute);font-weight:400}
+  .svc-list{list-style:none;max-height:20rem;overflow:auto;border:1.5px solid var(--ink);overscroll-behavior:contain}
+  .svc-list button{display:flex;justify-content:space-between;gap:1rem;width:100%;text-align:left;padding:.7rem .9rem;border-bottom:1px solid var(--line);font-weight:500;transition:background .25s,color .25s}
+  .svc-list button:hover{background:var(--ink);color:var(--paper)}
+  .svc-list button[aria-pressed="true"]{background:var(--laser);color:#fff}
+  .svc-list .p{font:700 .85rem var(--f-m);white-space:nowrap}
+  .svc-list .none{padding:1rem;color:var(--mute)}
+  .chosen{margin-top:.8rem}
+  .days{display:flex;gap:.45rem;overflow-x:auto;padding:.8rem 0 .4rem;scroll-snap-type:x proximity}
+  .day{flex:none;scroll-snap-align:start;min-width:4.1rem;border:1.5px solid var(--ink);padding:.55rem .4rem;text-align:center;display:grid;gap:.1rem;transition:background .25s,color .25s}
+  .day .d{font-size:2rem;line-height:.9}
+  .day:hover,.day[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+  .hint{margin:.6rem 0 2.2rem;color:var(--mute);font-size:.95rem}
+
+  /* the signature: the day as a barcode */
+  .bcday{position:relative;--lx:-20px}
+  .bars{position:relative;display:grid;grid-template-columns:repeat(auto-fit,minmax(28px,1fr));gap:2px;height:clamp(150px,22vw,230px);grid-auto-rows:100%;align-items:end}
+  .bar{position:relative;height:100%;display:flex;align-items:flex-end;justify-content:center;padding:0}
+  .bar i{display:block;width:var(--w,60%);height:100%;background:var(--ink);transform-origin:bottom;transition:height .5s var(--ease),background .2s,transform .3s var(--ease)}
+  .bar.taken i{height:14%;opacity:.35}
+  .bar.taken{cursor:not-allowed}
+  .bar:not(.taken):hover i{transform:scaleY(1.04);background:var(--laser)}
+  .bar[aria-pressed="true"] i{background:var(--laser)}
+  .bar::after{content:attr(data-t);position:absolute;bottom:calc(100% + 6px);left:50%;translate:-50% 0;background:var(--laser);color:#fff;font:700 .72rem var(--f-m);padding:.2rem .45rem;opacity:0;pointer-events:none;transition:opacity .2s;white-space:nowrap;z-index:3}
+  .bar:not(.taken):hover::after,.bar[aria-pressed="true"]::after,.bar:focus-visible::after{opacity:1}
+  .bcday::after{content:'';position:absolute;top:-8px;bottom:22px;left:var(--lx);width:2px;background:var(--laser);pointer-events:none;opacity:0;transition:opacity .2s;box-shadow:0 0 14px rgba(255,43,28,.55)}
+  .bcday.scanning::after{opacity:1}
+  .axis{display:flex;justify-content:space-between;margin-top:.5rem;font:400 .68rem var(--f-m);color:var(--mute);border-top:1px solid var(--ink);padding-top:.35rem}
+  .nofree{margin-top:1rem;font-weight:600}
+  .fields{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:.8rem 0 1rem}
+  .f{display:grid;gap:.2rem}
+  .f.wide{grid-column:1 / -1}
+  .f input{border:0;border-bottom:2px solid var(--ink);background:transparent;padding:.6rem 0;font:700 1.05rem var(--f-m);border-radius:0;width:100%}
+  .err{color:var(--laser);font-weight:600;min-height:1.4em;margin-bottom:.6rem}
+  .demo{color:var(--mute);margin-top:1rem;max-width:34rem}
+
+  /* receipt */
+  .rc-wrap{position:sticky;top:calc(var(--hd) + 1rem)}
+  .receipt{--zz:12px;background:#f9f7f0;color:var(--ink);padding:1.6rem 1.4rem calc(var(--zz) + 1.8rem);box-shadow:0 20px 50px rgba(11,11,10,.18);position:relative;font-family:var(--f-m);
+    -webkit-mask:conic-gradient(from -45deg at bottom,#0000,#000 1deg 89deg,#0000 90deg) 50%/calc(var(--zz)*2) 100%;mask:conic-gradient(from -45deg at bottom,#0000,#000 1deg 89deg,#0000 90deg) 50%/calc(var(--zz)*2) 100%}
+  .rc-t{font-size:2rem;text-align:center}
+  .rc-s{text-align:center;color:var(--mute);margin:.2rem 0 1rem}
+  .rc-l{border-top:1.5px dashed var(--ink);border-bottom:1.5px dashed var(--ink);padding:.6rem 0}
+  .rc-l div{display:flex;justify-content:space-between;gap:1rem;padding:.3rem 0;font-size:.82rem}
+  .rc-l dt{text-transform:uppercase;letter-spacing:.06em;color:var(--mute);flex:none}
+  .rc-l dd{text-align:right;font-weight:700}
+  .rc-dep{display:flex;justify-content:space-between;align-items:baseline;margin-top:1rem}
+  .rc-dep strong{font-size:3.4rem;line-height:.9;color:var(--laser)}
+  .rc-n{color:var(--mute);margin-top:.4rem}
+  .rc-bc{width:100%;height:46px;margin-top:1.1rem}
+  .rc-bc rect{fill:var(--ink)}
+  .rc-ref{text-align:center;margin-top:.4rem;letter-spacing:.2em}
+  .done{margin-top:1rem;text-align:center}
+  .done[hidden]{display:none}
+  .stamp{font-size:4.4rem;color:var(--laser);border:5px solid var(--laser);display:inline-block;padding:.05em .25em;rotate:-6deg;margin:.4rem 0 1rem}
+  .done-cta{display:grid;gap:.6rem}
+  .done-cta .btn{justify-content:center;white-space:normal;text-align:center}
+
+  @media(max-width:900px){
+    .ui-grid{grid-template-columns:minmax(0,1fr)}
+    .rc-wrap{position:static}
+    .receipt{max-width:420px}
+  }
+  @media(max-width:560px){
+    .pick,.fields,.svc-tools{grid-template-columns:1fr}
+    .bars{grid-template-columns:repeat(auto-fit,minmax(24px,1fr))}
+  }
+</style>
+
+<script>
+  import gsap from 'gsap';
+  import { reduce } from '../scripts/engine';
+
+  type Svc = { id: number; c: string; n: string; p: number | null; f: boolean; b: string[] };
+  type Br = { id: string; name: string; tel: string; wa: string; phone: string };
+  const data = JSON.parse(document.getElementById('book-data')!.textContent!) as { services: Svc[]; cats: { id: string; l: string }[]; branches: Br[] };
+  const OPEN: Record<number, [number, number]> = { 0: [9, 16], 1: [9, 18], 2: [9, 18], 3: [9, 18], 4: [9, 18], 5: [9, 18], 6: [8, 17] };
+  const DAYN = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  const MON = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  const $ = <T extends HTMLElement>(id: string) => document.getElementById(id) as T;
+
+  const st: { branch: Br | null; svc: Svc | null; day: Date | null; start: number | null; done: boolean } = { branch: null, svc: null, day: null, start: null, done: false };
+
+  /* ---- helpers ---- */
+  const hhmm = (m: number) => `${String(Math.floor(m / 60)).padStart(2, '0')}:${String(m % 60).padStart(2, '0')}`;
+  const dayLabel = (d: Date) => `${DAYN[d.getDay()]} ${d.getDate()} ${MON[d.getMonth()]}`;
+  const price = (s: Svc) => (s.p ? `${s.f ? 'from ' : ''}R${s.p}` : 'Quoted in the chair');
+  function duration(s: Svc): number {
+    const m = s.n.match(/(\d+)\s?m\b/i);
+    if (m && s.c === 'massage') return Math.round(+m[1] / 30) * 30 || 30;
+    if (s.c === 'massage') return 60;
+    const p = s.p;
+    switch (s.c) {
+      case 'nails': return /soak|repair|buff|refill/i.test(s.n) ? 30 : (p || 250) >= 350 ? 120 : 60;
+      case 'lashes': return 60;
+      case 'makeup': return 60;
+      case 'cuts': return (p || 100) <= 150 ? 30 : 60;
+      case 'care': return 60;
+      case 'relax': return 120;
+      case 'styling': return (p || 300) >= 400 ? 90 : 60;
+      case 'wigs': return 90;
+      case 'locs': return 150;
+      default: return !p ? 150 : p < 250 ? 90 : p < 450 ? 150 : p < 700 ? 210 : 270;
+    }
+  }
+  const dur = () => Math.max(30, Math.round(duration(st.svc!) / 30) * 30);
+  function deposit(s: Svc) { return s.p ? Math.min(200, Math.max(50, Math.ceil((s.p * 0.2) / 10) * 10)) : 100; }
+  // deterministic "busy" blocks so the demo is stable per salon, day and block
+  function busy(branch: string, day: Date, block: number) {
+    let h = 2166136261;
+    const key = `${branch}|${day.getFullYear()}-${day.getMonth()}-${day.getDate()}|${block}`;
+    for (let i = 0; i < key.length; i++) { h ^= key.charCodeAt(i); h = Math.imul(h, 16777619); }
+    return ((h >>> 0) % 100) < 30;
+  }
+  const lock = (id: string, on: boolean) => { const f = $<HTMLFieldSetElement>(id); f.disabled = on; f.classList.toggle('locked', on); };
+
+  /* ---- step 1: salon ---- */
+  document.querySelectorAll<HTMLButtonElement>('[data-branch]').forEach((b) =>
+    b.addEventListener('click', () => pickBranch(b.dataset.branch!)),
+  );
+  function pickBranch(id: string) {
+    st.branch = data.branches.find((x) => x.id === id) || null;
+    document.querySelectorAll<HTMLElement>('[data-branch]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.branch === id)));
+    if (st.svc && !st.svc.b.includes(id)) { st.svc = null; st.day = null; st.start = null; }
+    lock('s2', false);
+    renderServices();
+    renderDays();
+    sync();
+  }
+
+  /* ---- step 2: service ---- */
+  const sq = $<HTMLInputElement>('sq');
+  const scat = $<HTMLSelectElement>('scat');
+  const list = $('svcList');
+  function renderServices() {
+    if (!st.branch) return;
+    const term = sq.value.trim().toLowerCase();
+    const rows = data.services.filter((s) =>
+      s.b.includes(st.branch!.id) && (scat.value === 'all' || s.c === scat.value) && (!term || s.n.toLowerCase().includes(term)),
+    ).slice(0, 80);
+    list.innerHTML = '';
+    if (!rows.length) { list.innerHTML = '<li class="none">Nothing matches. Try a shorter word.</li>'; return; }
+    rows.forEach((s) => {
+      const li = document.createElement('li');
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.setAttribute('aria-pressed', String(st.svc?.id === s.id));
+      b.innerHTML = `<span></span><span class="p"></span>`;
+      (b.firstChild as HTMLElement).textContent = s.n;
+      (b.lastChild as HTMLElement).textContent = s.p ? `${s.f ? 'from ' : ''}R${s.p}` : 'Quoted';
+      b.addEventListener('click', () => chooseService(s));
+      li.appendChild(b);
+      list.appendChild(li);
+    });
+  }
+  sq.addEventListener('input', renderServices);
+  scat.addEventListener('change', renderServices);
+  function chooseService(s: Svc) {
+    st.svc = s; st.start = null;
+    list.querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', 'false'));
+    const chosen = $('chosen');
+    chosen.hidden = false;
+    chosen.textContent = `Selected: ${s.n} · ${price(s)} · about ${dur() / 60 >= 1 ? (dur() / 60).toFixed(dur() % 60 ? 1 : 0) + ' h' : dur() + ' min'}`;
+    renderServices();
+    lock('s3', false);
+    if (!st.day) renderDays();
+    renderBars();
+    sync();
+  }
+
+  /* ---- step 3: day ---- */
+  function renderDays() {
+    const box = $('days');
+    box.innerHTML = '';
+    const now = new Date();
+    for (let i = 0; i < 14; i++) {
+      const d = new Date(now.getFullYear(), now.getMonth(), now.getDate() + i);
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'day';
+      b.setAttribute('aria-pressed', String(!!st.day && st.day.getTime() === d.getTime()));
+      b.setAttribute('aria-label', dayLabel(d));
+      b.innerHTML = `<span class="lbl">${i === 0 ? 'Today' : DAYN[d.getDay()]}</span><span class="d">${d.getDate()}</span><span class="lbl">${MON[d.getMonth()]}</span>`;
+      b.addEventListener('click', () => { st.day = d; st.start = null; renderDays(); lock('s4', false); renderBars(); sync(); });
+      box.appendChild(b);
+    }
+  }
+
+  /* ---- step 4: the barcode ---- */
+  function renderBars() {
+    const bars = $('bars'), axis = $('axis'), nofree = $('nofree');
+    bars.innerHTML = ''; axis.innerHTML = '';
+    if (!st.branch || !st.svc || !st.day) return;
+    const [o, c] = OPEN[st.day.getDay()];
+    const d = dur();
+    const now = new Date();
+    const isToday = st.day.toDateString() === now.toDateString();
+    const cutoff = now.getHours() * 60 + now.getMinutes() + 45;
+    let free = 0, seed = st.day.getDate() * 13;
+    for (let t = o * 60; t <= c * 60 - d; t += 30) {
+      let taken = isToday && t < cutoff;
+      if (!taken && (busy(st.branch.id, st.day, t) || busy(st.branch.id, st.day, t + d - 30))) taken = true;
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'bar' + (taken ? ' taken' : '');
+      b.dataset.t = hhmm(t);
+      b.setAttribute('aria-pressed', String(st.start === t));
+      b.setAttribute('aria-label', `${hhmm(t)} ${taken ? 'taken' : 'free'}`);
+      if (taken) b.setAttribute('aria-disabled', 'true');
+      seed = (seed * 9301 + 49297) % 233280;
+      const i = document.createElement('i');
+      i.style.setProperty('--w', `${28 + (seed % 62)}%`);
+      b.appendChild(i);
+      if (!taken) { free++; b.addEventListener('click', () => { st.start = t; renderBars(); sync(); }); }
+      else b.addEventListener('click', (e) => e.preventDefault());
+      bars.appendChild(b);
+    }
+    for (let h = o; h <= c; h += 2) { const s = document.createElement('span'); s.textContent = String(h).padStart(2, '0'); axis.appendChild(s); }
+    nofree.hidden = free > 0;
+    if (!reduce) gsap.from('#bars .bar i', { scaleY: 0, duration: 0.7, ease: 'expo.out', stagger: 0.018, clearProps: 'transform' });
+  }
+  // laser follows the pointer over the barcode
+  const bc = $('bcday');
+  bc.addEventListener('pointermove', (e) => {
+    const r = bc.getBoundingClientRect();
+    bc.style.setProperty('--lx', `${e.clientX - r.left}px`);
+    bc.classList.add('scanning');
+  });
+  bc.addEventListener('pointerleave', () => bc.classList.remove('scanning'));
+
+  /* ---- step 5 + receipt ---- */
+  const fn = $<HTMLInputElement>('fn'), fp = $<HTMLInputElement>('fp'), fnote = $<HTMLInputElement>('fnote');
+  const pay = $<HTMLButtonElement>('pay');
+  [fn, fp].forEach((i) => i.addEventListener('input', sync));
+
+  function setText(id: string, v: string) {
+    const el = $(id);
+    if (el.textContent === v) return;
+    el.textContent = v;
+    if (!reduce) gsap.fromTo(el, { backgroundColor: '#ff2b1c', color: '#fff' }, { backgroundColor: 'rgba(255,43,28,0)', color: '#0b0b0a', duration: 0.7, ease: 'power2.out', clearProps: 'all' });
+  }
+  function sync() {
+    if (st.done) return;
+    const s = st.svc;
+    setText('r-branch', st.branch?.name || 'Not chosen');
+    setText('r-svc', s?.n || 'Not chosen');
+    setText('r-day', st.day ? dayLabel(st.day) : 'Not chosen');
+    setText('r-time', st.start != null ? `${hhmm(st.start)} to about ${hhmm(st.start + dur())}` : 'Not chosen');
+    setText('r-price', s ? price(s) : 'Not chosen');
+    setText('r-dep', s ? `R${deposit(s)}` : 'R0');
+    $('r-bal').textContent = s?.p ? `Balance of about R${Math.max(0, s.p - deposit(s))} is settled at the salon.` : 'Balance is quoted and settled at the salon.';
+    drawRcBars();
+    lock('s5', st.start == null);
+    const nameOk = fn.value.trim().length > 1;
+    const phoneOk = fp.value.replace(/\D/g, '').length >= 9;
+    pay.disabled = !(st.branch && s && st.day && st.start != null && nameOk && phoneOk);
+    $('payTxt').textContent = s ? `Pay R${deposit(s)} deposit and book` : 'Pay deposit and book';
+  }
+  function drawRcBars(ref = '') {
+    const svg = $('rcbc');
+    const key = `${st.branch?.id}${st.svc?.id}${st.start}${ref}`;
+    let h = 7; for (let i = 0; i < key.length; i++) h = (h * 31 + key.charCodeAt(i)) % 233280;
+    let x = 0, out = '';
+    while (x < 196) { h = (h * 9301 + 49297) % 233280; const w = 1 + (h % 4); out += `<rect x="${x}" y="0" width="${w}" height="20"/>`; x += w + 1 + (h % 3); }
+    svg.innerHTML = out;
+  }
+
+  $('form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (pay.disabled || !st.branch || !st.svc || !st.day || st.start == null) {
+      $('err').textContent = 'Add your name and cell number to finish.';
+      return;
+    }
+    $('err').textContent = '';
+    st.done = true;
+    const ref = 'HS-' + Math.random().toString(36).slice(2, 7).toUpperCase();
+    $('r-ref').textContent = ref;
+    drawRcBars(ref);
+    const when = `${dayLabel(st.day)} at ${hhmm(st.start)}`;
+    const msg = `Hi HAIRitage ${st.branch.name}, I booked online (${ref}): ${st.svc.n} on ${when}. Name: ${fn.value.trim()}. Deposit R${deposit(st.svc)}.${fnote.value ? ' Notes: ' + fnote.value : ''}`;
+    ($('wa') as HTMLAnchorElement).href = `https://wa.me/${st.branch.wa}?text=${encodeURIComponent(msg)}`;
+    const p = (n: number) => String(n).padStart(2, '0');
+    const dt = (m: number) => `${st.day!.getFullYear()}${p(st.day!.getMonth() + 1)}${p(st.day!.getDate())}T${p(Math.floor(m / 60))}${p(m % 60)}00`;
+    const ics = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//HAIRitage//Booking//EN', 'BEGIN:VEVENT', `UID:${ref}@hairitage`, `DTSTAMP:${dt(0).slice(0, 8)}T000000Z`,
+      `DTSTART;TZID=Africa/Johannesburg:${dt(st.start)}`, `DTEND;TZID=Africa/Johannesburg:${dt(st.start + dur())}`,
+      `SUMMARY:${st.svc.n} at HAIRitage ${st.branch.name}`, `LOCATION:HAIRitage Salon ${st.branch.name}\\, Roodepoort`, `DESCRIPTION:Booking ${ref}. Call ${st.branch.phone}.`, 'END:VEVENT', 'END:VCALENDAR'].join('\r\n');
+    ($('ics') as HTMLAnchorElement).href = 'data:text/calendar;charset=utf-8,' + encodeURIComponent(ics);
+    $('done').hidden = false;
+    pay.disabled = true;
+    $('payTxt').textContent = 'Booked (demo)';
+    document.querySelectorAll<HTMLFieldSetElement>('.step').forEach((f) => (f.disabled = true));
+    if (!reduce) {
+      gsap.fromTo('#receipt', { clipPath: 'inset(0 0 100% 0)' }, { clipPath: 'inset(0 0 0% 0)', duration: 1.1, ease: 'steps(14)', clearProps: 'clipPath' });
+      gsap.from('.stamp', { scale: 2.4, opacity: 0, duration: 0.5, delay: 0.9, ease: 'power4.out' });
+    }
+    $('receipt').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' });
+  });
+
+  /* ---- deep links: /book/?branch=westgate&svc=123 ---- */
+  const q = new URLSearchParams(location.search);
+  drawRcBars();
+  const qb = q.get('branch');
+  const qs = data.services.find((s) => String(s.id) === q.get('svc'));
+  if (qs && !qb) {
+    // a service was chosen on the price list: use the first salon that offers it
+    pickBranch(qs.b[0]);
+  } else if (qb) pickBranch(qb);
+  if (qs && st.branch) {
+    if (!qs.b.includes(st.branch.id)) pickBranch(qs.b[0]);
+    chooseService(qs);
+  }
+  sync();
+</script>

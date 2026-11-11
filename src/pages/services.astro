@@ -1,0 +1,148 @@
+---
+import Base from '../layouts/Base.astro';
+import { CATEGORIES, SERVICES, money } from '../data/site';
+
+const groups = CATEGORIES.map((c) => ({ ...c, items: SERVICES.filter((s) => s.cat === c.id) }));
+const tag = (b: string[]) => b.map((x) => (x === 'westgate' ? 'WG' : 'AN')).join(' · ');
+---
+<Base title="Services & prices" description={`All ${SERVICES.length} services and prices at HAIRitage Salon99: braids, locs, relaxers, wigs, nails, lashes and massage at Westgate and Allen's Nek, Roodepoort.`} hd="paper">
+  <section class="head t-paper sec-bg" data-hd="paper">
+    <div class="wrap">
+      <p class="lbl" data-reveal>{SERVICES.length} services · Westgate + Allen's Nek</p>
+      <h1 class="d d-mega" data-lines>
+        <span class="ln"><span>The price</span></span>
+        <span class="ln"><span class="laser">list.</span></span>
+      </h1>
+      <p class="lede" data-reveal>Straight from the salons' booking lists. Hair is priced by length and style, and anything without a price is quoted in the chair. Tap a row to book it.</p>
+    </div>
+  </section>
+
+  <section class="list t-paper sec-bg" data-hd="paper">
+    <div class="ctrl" id="ctrl">
+      <div class="wrap ctrl-in">
+        <label class="sr" for="q">Search services</label>
+        <input id="q" class="q" type="search" placeholder="Search: knotless, gel, wig, fade..." autocomplete="off" />
+        <div class="br" role="group" aria-label="Salon">
+          <button class="chip" data-b="all" aria-pressed="true">Both salons</button>
+          <button class="chip" data-b="westgate" aria-pressed="false">Westgate</button>
+          <button class="chip" data-b="allensnek" aria-pressed="false">Allen's Nek</button>
+        </div>
+        <div class="cats" role="group" aria-label="Category">
+          <button class="chip" data-cat="all" aria-pressed="true">All <span class="mono">{SERVICES.length}</span></button>
+          {groups.map((g) => <button class="chip" data-cat={g.id} aria-pressed="false">{g.label} <span class="mono">{g.items.length}</span></button>)}
+        </div>
+      </div>
+    </div>
+
+    <div class="wrap body">
+      <p class="lbl status" id="status" role="status" aria-live="polite">Showing all {SERVICES.length}. WG = Westgate · AN = Allen's Nek</p>
+      {groups.map((g) => (
+        <section class="grp" data-grp={g.id} aria-labelledby={`h-${g.id}`}>
+          <header>
+            <h2 class="d d-l" id={`h-${g.id}`}>{g.label}</h2>
+            <p class="muted">{g.blurb}</p>
+          </header>
+          <ul>
+            {g.items.map((s) => (
+              <li data-cat={s.cat} data-b={s.branches.join(' ')} data-n={s.name.toLowerCase()}>
+                <a class="sweep srow" href={`/book/?svc=${s.id}`}>
+                  <span class="sn">{s.name}</span>
+                  <span class="sb lbl">{tag(s.branches)}</span>
+                  <span class="sp mono">{money(s.price, s.from)}</span>
+                  <span class="sg lbl">Book</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))}
+      <p class="empty" id="empty" hidden>
+        <span class="d d-l">Nothing on that bar.</span>
+        <span>Try a shorter word, or clear the filters. Anything custom, ask the salon: Westgate 068 523 8088 · Allen's Nek 072 997 4937.</span>
+      </p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .head{padding-top:calc(var(--hd) + clamp(2.5rem,6vw,5rem));padding-bottom:clamp(2.5rem,6vw,4rem)}
+  .head h1{margin:1rem 0 1.6rem}
+  .ctrl{position:sticky;top:var(--hd);z-index:40;background:var(--paper);border-block:1px solid var(--line)}
+  .ctrl-in{display:grid;grid-template-columns:minmax(220px,1fr) auto;gap:.8rem 1.5rem;padding-block:.9rem}
+  .q{width:100%;background:transparent;border:0;border-bottom:2px solid var(--ink);padding:.7rem 0;font:700 clamp(1.1rem,2vw,1.5rem) var(--f-m);outline-offset:6px;border-radius:0}
+  .q::placeholder{color:var(--mute);font-weight:400}
+  .br,.cats{display:flex;flex-wrap:wrap;gap:.45rem}
+  .cats{grid-column:1 / -1;max-height:5.6rem;overflow:auto}
+  .chip{border:1.5px solid var(--ink);padding:.45rem .8rem;font:700 .7rem var(--f-m);letter-spacing:.07em;text-transform:uppercase;transition:background .25s,color .25s}
+  .chip:hover{background:var(--ink);color:var(--paper)}
+  .chip[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+  .chip .mono{opacity:.6;margin-left:.25rem}
+  .body{padding-block:2rem clamp(4rem,9vw,8rem)}
+  .status{margin-bottom:2rem;color:var(--mute)}
+  .grp{margin-bottom:clamp(2.5rem,6vw,5rem)}
+  .grp header{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:.4rem 2rem;border-top:3px solid var(--ink);padding-top:.8rem;margin-bottom:.4rem}
+  .grp ul{list-style:none}
+  .grp[hidden],.grp li[hidden]{display:none}
+  .srow{display:grid;grid-template-columns:minmax(0,1fr) 6.5rem 6rem 3.2rem;gap:1rem;align-items:center;padding:.85rem .5rem;border-bottom:1px solid var(--line)}
+  .sn{font-weight:500}
+  .sp{text-align:right;font-weight:700}
+  .sg{text-align:right;opacity:.0;transition:opacity .3s}
+  .srow:hover .sg,.srow:focus-visible .sg{opacity:1}
+  .sb{opacity:.65}
+  .empty{display:grid;gap:1rem;padding:3rem 0}
+  .empty[hidden]{display:none}
+  @media(max-width:720px){
+    .ctrl-in{grid-template-columns:1fr}
+    .cats{flex-wrap:nowrap;overflow-x:auto;max-height:none;padding-bottom:.3rem}
+    .chip{white-space:nowrap}
+    .srow{grid-template-columns:minmax(0,1fr) auto;row-gap:.1rem}
+    .sb{grid-row:2;grid-column:1}
+    .sp{grid-row:1;grid-column:2}
+    .sg{display:none}
+  }
+</style>
+
+<script>
+  const items = Array.from(document.querySelectorAll<HTMLLIElement>('.grp li'));
+  const groups = Array.from(document.querySelectorAll<HTMLElement>('.grp'));
+  const q = document.getElementById('q') as HTMLInputElement;
+  const status = document.getElementById('status')!;
+  const empty = document.getElementById('empty')!;
+  const params = new URLSearchParams(location.search);
+  const state = { q: '', b: 'all', cat: params.get('cat') || 'all' };
+
+  const press = (sel: string, attr: string, val: string) =>
+    document.querySelectorAll<HTMLElement>(sel).forEach((el) => el.setAttribute('aria-pressed', String(el.dataset[attr] === val)));
+
+  function apply() {
+    const term = state.q.trim().toLowerCase();
+    let shown = 0;
+    items.forEach((li) => {
+      const ok =
+        (state.cat === 'all' || li.dataset.cat === state.cat) &&
+        (state.b === 'all' || (li.dataset.b || '').includes(state.b)) &&
+        (!term || (li.dataset.n || '').includes(term));
+      li.hidden = !ok;
+      if (ok) shown++;
+    });
+    groups.forEach((g) => (g.hidden = !g.querySelector('li:not([hidden])')));
+    empty.hidden = shown > 0;
+    status.textContent = `Showing ${shown} of ${items.length}. WG = Westgate · AN = Allen's Nek`;
+    press('.cats .chip', 'cat', state.cat);
+    press('.br .chip', 'b', state.b);
+    const u = new URL(location.href);
+    state.cat === 'all' ? u.searchParams.delete('cat') : u.searchParams.set('cat', state.cat);
+    history.replaceState(null, '', u);
+  }
+
+  q.addEventListener('input', () => { state.q = q.value; apply(); });
+  document.querySelector('.br')!.addEventListener('click', (e) => {
+    const b = (e.target as HTMLElement).closest<HTMLElement>('[data-b]');
+    if (b) { state.b = b.dataset.b!; apply(); }
+  });
+  document.querySelector('.cats')!.addEventListener('click', (e) => {
+    const b = (e.target as HTMLElement).closest<HTMLElement>('[data-cat]');
+    if (b) { state.cat = b.dataset.cat!; apply(); }
+  });
+  apply();
+</script>
