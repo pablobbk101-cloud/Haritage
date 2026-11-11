@@ -27,7 +27,7 @@ npm run preview
 
 ## Pages
 
-`/` home · `/services/` 372 services with filters · `/book/` 5-step booking demo · `/salons/` · `/team/` · 404
+`/` home · `/services/` 372 services with filters · `/book/` 6-step booking demo (salon, service, stylist, date, time bar, details) · `/salons/` · `/team/` · 404
 
 ## Regenerate data and logo
 

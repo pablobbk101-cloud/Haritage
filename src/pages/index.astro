@@ -29,6 +29,7 @@ const mini = Array.from({ length: 22 }, () => rnd() < 0.34);
           </a>
           <a class="btn" href="/services/"><span>See all {total} services</span></a>
         </div>
+        <p class="lbl my-salon" id="mySalon" hidden>Your salon: <strong id="mySalonN"></strong> · <button type="button" id="chgSalon">Change</button></p>
       </div>
       <div class="hero-logo" data-scan>
         <svg viewBox="0 0 884 1200" role="img" aria-label="HAIRitage Salon logo: two faces in an afro that sheds a barcode"><use href="#hs-logo-path" /></svg>
@@ -36,6 +37,24 @@ const mini = Array.from({ length: 22 }, () => rnd() < 0.34);
     </div>
     <canvas class="shed" id="shed" aria-hidden="true"></canvas>
   </section>
+
+  <dialog class="sp" id="salonPick" aria-labelledby="sp-t" data-lenis-prevent>
+    <div class="sp-in">
+      <p class="lbl">Welcome to HAIRitage Salon99</p>
+      <h2 class="d sp-h" id="sp-t">Which salon are you booking?</h2>
+      <div class="sp-list">
+        {Object.values(BRANCHES).map((b) => (
+          <a class="sp-opt" href={`/book/?branch=${b.id}`} data-salon={b.id}>
+            <span class="d sp-n">{b.name}</span>
+            <span class="sp-a">{b.address[0]}, {b.address[1]}</span>
+            <span class="lbl sp-t">{b.phone} · <span data-today>Open 7 days</span></span>
+            <span class="sp-go lbl">Book at {b.name} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></span>
+          </a>
+        ))}
+      </div>
+      <button type="button" class="sp-skip lbl" id="spSkip">Just looking around</button>
+    </div>
+  </dialog>
 
   <section class="how t-ink sec-bg" data-hd="ink">
     <div class="wrap">
@@ -46,7 +65,7 @@ const mini = Array.from({ length: 22 }, () => rnd() < 0.34);
         </h2>
         <div class="how-side">
           <p class="lede" data-reveal>
-            The salon's logo turns hair into a barcode. We took it literally: your day is a row of bars, each one a 30 minute start time. Tall bars are free. Short stubs are taken. Tap one and it prints your receipt.
+            The salon's logo turns hair into a barcode. We took it literally: your day is a row of bars, each one a start time, 15 minutes apart. Tall bars are free. Short stubs are taken. Tap one and it prints your receipt.
           </p>
         </div>
       </div>
@@ -141,6 +160,28 @@ const mini = Array.from({ length: 22 }, () => rnd() < 0.34);
 </Base>
 
 <style>
+  /* salon picker */
+  .sp{border:0;padding:0;background:var(--paper);color:var(--ink);width:min(46rem,calc(100vw - 1.5rem));max-height:calc(100dvh - 1.5rem);margin:auto;box-shadow:0 30px 90px rgba(11,11,10,.45);overflow:auto;overscroll-behavior:contain}
+  .sp::backdrop{background:rgba(11,11,10,.72);backdrop-filter:blur(4px)}
+  .sp[open]{animation:spIn .5s var(--ease)}
+  @keyframes spIn{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+  .sp-in{padding:clamp(1.3rem,4vw,2.4rem);border-top:6px solid var(--laser)}
+  .sp-h{font-size:clamp(2.3rem,7vw,4.2rem);line-height:.9;margin:.5rem 0 1.4rem;text-transform:uppercase}
+  .sp-list{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
+  .sp-opt{display:grid;gap:.35rem;border:2px solid var(--ink);padding:1.1rem;min-height:11rem;align-content:start;position:relative;isolation:isolate;overflow:hidden;transition:color .3s}
+  .sp-opt::before{content:'';position:absolute;inset:0;background:var(--ink);transform:scaleX(0);transform-origin:left;transition:transform .45s var(--ease);z-index:-1}
+  .sp-opt:hover,.sp-opt:focus-visible{color:var(--paper)}
+  .sp-opt:hover::before,.sp-opt:focus-visible::before{transform:scaleX(1)}
+  .sp-n{font-size:clamp(2rem,6vw,3rem);line-height:.9;text-transform:uppercase}
+  .sp-a{font-size:.95rem;line-height:1.3}
+  .sp-t{opacity:.75}
+  .sp-go{margin-top:.6rem;display:flex;align-items:center;gap:.5rem;color:var(--laser);font-weight:700}
+  .sp-go svg{width:1.1rem;height:1.1rem}
+  .sp-skip{margin-top:1.1rem;min-height:3rem;border-bottom:2px solid var(--ink);padding:.4rem 0}
+  .my-salon{margin-top:1.1rem;color:var(--mute)}
+  .my-salon strong{color:var(--ink)}
+  .my-salon button{border-bottom:1.5px solid var(--ink);color:var(--ink);padding:.3rem 0;min-height:2.4rem}
+  @media(max-width:600px){.sp-list{grid-template-columns:1fr}.sp-opt{min-height:9rem}}
   .hero{position:relative;z-index:3;min-height:max(88svh,700px);padding-top:calc(var(--hd) + 1.5rem)}
   .hero-in{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,.7fr);gap:clamp(1rem,4vw,4rem);align-items:start;padding-bottom:calc(clamp(180px,34vh,360px) * .12 + 3rem)}
   .hero-h{font-size:clamp(3.5rem,9.6vw,10.5rem);margin:1.4rem 0 1.6rem}
@@ -229,5 +270,28 @@ const mini = Array.from({ length: 22 }, () => rnd() < 0.34);
         }
       },
     });
+  }
+  // first visit: ask which salon the visitor is booking
+  import { onReady, lenis } from '../scripts/engine';
+  const dlg = document.getElementById('salonPick') as HTMLDialogElement | null;
+  const my = document.getElementById('mySalon') as HTMLElement | null;
+  const NAMES: Record<string, string> = { westgate: 'Westgate', allensnek: "Allen's Nek" };
+  const OPEN: Record<number, [number, number]> = { 0: [9, 16], 1: [9, 18], 2: [9, 18], 3: [9, 18], 4: [9, 18], 5: [9, 18], 6: [8, 17] };
+  const get = (k: string, s = false) => { try { return (s ? sessionStorage : localStorage).getItem(k); } catch { return null; } };
+  const set = (k: string, v: string, s = false) => { try { (s ? sessionStorage : localStorage).setItem(k, v); } catch {} };
+  function showMine() {
+    const id = get('hs-salon');
+    if (my && id && NAMES[id]) { my.hidden = false; (document.getElementById('mySalonN') as HTMLElement).textContent = NAMES[id]; }
+  }
+  if (dlg) {
+    const [o, c] = OPEN[new Date().getDay()];
+    dlg.querySelectorAll('[data-today]').forEach((el) => (el.textContent = `Open today ${String(o).padStart(2, '0')}:00 to ${c}:00`));
+    const open = () => { if (!dlg.open) { lenis?.stop(); dlg.showModal(); } };
+    dlg.addEventListener('close', () => { lenis?.start(); showMine(); });
+    dlg.querySelectorAll<HTMLAnchorElement>('[data-salon]').forEach((a) => a.addEventListener('click', () => set('hs-salon', a.dataset.salon!)));
+    document.getElementById('spSkip')?.addEventListener('click', () => { set('hs-skip', '1', true); dlg.close(); });
+    document.getElementById('chgSalon')?.addEventListener('click', open);
+    showMine();
+    if (!get('hs-salon') && !get('hs-skip', true)) onReady(() => setTimeout(open, reduce ? 200 : 700));
   }
 </script>

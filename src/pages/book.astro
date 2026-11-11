@@ -1,10 +1,11 @@
 ---
 import Base from '../layouts/Base.astro';
-import { BRANCHES, CATEGORIES, SERVICES } from '../data/site';
+import { BRANCHES, CATEGORIES, OPEN, SERVICES, STAFF } from '../data/site';
 
 const services = SERVICES.map((s) => ({ id: s.id, c: s.cat, n: s.name, p: s.price, f: s.from, b: s.branches }));
 const cats = CATEGORIES.map((c) => ({ id: c.id, l: c.label }));
 const branches = Object.values(BRANCHES).map((b) => ({ id: b.id, name: b.name, tel: b.tel, wa: b.wa, phone: b.phone }));
+const staff = STAFF;
 ---
 <Base title="Book your slot" description="Book your exact slot at HAIRitage Salon99 Westgate or Allen's Nek in Roodepoort. Pick a bar, pay a small deposit, walk in." hd="paper">
   <section class="head t-paper sec-bg" data-hd="paper">
@@ -17,66 +18,117 @@ const branches = Object.values(BRANCHES).map((b) => ({ id: b.id, name: b.name, t
     </div>
   </section>
 
-  <section class="ui t-paper sec-bg" data-hd="paper">
+  <section class="ui t-paper sec-bg" id="ui" data-hd="paper">
+    <div class="wrap prog" id="prog" aria-live="polite">
+      <p class="lbl"><span id="prog-n">Step 1 of 6</span> · <strong id="prog-t">Salon</strong></p>
+      <div class="prog-bar" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    </div>
     <div class="wrap ui-grid">
       <form class="steps" id="form" novalidate autocomplete="off">
-        <!-- 1 -->
-        <fieldset class="step" id="s1">
-          <legend><span class="lbl">1</span><span class="d d-m">Salon</span></legend>
-          <div class="pick">
-            {branches.map((b) => (
-              <button type="button" class="opt" data-branch={b.id} aria-pressed="false">
-                <span class="d d-m">{b.name}</span><span class="lbl">{b.phone}</span>
-              </button>
-            ))}
+        <!-- 1 salon -->
+        <section class="step" id="s1">
+          <h2 class="step-h"><button type="button" class="step-btn" data-go="1" aria-controls="b1" aria-expanded="true">
+            <span class="num">1</span><span class="ttl d d-m">Salon</span><span class="sum" id="sum1"></span><span class="chg lbl">Change</span>
+          </button></h2>
+          <div class="step-body" id="b1">
+            <div class="pick">
+              {branches.map((b) => (
+                <button type="button" class="opt" data-branch={b.id} aria-pressed="false">
+                  <span class="d d-m">{b.name}</span><span class="lbl">{b.phone}</span>
+                </button>
+              ))}
+            </div>
           </div>
-        </fieldset>
+        </section>
 
-        <!-- 2 -->
-        <fieldset class="step locked" id="s2" disabled>
-          <legend><span class="lbl">2</span><span class="d d-m">Service</span></legend>
-          <div class="svc-tools">
-            <label class="sr" for="sq">Search services</label>
-            <input id="sq" class="q" type="search" placeholder="Search: knotless, gel, wig, fade..." />
-            <label class="sr" for="scat">Category</label>
-            <select id="scat" class="sel">
-              <option value="all">All categories</option>
-              {cats.map((c) => <option value={c.id}>{c.l}</option>)}
-            </select>
+        <!-- 2 service -->
+        <section class="step" id="s2">
+          <h2 class="step-h"><button type="button" class="step-btn" data-go="2" aria-controls="b2" aria-expanded="false">
+            <span class="num">2</span><span class="ttl d d-m">Service</span><span class="sum" id="sum2"></span><span class="chg lbl">Change</span>
+          </button></h2>
+          <div class="step-body" id="b2" hidden>
+            <div class="svc-tools">
+              <label class="sr" for="sq">Search services</label>
+              <input id="sq" class="q" type="search" placeholder="Search: knotless, gel, wig, fade..." />
+              <label class="sr" for="scat">Category</label>
+              <select id="scat" class="sel">
+                <option value="all">All categories</option>
+                {cats.map((c) => <option value={c.id}>{c.l}</option>)}
+              </select>
+            </div>
+            <ul class="svc-list" id="svcList" aria-label="Services"></ul>
           </div>
-          <ul class="svc-list" id="svcList" aria-label="Services"></ul>
-          <p class="chosen lbl" id="chosen" hidden></p>
-        </fieldset>
+        </section>
 
-        <!-- 3 -->
-        <fieldset class="step locked" id="s3" disabled>
-          <legend><span class="lbl">3</span><span class="d d-m">Day</span></legend>
-          <div class="days" id="days" role="group" aria-label="Choose a day"></div>
-        </fieldset>
-
-        <!-- 4 -->
-        <fieldset class="step locked" id="s4" disabled>
-          <legend><span class="lbl">4</span><span class="d d-m">Your bar</span></legend>
-          <p class="hint" id="hint">Tall bars are free start times. Short stubs are taken.</p>
-          <div class="bcday" id="bcday">
-            <div class="bars" id="bars" role="group" aria-label="Start times"></div>
-            <div class="axis" id="axis" aria-hidden="true"></div>
+        <!-- 3 stylist -->
+        <section class="step" id="s3">
+          <h2 class="step-h"><button type="button" class="step-btn" data-go="3" aria-controls="b3" aria-expanded="false">
+            <span class="num">3</span><span class="ttl d d-m">Stylist</span><span class="sum" id="sum3"></span><span class="chg lbl">Change</span>
+          </button></h2>
+          <div class="step-body" id="b3" hidden>
+            <p class="hint" id="staffHint">Pick who you want, or let us choose whoever is free.</p>
+            <div class="staff" id="staff" role="group" aria-label="Choose who does your hair"></div>
+            <button type="button" class="more" id="moreStaff" hidden></button>
           </div>
-          <p class="nofree" id="nofree" hidden>No free bars that day for this service. Try another day.</p>
-        </fieldset>
+        </section>
 
-        <!-- 5 -->
-        <fieldset class="step locked" id="s5" disabled>
-          <legend><span class="lbl">5</span><span class="d d-m">You</span></legend>
-          <div class="fields">
-            <label class="f"><span class="lbl">Full name</span><input id="fn" type="text" autocomplete="name" required /></label>
-            <label class="f"><span class="lbl">Cell number</span><input id="fp" type="tel" inputmode="tel" autocomplete="tel" placeholder="071 234 5678" required /></label>
-            <label class="f wide"><span class="lbl">Hair notes (optional)</span><input id="fnote" type="text" placeholder="Length, current style, anything we should know" /></label>
+        <!-- 4 day -->
+        <section class="step" id="s4">
+          <h2 class="step-h"><button type="button" class="step-btn" data-go="4" aria-controls="b4" aria-expanded="false">
+            <span class="num">4</span><span class="ttl d d-m">Day</span><span class="sum" id="sum4"></span><span class="chg lbl">Change</span>
+          </button></h2>
+          <div class="step-body" id="b4" hidden>
+            <div class="quick" id="quick" role="group" aria-label="Quick dates"></div>
+            <div class="cal">
+              <div class="cal-top">
+                <button type="button" class="cal-nav" id="calPrev" aria-label="Previous month">&#8592;</button>
+                <label class="sr" for="calMo">Month</label>
+                <select id="calMo" class="sel cal-sel"></select>
+                <label class="sr" for="calYr">Year</label>
+                <select id="calYr" class="sel cal-sel cal-yr"></select>
+                <button type="button" class="cal-nav" id="calNext" aria-label="Next month">&#8594;</button>
+              </div>
+              <div class="cal-wk" aria-hidden="true"><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span></div>
+              <div class="cal-grid" id="calGrid" role="group" aria-label="Days"></div>
+              <p class="lbl cal-open" id="calOpen"></p>
+            </div>
           </div>
-          <p class="err" id="err" role="alert"></p>
-          <button class="btn btn--laser" id="pay" type="submit" disabled><span id="payTxt">Pay deposit and book</span></button>
-          <p class="demo lbl">Demo mode: availability and payment are simulated until the salon connects its calendar and a payment provider.</p>
-        </fieldset>
+        </section>
+
+        <!-- 5 time -->
+        <section class="step" id="s5">
+          <h2 class="step-h"><button type="button" class="step-btn" data-go="5" aria-controls="b5" aria-expanded="false">
+            <span class="num">5</span><span class="ttl d d-m">Your bar</span><span class="sum" id="sum5"></span><span class="chg lbl">Change</span>
+          </button></h2>
+          <div class="step-body" id="b5" hidden>
+            <p class="hint" id="hint">Each bar is a start time, 15 minutes apart. Tall bars are free. Short stubs are taken.</p>
+            <div class="bcday" id="bcday">
+              <div class="bars" id="bars" role="group" aria-label="Start times"></div>
+            </div>
+            <p class="nofree" id="nofree" hidden>No free bars that day. Try another day or another stylist.</p>
+          </div>
+        </section>
+
+        <!-- 6 details -->
+        <section class="step" id="s6">
+          <h2 class="step-h"><button type="button" class="step-btn" data-go="6" aria-controls="b6" aria-expanded="false">
+            <span class="num">6</span><span class="ttl d d-m">You</span><span class="sum" id="sum6"></span><span class="chg lbl">Change</span>
+          </button></h2>
+          <div class="step-body" id="b6" hidden>
+            <div class="fields">
+              <label class="f"><span class="lbl">Full name</span><input id="fn" type="text" autocomplete="name" required /></label>
+              <label class="f"><span class="lbl">Cell number</span><input id="fp" type="tel" inputmode="tel" autocomplete="tel" placeholder="071 234 5678" required /></label>
+              <label class="f wide"><span class="lbl">Hair notes (optional)</span><input id="fnote" type="text" placeholder="Length, current style, anything we should know" /></label>
+            </div>
+            <div class="paysum">
+              <span class="lbl">Deposit due now</span><strong class="d" id="paysumDep">R0</strong>
+              <span class="lbl" id="paysumBal">Balance is settled at the salon.</span>
+            </div>
+            <p class="err" id="err" role="alert"></p>
+            <button class="btn btn--laser pay" id="pay" type="submit" disabled><span id="payTxt">Pay deposit and book</span></button>
+            <p class="demo lbl">Demo mode: availability and payment are simulated until the salon connects its calendar and a payment provider.</p>
+          </div>
+        </section>
       </form>
 
       <aside class="rc-wrap" aria-label="Receipt">
@@ -86,6 +138,7 @@ const branches = Object.values(BRANCHES).map((b) => ({ id: b.id, name: b.name, t
           <dl class="rc-l" id="rc">
             <div><dt>Salon</dt><dd id="r-branch">Not chosen</dd></div>
             <div><dt>Service</dt><dd id="r-svc">Not chosen</dd></div>
+            <div><dt>Stylist</dt><dd id="r-staff">Not chosen</dd></div>
             <div><dt>Day</dt><dd id="r-day">Not chosen</dd></div>
             <div><dt>Time</dt><dd id="r-time">Not chosen</dd></div>
             <div><dt>Price</dt><dd id="r-price">Not chosen</dd></div>
@@ -106,63 +159,127 @@ const branches = Object.values(BRANCHES).map((b) => ({ id: b.id, name: b.name, t
     </div>
   </section>
 
-  <script id="book-data" type="application/json" set:html={JSON.stringify({ services, cats, branches })} />
+  <script id="book-data" type="application/json" set:html={JSON.stringify({ services, cats, branches, staff, open: OPEN })} />
 </Base>
 
 <style is:global>
-  .head{padding-top:calc(var(--hd) + clamp(2.5rem,6vw,5rem));padding-bottom:clamp(1.5rem,4vw,3rem)}
+  .head{padding-top:calc(var(--hd) + clamp(2rem,5vw,5rem));padding-bottom:clamp(1rem,3vw,3rem)}
   .head h1{margin-top:1rem}
   .ui{padding-bottom:clamp(4rem,9vw,8rem)}
   .ui-grid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(280px,.8fr);gap:clamp(1.5rem,5vw,5rem);align-items:start}
-  .step{border:0;border-top:3px solid var(--ink);padding:1rem 0 2.2rem;min-width:0;transition:opacity .4s}
-  .step.locked{opacity:.32}
-  .step legend{display:flex;align-items:baseline;gap:.9rem;padding-right:1rem}
-  .step legend .lbl{border:1.5px solid var(--ink);padding:.15rem .5rem}
-  .pick{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-top:.8rem}
-  .opt{display:flex;flex-direction:column;align-items:flex-start;gap:.3rem;border:1.5px solid var(--ink);padding:1rem 1.1rem;text-align:left;transition:background .3s,color .3s;position:relative;isolation:isolate;overflow:hidden}
+
+  /* progress */
+  .prog{position:sticky;top:var(--hd);z-index:30;background:var(--paper);padding-block:.7rem .6rem;box-shadow:0 1px 0 var(--line)}
+  .prog .lbl{margin-bottom:.45rem}
+  .prog-bar{display:grid;grid-template-columns:repeat(6,1fr);gap:4px}
+  .prog-bar i{height:5px;background:var(--line);transition:background .3s}
+  .prog-bar i.on{background:var(--ink)}
+  .prog-bar i.now{background:var(--laser)}
+
+  /* accordion steps */
+  .steps{display:grid;gap:0}
+  .step{border-top:3px solid var(--ink);scroll-margin-top:calc(var(--hd) + 4.2rem)}
+  .step-h{margin:0;font:inherit}
+  .step-btn{display:grid;grid-template-columns:auto 1fr auto;grid-template-areas:'n t c' 'n s c';align-items:center;column-gap:.9rem;row-gap:.1rem;width:100%;min-height:4.2rem;padding:.9rem 0;text-align:left}
+  .step-btn .num{grid-area:n;font:700 .85rem var(--f-m);border:1.5px solid var(--ink);width:2rem;height:2rem;display:grid;place-items:center;align-self:start;margin-top:.15rem}
+  .step-btn .ttl{grid-area:t}
+  .step-btn .sum{grid-area:s;font-weight:600;font-size:1rem;color:var(--ink);display:none;overflow-wrap:anywhere}
+  .step-btn .chg{grid-area:c;display:none;border-bottom:1.5px solid var(--ink)}
+  .step.is-done .sum{display:block}
+  .step.is-done .chg{display:inline}
+  .step.is-done .num{background:var(--ink);color:var(--paper)}
+  .step.is-open .num{background:var(--laser);border-color:var(--laser);color:#fff}
+  .step.is-locked .step-btn{opacity:.4;cursor:not-allowed}
+  .step-body{padding:.2rem 0 2rem;min-width:0;animation:stepIn .45s var(--ease)}
+  .step-body[hidden]{display:none}
+  @keyframes stepIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+  .pick{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-top:.4rem}
+  .opt{display:flex;flex-direction:column;align-items:flex-start;gap:.3rem;border:1.5px solid var(--ink);padding:1.1rem 1.1rem;min-height:5.2rem;text-align:left;transition:background .3s,color .3s;position:relative;isolation:isolate;overflow:hidden}
   .opt::before{content:'';position:absolute;inset:0;background:var(--ink);transform:scaleX(0);transform-origin:left;transition:transform .45s var(--ease);z-index:-1}
   .opt:hover::before,.opt[aria-pressed="true"]::before{transform:scaleX(1)}
   .opt:hover,.opt[aria-pressed="true"]{color:var(--paper)}
-  .svc-tools{display:grid;grid-template-columns:1fr 12rem;gap:.8rem;margin:.8rem 0}
-  .q,.sel{border:0;border-bottom:2px solid var(--ink);background:transparent;padding:.65rem 0;font:700 1rem var(--f-m);border-radius:0;width:100%}
+
+  .svc-tools{display:grid;grid-template-columns:1fr 12rem;gap:.8rem;margin:.4rem 0 .8rem}
+  .q,.sel{border:0;border-bottom:2px solid var(--ink);background:transparent;padding:.7rem 0;min-height:3rem;font:700 1rem var(--f-m);border-radius:0;width:100%;color:var(--ink)}
   .q::placeholder{color:var(--mute);font-weight:400}
-  .svc-list{list-style:none;max-height:20rem;overflow:auto;border:1.5px solid var(--ink);overscroll-behavior:contain}
-  .svc-list button{display:flex;justify-content:space-between;gap:1rem;width:100%;text-align:left;padding:.7rem .9rem;border-bottom:1px solid var(--line);font-weight:500;transition:background .25s,color .25s}
+  .svc-list{list-style:none;max-height:24rem;overflow:auto;border:1.5px solid var(--ink);overscroll-behavior:contain}
+  .svc-list button{display:flex;justify-content:space-between;align-items:center;gap:1rem;width:100%;min-height:3.4rem;text-align:left;padding:.7rem .9rem;border-bottom:1px solid var(--line);font-weight:500;transition:background .25s,color .25s}
   .svc-list button:hover{background:var(--ink);color:var(--paper)}
   .svc-list button[aria-pressed="true"]{background:var(--laser);color:#fff}
   .svc-list .p{font:700 .85rem var(--f-m);white-space:nowrap}
-  .svc-list .none{padding:1rem;color:var(--mute)}
-  .chosen{margin-top:.8rem}
-  .days{display:flex;gap:.45rem;overflow-x:auto;padding:.8rem 0 .4rem;scroll-snap-type:x proximity}
-  .day{flex:none;scroll-snap-align:start;min-width:4.1rem;border:1.5px solid var(--ink);padding:.55rem .4rem;text-align:center;display:grid;gap:.1rem;transition:background .25s,color .25s}
-  .day .d{font-size:2rem;line-height:.9}
-  .day:hover,.day[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
-  .hint{margin:.6rem 0 2.2rem;color:var(--mute);font-size:.95rem}
+  .svc-list .none,.svc-list .note{padding:1rem;color:var(--mute);font-size:.9rem}
 
-  /* the signature: the day as a barcode */
+  /* stylist */
+  .hint{margin:.2rem 0 1.2rem;color:var(--mute);font-size:.98rem}
+  .staff{display:grid;grid-template-columns:repeat(auto-fill,minmax(14rem,1fr));gap:.6rem}
+  .stf{display:grid;grid-template-columns:3rem 1fr;align-items:center;gap:.8rem;border:1.5px solid var(--ink);padding:.6rem .8rem;min-height:4rem;text-align:left;transition:background .25s,color .25s}
+  .stf .av{width:3rem;height:3rem;border-radius:50%;background:var(--ink);color:var(--paper);display:grid;place-items:center;font:800 1.15rem var(--f-d)}
+  .stf b{display:block;font-weight:700;font-size:1.05rem;line-height:1.15}
+  .stf small{display:block;color:var(--mute);font-size:.82rem;line-height:1.25;margin-top:.1rem}
+  .stf:hover{background:var(--ink);color:var(--paper)}
+  .stf:hover small{color:inherit;opacity:.7}
+  .stf:hover .av{background:var(--paper);color:var(--ink)}
+  .stf[aria-pressed="true"]{background:var(--laser);color:#fff;border-color:var(--laser)}
+  .stf[aria-pressed="true"] small{color:#fff;opacity:.85}
+  .stf[aria-pressed="true"] .av{background:#fff;color:var(--laser)}
+  .stf.any{grid-column:1 / -1;border-width:2.5px}
+  .stf.any .av{background:var(--laser)}
+  .more{margin-top:1rem;min-height:3rem;padding:.4rem 0;border-bottom:2px solid var(--ink);font:700 .9rem var(--f-m);text-transform:uppercase;letter-spacing:.06em}
+
+  /* calendar */
+  .quick{display:flex;flex-wrap:wrap;gap:.5rem;margin:.2rem 0 1rem}
+  .chip{min-height:2.9rem;padding:.4rem 1.1rem;border:1.5px solid var(--ink);font:700 .85rem var(--f-m);text-transform:uppercase;letter-spacing:.06em;transition:background .25s,color .25s}
+  .chip:hover,.chip[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+  .cal{border:1.5px solid var(--ink);padding:.9rem}
+  .cal-top{display:grid;grid-template-columns:3rem 1fr minmax(5.5rem,.6fr) 3rem;gap:.5rem;align-items:center;margin-bottom:.8rem}
+  .cal-nav{width:3rem;height:3rem;border:1.5px solid var(--ink);font:700 1.2rem var(--f-m);transition:background .25s,color .25s}
+  .cal-nav:hover:not(:disabled){background:var(--ink);color:var(--paper)}
+  .cal-nav:disabled{opacity:.3;cursor:not-allowed}
+  .cal-sel{border:1.5px solid var(--ink);padding:.4rem .6rem;min-height:3rem;background:var(--paper)}
+  .cal-wk,.cal-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px}
+  .cal-wk span{text-align:center;font:700 .7rem var(--f-m);text-transform:uppercase;color:var(--mute);padding:.2rem 0 .4rem}
+  .cd{aspect-ratio:1/1;min-height:2.75rem;border:1.5px solid var(--line);font:800 1.15rem var(--f-d);display:grid;place-items:center;transition:background .2s,color .2s,border-color .2s}
+  .cd:hover:not(:disabled){background:var(--ink);color:var(--paper);border-color:var(--ink)}
+  .cd:disabled{opacity:.25;cursor:not-allowed;border-color:transparent}
+  .cd.today{border-color:var(--ink)}
+  .cd[aria-pressed="true"]{background:var(--laser);color:#fff;border-color:var(--laser)}
+  .cd.blank{border:0;pointer-events:none}
+  .cal-open{margin-top:.8rem;color:var(--mute)}
+
+  /* the signature: the day as a barcode, every bar labelled */
   .bcday{position:relative;--lx:-20px}
-  .bars{position:relative;display:grid;grid-template-columns:repeat(auto-fit,minmax(28px,1fr));gap:2px;height:clamp(150px,22vw,230px);grid-auto-rows:100%;align-items:end}
-  .bar{position:relative;height:100%;display:flex;align-items:flex-end;justify-content:center;padding:0}
+  .bars{position:relative;display:grid;grid-template-columns:repeat(auto-fill,minmax(46px,1fr));gap:.9rem .2rem}
+  .bar{display:grid;grid-template-rows:auto 7rem auto;justify-items:center;gap:.3rem;padding:.15rem 0;min-height:48px;position:relative}
+  .bar .tm{font:700 .74rem var(--f-m);padding:.15rem .3rem;letter-spacing:-.01em;transition:background .2s,color .2s}
+  .bar .bx{width:100%;height:100%;display:flex;align-items:flex-end;justify-content:center}
   .bar i{display:block;width:var(--w,60%);height:100%;background:var(--ink);transform-origin:bottom;transition:height .5s var(--ease),background .2s,transform .3s var(--ease)}
+  .bar .cap{font:700 .6rem var(--f-m);letter-spacing:.08em;color:var(--laser);min-height:.85rem}
   .bar.taken i{height:14%;opacity:.35}
+  .bar.taken .tm{color:var(--mute);font-weight:400}
   .bar.taken{cursor:not-allowed}
+  .bar.close i{height:100%;background:transparent;border:2px dashed var(--ink);width:60%;opacity:1}
+  .bar.close .tm{color:var(--ink);font-weight:700}
   .bar:not(.taken):hover i{transform:scaleY(1.04);background:var(--laser)}
+  .bar:not(.taken):hover .tm{color:var(--laser)}
   .bar[aria-pressed="true"] i{background:var(--laser)}
-  .bar::after{content:attr(data-t);position:absolute;bottom:calc(100% + 6px);left:50%;translate:-50% 0;background:var(--laser);color:#fff;font:700 .72rem var(--f-m);padding:.2rem .45rem;opacity:0;pointer-events:none;transition:opacity .2s;white-space:nowrap;z-index:3}
-  .bar:not(.taken):hover::after,.bar[aria-pressed="true"]::after,.bar:focus-visible::after{opacity:1}
-  .bcday::after{content:'';position:absolute;top:-8px;bottom:22px;left:var(--lx);width:2px;background:var(--laser);pointer-events:none;opacity:0;transition:opacity .2s;box-shadow:0 0 14px rgba(255,43,28,.55)}
-  .bcday.scanning::after{opacity:1}
-  .axis{display:flex;justify-content:space-between;margin-top:.5rem;font:400 .68rem var(--f-m);color:var(--mute);border-top:1px solid var(--ink);padding-top:.35rem}
+  .bar[aria-pressed="true"] .tm{background:var(--laser);color:#fff}
+  .bcday::after{content:'';position:absolute;top:0;bottom:0;left:var(--lx);width:2px;background:var(--laser);pointer-events:none;opacity:0;transition:opacity .2s;box-shadow:0 0 14px rgba(255,43,28,.55)}
+  .bcday.scanning::after{opacity:.85}
   .nofree{margin-top:1rem;font-weight:600}
-  .fields{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:.8rem 0 1rem}
+
+  .fields{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:.4rem 0 1.2rem}
   .f{display:grid;gap:.2rem}
   .f.wide{grid-column:1 / -1}
-  .f input{border:0;border-bottom:2px solid var(--ink);background:transparent;padding:.6rem 0;font:700 1.05rem var(--f-m);border-radius:0;width:100%}
+  .f input{border:0;border-bottom:2px solid var(--ink);background:transparent;padding:.7rem 0;min-height:3.2rem;font:700 1.05rem var(--f-m);border-radius:0;width:100%;color:var(--ink)}
+  .paysum{display:grid;gap:.15rem;border:1.5px dashed var(--ink);padding:.9rem 1rem;margin-bottom:1rem}
+  .paysum strong{font-size:2.6rem;line-height:.95;color:var(--laser)}
   .err{color:var(--laser);font-weight:600;min-height:1.4em;margin-bottom:.6rem}
+  .pay{min-height:3.4rem}
   .demo{color:var(--mute);margin-top:1rem;max-width:34rem}
 
   /* receipt */
-  .rc-wrap{position:sticky;top:calc(var(--hd) + 1rem)}
+  .rc-wrap{position:sticky;top:calc(var(--hd) + 5rem)}
   .receipt{--zz:12px;background:#f9f7f0;color:var(--ink);padding:1.6rem 1.4rem calc(var(--zz) + 1.8rem);box-shadow:0 20px 50px rgba(11,11,10,.18);position:relative;font-family:var(--f-m);
     -webkit-mask:conic-gradient(from -45deg at bottom,#0000,#000 1deg 89deg,#0000 90deg) 50%/calc(var(--zz)*2) 100%;mask:conic-gradient(from -45deg at bottom,#0000,#000 1deg 89deg,#0000 90deg) 50%/calc(var(--zz)*2) 100%}
   .rc-t{font-size:2rem;text-align:center}
@@ -181,16 +298,38 @@ const branches = Object.values(BRANCHES).map((b) => ({ id: b.id, name: b.name, t
   .done[hidden]{display:none}
   .stamp{font-size:4.4rem;color:var(--laser);border:5px solid var(--laser);display:inline-block;padding:.05em .25em;rotate:-6deg;margin:.4rem 0 1rem}
   .done-cta{display:grid;gap:.6rem}
-  .done-cta .btn{justify-content:center;white-space:normal;text-align:center}
+  .done-cta .btn{justify-content:center;white-space:normal;text-align:center;min-height:3.2rem}
 
+  /* tablet and phone */
   @media(max-width:900px){
     .ui-grid{grid-template-columns:minmax(0,1fr)}
     .rc-wrap{position:static}
-    .receipt{max-width:420px}
+    .receipt{max-width:420px;margin-inline:auto}
+    .ui:not(.booked) .rc-wrap{display:none}
   }
-  @media(max-width:560px){
-    .pick,.fields,.svc-tools{grid-template-columns:1fr}
-    .bars{grid-template-columns:repeat(auto-fit,minmax(24px,1fr))}
+  @media(max-width:640px){
+    .head{padding-top:calc(var(--hd) + 1.2rem);padding-bottom:.6rem}
+    .head .lbl{display:none}
+    .head h1{font-size:clamp(3.2rem,19vw,5rem)}
+    .head h1 .ln:first-child{display:inline}
+    .step-btn{min-height:4.4rem;column-gap:.75rem}
+    .step-btn .ttl{font-size:1.9rem}
+    .pick{grid-template-columns:1fr}
+    .opt{min-height:5.6rem}
+    .opt .d-m{font-size:2.2rem}
+    .svc-tools,.fields{grid-template-columns:1fr}
+    .svc-list{max-height:26rem}
+    .svc-list button{min-height:3.8rem;font-size:1.02rem}
+    .staff{grid-template-columns:1fr}
+    .stf{min-height:4.4rem}
+    .cal{padding:.6rem}
+    .cal-top{grid-template-columns:3rem 1fr 6rem 3rem}
+    .cd{font-size:1.2rem;min-height:2.7rem}
+    .bars{grid-template-columns:repeat(5,minmax(0,1fr));gap:.9rem .15rem}
+    .bar{grid-template-rows:auto 5.5rem auto}
+    .bar .tm{font-size:.82rem}
+    .f input,.q,.sel{font-size:1rem}
+    .rc-t{font-size:1.7rem}
   }
 </style>
 
@@ -200,17 +339,23 @@ const branches = Object.values(BRANCHES).map((b) => ({ id: b.id, name: b.name, t
 
   type Svc = { id: number; c: string; n: string; p: number | null; f: boolean; b: string[] };
   type Br = { id: string; name: string; tel: string; wa: string; phone: string };
-  const data = JSON.parse(document.getElementById('book-data')!.textContent!) as { services: Svc[]; cats: { id: string; l: string }[]; branches: Br[] };
-  const OPEN: Record<number, [number, number]> = { 0: [9, 16], 1: [9, 18], 2: [9, 18], 3: [9, 18], 4: [9, 18], 5: [9, 18], 6: [8, 17] };
+  type Staff = { name: string; role: string };
+  const data = JSON.parse(document.getElementById('book-data')!.textContent!) as {
+    services: Svc[]; cats: { id: string; l: string }[]; branches: Br[]; staff: Record<string, Staff[]>; open: Record<number, [number, number]>;
+  };
   const DAYN = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-  const MON = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  const MON = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   const $ = <T extends HTMLElement>(id: string) => document.getElementById(id) as T;
+  const STEPS = ['Salon', 'Service', 'Stylist', 'Day', 'Your bar', 'You'];
 
-  const st: { branch: Br | null; svc: Svc | null; day: Date | null; start: number | null; done: boolean } = { branch: null, svc: null, day: null, start: null, done: false };
+  const st: { branch: Br | null; svc: Svc | null; staff: string | null; who: string | null; day: Date | null; start: number | null; done: boolean } =
+    { branch: null, svc: null, staff: null, who: null, day: null, start: null, done: false };
+  let cur = 1;
+  let showAll = false;
 
   /* ---- helpers ---- */
   const hhmm = (m: number) => `${String(Math.floor(m / 60)).padStart(2, '0')}:${String(m % 60).padStart(2, '0')}`;
-  const dayLabel = (d: Date) => `${DAYN[d.getDay()]} ${d.getDate()} ${MON[d.getMonth()]}`;
+  const dayLabel = (d: Date) => `${DAYN[d.getDay()]} ${d.getDate()} ${MON[d.getMonth()].slice(0, 3)} ${d.getFullYear()}`;
   const price = (s: Svc) => (s.p ? `${s.f ? 'from ' : ''}R${s.p}` : 'Quoted in the chair');
   function duration(s: Svc): number {
     const m = s.n.match(/(\d+)\s?m\b/i);
@@ -230,29 +375,106 @@ const branches = Object.values(BRANCHES).map((b) => ({ id: b.id, name: b.name, t
       default: return !p ? 150 : p < 250 ? 90 : p < 450 ? 150 : p < 700 ? 210 : 270;
     }
   }
-  const dur = () => Math.max(30, Math.round(duration(st.svc!) / 30) * 30);
+  const dur = () => Math.max(30, Math.round(duration(st.svc!) / 15) * 15);
+  const durText = () => { const d = dur(); return d >= 60 ? `${+(d / 60).toFixed(2)} h` : `${d} min`; };
   function deposit(s: Svc) { return s.p ? Math.min(200, Math.max(50, Math.ceil((s.p * 0.2) / 10) * 10)) : 100; }
-  // deterministic "busy" blocks so the demo is stable per salon, day and block
-  function busy(branch: string, day: Date, block: number) {
+  // deterministic "busy" blocks so the demo is stable per stylist, day and half hour
+  function busy(key0: string, day: Date, minutes: number) {
     let h = 2166136261;
-    const key = `${branch}|${day.getFullYear()}-${day.getMonth()}-${day.getDate()}|${block}`;
+    const key = `${key0}|${day.getFullYear()}-${day.getMonth()}-${day.getDate()}|${Math.floor(minutes / 30)}`;
     for (let i = 0; i < key.length; i++) { h ^= key.charCodeAt(i); h = Math.imul(h, 16777619); }
-    return ((h >>> 0) % 100) < 30;
+    return ((h >>> 0) % 100) < 28;
   }
-  const lock = (id: string, on: boolean) => { const f = $<HTMLFieldSetElement>(id); f.disabled = on; f.classList.toggle('locked', on); };
+
+  /* who can do this service: match the role text against the category */
+  const KW: Record<string, string[]> = {
+    braids: ['plait', 'stylist', 'braid'], cornrows: ['plait', 'stylist'], straightback: ['plait', 'stylist'],
+    locs: ['dread', 'loc'], relax: ['stylist', 'perm', 'relax', 'colour'], styling: ['stylist', 'pixie', 'razor', 'hair'],
+    cuts: ['barber', 'cut', 'pixie', 'razor'], care: ['stylist', 'colour', 'hair'], wigs: ['wig'], nails: ['nail'],
+    lashes: ['lash'], massage: ['massage'], makeup: ['make-up', 'makeup'],
+  };
+  const team = () => (st.branch ? data.staff[st.branch.id] || [] : []);
+  function eligible(): Staff[] {
+    const kws = st.svc ? KW[st.svc.c] || [] : [];
+    const m = team().filter((p) => kws.some((k) => p.role.toLowerCase().includes(k)));
+    return m.length ? m : team();
+  }
+  function slotWho(t: number): string | null {
+    const d = dur();
+    const pool = st.staff && st.staff !== 'any' ? [st.staff] : eligible().slice(0, 8).map((p) => p.name);
+    for (const n of pool) {
+      const k = `${st.branch!.id}:${n}`;
+      if (!busy(k, st.day!, t) && !busy(k, st.day!, t + d - 15)) return n;
+    }
+    return null;
+  }
+
+  /* ---- accordion ---- */
+  const isDone = (n: number) => (n === 1 ? !!st.branch : n === 2 ? !!st.svc : n === 3 ? !!st.staff : n === 4 ? !!st.day : n === 5 ? st.start != null : st.done);
+  const need = () => { for (let n = 1; n <= 5; n++) if (!isDone(n)) return n; return 6; };
+  function summary(n: number): string {
+    switch (n) {
+      case 1: return st.branch?.name || '';
+      case 2: return st.svc ? `${st.svc.n} · ${price(st.svc)}` : '';
+      case 3: return st.staff === 'any' ? 'First available' : st.staff || '';
+      case 4: return st.day ? dayLabel(st.day) : '';
+      case 5: return st.start != null ? `${hhmm(st.start)} to about ${hhmm(st.start + dur())}` : '';
+      default: return st.done ? 'Booked' : '';
+    }
+  }
+  function show() {
+    const nd = need();
+    for (let n = 1; n <= 6; n++) {
+      const sec = $(`s${n}`), btn = sec.querySelector('.step-btn') as HTMLButtonElement, body = $(`b${n}`);
+      const open = n === cur && !st.done;
+      const unlocked = !st.done && n <= nd;
+      const done = !open && (st.done || (isDone(n) && n < 6) || n < nd);
+      sec.classList.toggle('is-open', open);
+      sec.classList.toggle('is-done', done && !!summary(n));
+      sec.classList.toggle('is-locked', !open && !unlocked && !st.done);
+      btn.disabled = st.done || (!unlocked && !open);
+      btn.setAttribute('aria-expanded', String(open));
+      body.hidden = !open;
+      $(`sum${n}`).textContent = summary(n);
+    }
+    const shown = st.done ? 6 : Math.min(cur || 1, 6);
+    $('prog-n').textContent = st.done ? 'All done' : `Step ${shown} of 6`;
+    $('prog-t').textContent = st.done ? 'Booked' : STEPS[shown - 1];
+    document.querySelectorAll('.prog-bar i').forEach((el, i) => {
+      el.classList.toggle('on', st.done || i < nd - 1 || i + 1 < shown);
+      el.classList.toggle('now', !st.done && i + 1 === shown);
+    });
+  }
+  function go(n: number, scroll = true) {
+    if (st.done) return;
+    cur = Math.min(n, 6);
+    show();
+    if (scroll) {
+      const el = $(`s${cur}`);
+      requestAnimationFrame(() => el.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' }));
+    }
+  }
+  document.querySelectorAll<HTMLButtonElement>('.step-btn').forEach((b) =>
+    b.addEventListener('click', () => { if (!b.disabled) go(+b.dataset.go!); }),
+  );
 
   /* ---- step 1: salon ---- */
   document.querySelectorAll<HTMLButtonElement>('[data-branch]').forEach((b) =>
     b.addEventListener('click', () => pickBranch(b.dataset.branch!)),
   );
-  function pickBranch(id: string) {
-    st.branch = data.branches.find((x) => x.id === id) || null;
+  function pickBranch(id: string, scroll = true) {
+    if (!data.branches.some((x) => x.id === id)) return;
+    const changed = st.branch?.id !== id;
+    st.branch = data.branches.find((x) => x.id === id)!;
+    try { localStorage.setItem('hs-salon', id); } catch {}
     document.querySelectorAll<HTMLElement>('[data-branch]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.branch === id)));
-    if (st.svc && !st.svc.b.includes(id)) { st.svc = null; st.day = null; st.start = null; }
-    lock('s2', false);
-    renderServices();
-    renderDays();
-    sync();
+    if (changed) {
+      if (st.svc && !st.svc.b.includes(id)) st.svc = null;
+      if (st.staff && st.staff !== 'any' && !team().some((p) => p.name === st.staff)) st.staff = null;
+      st.start = null; st.who = null;
+    }
+    renderServices(); renderStaff(); renderBars(); sync();
+    go(need(), scroll);
   }
 
   /* ---- step 2: service ---- */
@@ -262,9 +484,10 @@ const branches = Object.values(BRANCHES).map((b) => ({ id: b.id, name: b.name, t
   function renderServices() {
     if (!st.branch) return;
     const term = sq.value.trim().toLowerCase();
-    const rows = data.services.filter((s) =>
+    const all = data.services.filter((s) =>
       s.b.includes(st.branch!.id) && (scat.value === 'all' || s.c === scat.value) && (!term || s.n.toLowerCase().includes(term)),
-    ).slice(0, 80);
+    );
+    const rows = all.slice(0, 80);
     list.innerHTML = '';
     if (!rows.length) { list.innerHTML = '<li class="none">Nothing matches. Try a shorter word.</li>'; return; }
     rows.forEach((s) => {
@@ -279,83 +502,157 @@ const branches = Object.values(BRANCHES).map((b) => ({ id: b.id, name: b.name, t
       li.appendChild(b);
       list.appendChild(li);
     });
+    if (all.length > rows.length) { const li = document.createElement('li'); li.className = 'note'; li.textContent = `Showing ${rows.length} of ${all.length}. Search or pick a category to narrow it down.`; list.appendChild(li); }
   }
   sq.addEventListener('input', renderServices);
   scat.addEventListener('change', renderServices);
-  function chooseService(s: Svc) {
-    st.svc = s; st.start = null;
-    list.querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', 'false'));
-    const chosen = $('chosen');
-    chosen.hidden = false;
-    chosen.textContent = `Selected: ${s.n} · ${price(s)} · about ${dur() / 60 >= 1 ? (dur() / 60).toFixed(dur() % 60 ? 1 : 0) + ' h' : dur() + ' min'}`;
-    renderServices();
-    lock('s3', false);
-    if (!st.day) renderDays();
-    renderBars();
-    sync();
+  function chooseService(s: Svc, scroll = true) {
+    st.svc = s; st.start = null; st.who = null;
+    if (st.staff && st.staff !== 'any' && !eligible().some((p) => p.name === st.staff)) st.staff = null;
+    renderServices(); renderStaff(); renderBars(); sync();
+    go(need(), scroll);
   }
 
-  /* ---- step 3: day ---- */
-  function renderDays() {
-    const box = $('days');
+  /* ---- step 3: stylist ---- */
+  const initials = (n: string) => n.split(/\s+/).map((w) => w[0]).slice(0, 2).join('').toUpperCase();
+  function renderStaff() {
+    const box = $('staff'), more = $<HTMLButtonElement>('moreStaff');
     box.innerHTML = '';
-    const now = new Date();
-    for (let i = 0; i < 14; i++) {
-      const d = new Date(now.getFullYear(), now.getMonth(), now.getDate() + i);
+    if (!st.branch) return;
+    const ok = eligible(), okNames = new Set(ok.map((p) => p.name));
+    const rest = team().filter((p) => !okNames.has(p.name));
+    $('staffHint').textContent = st.svc ? `Who works on ${st.svc.n.toLowerCase()} at ${st.branch.name}. Pick one, or let us choose whoever is free.` : 'Pick who you want, or let us choose whoever is free.';
+    const card = (id: string, name: string, role: string, cls = '') => {
       const b = document.createElement('button');
       b.type = 'button';
-      b.className = 'day';
-      b.setAttribute('aria-pressed', String(!!st.day && st.day.getTime() === d.getTime()));
-      b.setAttribute('aria-label', dayLabel(d));
-      b.innerHTML = `<span class="lbl">${i === 0 ? 'Today' : DAYN[d.getDay()]}</span><span class="d">${d.getDate()}</span><span class="lbl">${MON[d.getMonth()]}</span>`;
-      b.addEventListener('click', () => { st.day = d; st.start = null; renderDays(); lock('s4', false); renderBars(); sync(); });
+      b.className = 'stf ' + cls;
+      b.setAttribute('aria-pressed', String(st.staff === id));
+      b.innerHTML = `<span class="av"></span><span><b></b><small></small></span>`;
+      (b.querySelector('.av') as HTMLElement).textContent = id === 'any' ? '★' : initials(name);
+      (b.querySelector('b') as HTMLElement).textContent = name;
+      (b.querySelector('small') as HTMLElement).textContent = role;
+      b.addEventListener('click', () => { st.staff = id; st.start = null; st.who = null; renderStaff(); renderBars(); sync(); go(need()); });
       box.appendChild(b);
-    }
+    };
+    card('any', 'First available', 'Fastest option: we put you with whoever is free at your time', 'any');
+    ok.forEach((p) => card(p.name, p.name, p.role));
+    if (showAll) rest.forEach((p) => card(p.name, p.name, p.role));
+    more.hidden = rest.length === 0;
+    more.textContent = showAll ? 'Show fewer' : `Show the whole team (${rest.length} more)`;
   }
+  $('moreStaff').addEventListener('click', () => { showAll = !showAll; renderStaff(); });
 
-  /* ---- step 4: the barcode ---- */
+  /* ---- step 4: day (full calendar) ---- */
+  const today0 = () => { const n = new Date(); return new Date(n.getFullYear(), n.getMonth(), n.getDate()); };
+  const cal = { y: today0().getFullYear(), m: today0().getMonth() };
+  const moSel = $<HTMLSelectElement>('calMo'), yrSel = $<HTMLSelectElement>('calYr');
+  const sameDay = (a: Date | null, b: Date) => !!a && a.getTime() === b.getTime();
+  function pickDay(d: Date) {
+    st.day = d; st.start = null; st.who = null;
+    cal.y = d.getFullYear(); cal.m = d.getMonth();
+    renderCal(); renderBars(); sync(); go(need());
+  }
+  function renderCal() {
+    const t0 = today0();
+    // year + month selectors: every month, every year
+    yrSel.innerHTML = '';
+    for (let y = t0.getFullYear(); y <= t0.getFullYear() + 2; y++) yrSel.add(new Option(String(y), String(y), false, y === cal.y));
+    moSel.innerHTML = '';
+    MON.forEach((m, i) => {
+      const o = new Option(m, String(i), false, i === cal.m);
+      if (cal.y === t0.getFullYear() && i < t0.getMonth()) o.disabled = true;
+      moSel.add(o);
+    });
+    ($('calPrev') as HTMLButtonElement).disabled = cal.y === t0.getFullYear() && cal.m <= t0.getMonth();
+    ($('calNext') as HTMLButtonElement).disabled = cal.y === t0.getFullYear() + 2 && cal.m === 11;
+    // grid, Monday first
+    const grid = $('calGrid');
+    grid.innerHTML = '';
+    const first = new Date(cal.y, cal.m, 1);
+    const lead = (first.getDay() + 6) % 7;
+    const dim = new Date(cal.y, cal.m + 1, 0).getDate();
+    for (let i = 0; i < lead; i++) { const s = document.createElement('span'); s.className = 'cd blank'; grid.appendChild(s); }
+    for (let n = 1; n <= dim; n++) {
+      const d = new Date(cal.y, cal.m, n);
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'cd' + (sameDay(t0, d) ? ' today' : '');
+      b.textContent = String(n);
+      b.disabled = d < t0;
+      b.setAttribute('aria-pressed', String(sameDay(st.day, d)));
+      b.setAttribute('aria-label', `${DAYN[d.getDay()]} ${n} ${MON[cal.m]} ${cal.y}`);
+      b.addEventListener('click', () => pickDay(d));
+      grid.appendChild(b);
+    }
+    const ref = st.day || t0;
+    const [o, c] = data.open[ref.getDay()];
+    $('calOpen').textContent = `${DAYN[ref.getDay()]} hours: ${hhmm(o * 60)} to ${hhmm(c * 60)}`;
+    // quick chips
+    const q = $('quick'); q.innerHTML = '';
+    const sat = new Date(t0); sat.setDate(t0.getDate() + ((6 - t0.getDay() + 7) % 7 || 7));
+    const tm = new Date(t0); tm.setDate(t0.getDate() + 1);
+    ([['Today', t0], ['Tomorrow', tm], ['This Saturday', sat]] as [string, Date][]).forEach(([l, d]) => {
+      const b = document.createElement('button');
+      b.type = 'button'; b.className = 'chip'; b.textContent = l;
+      b.setAttribute('aria-pressed', String(sameDay(st.day, d)));
+      b.addEventListener('click', () => pickDay(d));
+      q.appendChild(b);
+    });
+  }
+  moSel.addEventListener('change', () => { cal.m = +moSel.value; renderCal(); });
+  yrSel.addEventListener('change', () => {
+    cal.y = +yrSel.value;
+    const t0 = today0();
+    if (cal.y === t0.getFullYear() && cal.m < t0.getMonth()) cal.m = t0.getMonth();
+    renderCal();
+  });
+  $('calPrev').addEventListener('click', () => { cal.m--; if (cal.m < 0) { cal.m = 11; cal.y--; } renderCal(); });
+  $('calNext').addEventListener('click', () => { cal.m++; if (cal.m > 11) { cal.m = 0; cal.y++; } renderCal(); });
+
+  /* ---- step 5: the barcode, every bar labelled, 15 minutes apart ---- */
   function renderBars() {
-    const bars = $('bars'), axis = $('axis'), nofree = $('nofree');
-    bars.innerHTML = ''; axis.innerHTML = '';
-    if (!st.branch || !st.svc || !st.day) return;
-    const [o, c] = OPEN[st.day.getDay()];
+    const bars = $('bars'), nofree = $('nofree');
+    bars.innerHTML = '';
+    nofree.hidden = true;
+    if (!st.branch || !st.svc || !st.staff || !st.day) return;
+    const [o, c] = data.open[st.day.getDay()];
     const d = dur();
     const now = new Date();
     const isToday = st.day.toDateString() === now.toDateString();
     const cutoff = now.getHours() * 60 + now.getMinutes() + 45;
+    $('hint').textContent = `${dayLabel(st.day)}: opens ${hhmm(o * 60)}, closes ${hhmm(c * 60)}. Each bar is a start time, 15 minutes apart. Tall bars are free, short stubs are taken. Your ${durText()} appointment must finish by closing.`;
     let free = 0, seed = st.day.getDate() * 13;
-    for (let t = o * 60; t <= c * 60 - d; t += 30) {
-      let taken = isToday && t < cutoff;
-      if (!taken && (busy(st.branch.id, st.day, t) || busy(st.branch.id, st.day, t + d - 30))) taken = true;
+    for (let t = o * 60; t <= c * 60; t += 15) {
+      const closing = t === c * 60;
+      let who: string | null = null;
+      if (!closing && t + d <= c * 60 && !(isToday && t < cutoff)) who = slotWho(t);
+      const taken = !who;
       const b = document.createElement('button');
       b.type = 'button';
-      b.className = 'bar' + (taken ? ' taken' : '');
-      b.dataset.t = hhmm(t);
+      b.className = 'bar' + (taken ? ' taken' : '') + (closing ? ' close' : '');
       b.setAttribute('aria-pressed', String(st.start === t));
-      b.setAttribute('aria-label', `${hhmm(t)} ${taken ? 'taken' : 'free'}`);
+      b.setAttribute('aria-label', closing ? `${hhmm(t)} closing time` : `${hhmm(t)}${t === o * 60 ? ' opening time' : ''} ${taken ? 'taken' : 'free'}`);
       if (taken) b.setAttribute('aria-disabled', 'true');
       seed = (seed * 9301 + 49297) % 233280;
-      const i = document.createElement('i');
-      i.style.setProperty('--w', `${28 + (seed % 62)}%`);
-      b.appendChild(i);
-      if (!taken) { free++; b.addEventListener('click', () => { st.start = t; renderBars(); sync(); }); }
+      b.innerHTML = `<span class="tm">${hhmm(t)}</span><span class="bx"><i style="--w:${28 + (seed % 62)}%"></i></span><span class="cap">${t === o * 60 ? 'OPEN' : closing ? 'CLOSE' : ''}</span>`;
+      if (!taken) { free++; b.addEventListener('click', () => { st.start = t; st.who = who; renderBars(); sync(); go(need()); }); }
       else b.addEventListener('click', (e) => e.preventDefault());
       bars.appendChild(b);
     }
-    for (let h = o; h <= c; h += 2) { const s = document.createElement('span'); s.textContent = String(h).padStart(2, '0'); axis.appendChild(s); }
     nofree.hidden = free > 0;
-    if (!reduce) gsap.from('#bars .bar i', { scaleY: 0, duration: 0.7, ease: 'expo.out', stagger: 0.018, clearProps: 'transform' });
+    if (!reduce) gsap.from('#bars .bar i', { scaleY: 0, duration: 0.7, ease: 'expo.out', stagger: 0.012, clearProps: 'transform' });
   }
   // laser follows the pointer over the barcode
   const bc = $('bcday');
   bc.addEventListener('pointermove', (e) => {
+    if (e.pointerType === 'touch') return;
     const r = bc.getBoundingClientRect();
     bc.style.setProperty('--lx', `${e.clientX - r.left}px`);
     bc.classList.add('scanning');
   });
   bc.addEventListener('pointerleave', () => bc.classList.remove('scanning'));
 
-  /* ---- step 5 + receipt ---- */
+  /* ---- step 6 + receipt ---- */
   const fn = $<HTMLInputElement>('fn'), fp = $<HTMLInputElement>('fp'), fnote = $<HTMLInputElement>('fnote');
   const pay = $<HTMLButtonElement>('pay');
   [fn, fp].forEach((i) => i.addEventListener('input', sync));
@@ -366,22 +663,27 @@ const branches = Object.values(BRANCHES).map((b) => ({ id: b.id, name: b.name, t
     el.textContent = v;
     if (!reduce) gsap.fromTo(el, { backgroundColor: '#ff2b1c', color: '#fff' }, { backgroundColor: 'rgba(255,43,28,0)', color: '#0b0b0a', duration: 0.7, ease: 'power2.out', clearProps: 'all' });
   }
+  const staffLabel = () => (st.staff === 'any' ? (st.who ? `${st.who} (first free)` : 'First available') : st.staff || 'Not chosen');
   function sync() {
     if (st.done) return;
     const s = st.svc;
     setText('r-branch', st.branch?.name || 'Not chosen');
     setText('r-svc', s?.n || 'Not chosen');
+    setText('r-staff', staffLabel());
     setText('r-day', st.day ? dayLabel(st.day) : 'Not chosen');
     setText('r-time', st.start != null ? `${hhmm(st.start)} to about ${hhmm(st.start + dur())}` : 'Not chosen');
     setText('r-price', s ? price(s) : 'Not chosen');
     setText('r-dep', s ? `R${deposit(s)}` : 'R0');
-    $('r-bal').textContent = s?.p ? `Balance of about R${Math.max(0, s.p - deposit(s))} is settled at the salon.` : 'Balance is quoted and settled at the salon.';
+    const bal = s?.p ? `Balance of about R${Math.max(0, s.p - deposit(s))} is settled at the salon.` : 'Balance is quoted and settled at the salon.';
+    $('r-bal').textContent = bal;
+    $('paysumDep').textContent = s ? `R${deposit(s)}` : 'R0';
+    $('paysumBal').textContent = bal;
     drawRcBars();
-    lock('s5', st.start == null);
     const nameOk = fn.value.trim().length > 1;
     const phoneOk = fp.value.replace(/\D/g, '').length >= 9;
-    pay.disabled = !(st.branch && s && st.day && st.start != null && nameOk && phoneOk);
+    pay.disabled = !(st.branch && s && st.staff && st.day && st.start != null && nameOk && phoneOk);
     $('payTxt').textContent = s ? `Pay R${deposit(s)} deposit and book` : 'Pay deposit and book';
+    show();
   }
   function drawRcBars(ref = '') {
     const svg = $('rcbc');
@@ -404,18 +706,20 @@ const branches = Object.values(BRANCHES).map((b) => ({ id: b.id, name: b.name, t
     $('r-ref').textContent = ref;
     drawRcBars(ref);
     const when = `${dayLabel(st.day)} at ${hhmm(st.start)}`;
-    const msg = `Hi HAIRitage ${st.branch.name}, I booked online (${ref}): ${st.svc.n} on ${when}. Name: ${fn.value.trim()}. Deposit R${deposit(st.svc)}.${fnote.value ? ' Notes: ' + fnote.value : ''}`;
+    const who = st.staff === 'any' ? (st.who || 'first available stylist') : st.staff;
+    const msg = `Hi HAIRitage ${st.branch.name}, I booked online (${ref}): ${st.svc.n} with ${who} on ${when}. Name: ${fn.value.trim()}. Deposit R${deposit(st.svc)}.${fnote.value ? ' Notes: ' + fnote.value : ''}`;
     ($('wa') as HTMLAnchorElement).href = `https://wa.me/${st.branch.wa}?text=${encodeURIComponent(msg)}`;
     const p = (n: number) => String(n).padStart(2, '0');
     const dt = (m: number) => `${st.day!.getFullYear()}${p(st.day!.getMonth() + 1)}${p(st.day!.getDate())}T${p(Math.floor(m / 60))}${p(m % 60)}00`;
     const ics = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//HAIRitage//Booking//EN', 'BEGIN:VEVENT', `UID:${ref}@hairitage`, `DTSTAMP:${dt(0).slice(0, 8)}T000000Z`,
       `DTSTART;TZID=Africa/Johannesburg:${dt(st.start)}`, `DTEND;TZID=Africa/Johannesburg:${dt(st.start + dur())}`,
-      `SUMMARY:${st.svc.n} at HAIRitage ${st.branch.name}`, `LOCATION:HAIRitage Salon ${st.branch.name}\\, Roodepoort`, `DESCRIPTION:Booking ${ref}. Call ${st.branch.phone}.`, 'END:VEVENT', 'END:VCALENDAR'].join('\r\n');
+      `SUMMARY:${st.svc.n} with ${who} at HAIRitage ${st.branch.name}`, `LOCATION:HAIRitage Salon ${st.branch.name}\\, Roodepoort`, `DESCRIPTION:Booking ${ref}. Call ${st.branch.phone}.`, 'END:VEVENT', 'END:VCALENDAR'].join('\r\n');
     ($('ics') as HTMLAnchorElement).href = 'data:text/calendar;charset=utf-8,' + encodeURIComponent(ics);
     $('done').hidden = false;
+    $('ui').classList.add('booked');
     pay.disabled = true;
     $('payTxt').textContent = 'Booked (demo)';
-    document.querySelectorAll<HTMLFieldSetElement>('.step').forEach((f) => (f.disabled = true));
+    show();
     if (!reduce) {
       gsap.fromTo('#receipt', { clipPath: 'inset(0 0 100% 0)' }, { clipPath: 'inset(0 0 0% 0)', duration: 1.1, ease: 'steps(14)', clearProps: 'clipPath' });
       gsap.from('.stamp', { scale: 2.4, opacity: 0, duration: 0.5, delay: 0.9, ease: 'power4.out' });
@@ -423,18 +727,20 @@ const branches = Object.values(BRANCHES).map((b) => ({ id: b.id, name: b.name, t
     $('receipt').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' });
   });
 
-  /* ---- deep links: /book/?branch=westgate&svc=123 ---- */
+  /* ---- init + deep links: /book/?branch=westgate&svc=123 ---- */
   const q = new URLSearchParams(location.search);
   drawRcBars();
-  const qb = q.get('branch');
+  renderCal();
+  let saved: string | null = null;
+  try { saved = localStorage.getItem('hs-salon'); } catch {}
+  const qb = q.get('branch') || saved;
   const qs = data.services.find((s) => String(s.id) === q.get('svc'));
-  if (qs && !qb) {
-    // a service was chosen on the price list: use the first salon that offers it
-    pickBranch(qs.b[0]);
-  } else if (qb) pickBranch(qb);
+  if (qs && !q.get('branch')) pickBranch(qs.b.includes(saved || '') ? saved! : qs.b[0], false);
+  else if (qb) pickBranch(qb, false);
   if (qs && st.branch) {
-    if (!qs.b.includes(st.branch.id)) pickBranch(qs.b[0]);
-    chooseService(qs);
+    if (!qs.b.includes(st.branch.id)) pickBranch(qs.b[0], false);
+    chooseService(qs, false);
   }
   sync();
+  go(need(), false);
 </script>
