@@ -1,6 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
-import { BRANCHES, CATEGORIES, OPEN, SERVICES, STAFF } from '../data/site';
+import { BRANCHES, CATEGORIES, OPEN, SERVICES, STAFF, STAFF_SERVICE_OVERRIDES } from '../data/site';
 
 const services = SERVICES.map((s) => ({ id: s.id, c: s.cat, n: s.name, p: s.price, f: s.from, b: s.branches }));
 const cats = CATEGORIES.map((c) => ({ id: c.id, l: c.label }));
@@ -159,7 +159,7 @@ const staff = STAFF;
     </div>
   </section>
 
-  <script id="book-data" type="application/json" set:html={JSON.stringify({ services, cats, branches, staff, open: OPEN })} />
+  <script id="book-data" type="application/json" set:html={JSON.stringify({ services, cats, branches, staff, open: OPEN, overrides: STAFF_SERVICE_OVERRIDES })} />
 </Base>
 
 <style is:global>
@@ -344,9 +344,9 @@ const staff = STAFF;
 
   type Svc = { id: number; c: string; n: string; p: number | null; f: boolean; b: string[] };
   type Br = { id: string; name: string; tel: string; wa: string; phone: string };
-  type Staff = { name: string; role: string };
+  type Staff = { name: string; role: string; cats: string[] };
   const data = JSON.parse(document.getElementById('book-data')!.textContent!) as {
-    services: Svc[]; cats: { id: string; l: string }[]; branches: Br[]; staff: Record<string, Staff[]>; open: Record<number, [number, number]>;
+    services: Svc[]; cats: { id: string; l: string }[]; branches: Br[]; staff: Record<string, Staff[]>; open: Record<number, [number, number]>; overrides: Record<string, Record<string, string[]>>;
   };
   const DAYN = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   const MON = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
@@ -391,22 +391,20 @@ const staff = STAFF;
     return ((h >>> 0) % 100) < 28;
   }
 
-  /* who can do this service: match the role text against the category */
-  const KW: Record<string, string[]> = {
-    braids: ['plait', 'stylist', 'braid'], cornrows: ['plait', 'stylist'], straightback: ['plait', 'stylist'],
-    locs: ['dread', 'loc'], relax: ['stylist', 'perm', 'relax', 'colour'], styling: ['stylist', 'pixie', 'razor', 'hair'],
-    cuts: ['barber', 'cut', 'pixie', 'razor'], care: ['stylist', 'colour', 'hair'], wigs: ['wig'], nails: ['nail'],
-    lashes: ['lash'], massage: ['massage'], makeup: ['make-up', 'makeup'],
-  };
+  /* who does this service: the salon's own role labels, as category lists (see data/site.ts) */
   const team = () => (st.branch ? data.staff[st.branch.id] || [] : []);
   function eligible(): Staff[] {
-    const kws = st.svc ? KW[st.svc.c] || [] : [];
-    const m = team().filter((p) => kws.some((k) => p.role.toLowerCase().includes(k)));
-    return m.length ? m : team();
+    if (!st.svc || !st.branch) return team();
+    const ov = data.overrides[String(st.svc.id)]?.[st.branch.id];
+    const m = ov ? team().filter((p) => ov.includes(p.name)) : team().filter((p) => p.cats.includes(st.svc!.c));
+    return m;
   }
   function slotWho(t: number): string | null {
     const d = dur();
-    const pool = st.staff && st.staff !== 'any' ? [st.staff] : eligible().slice(0, 8).map((p) => p.name);
+    // no one lists this service: "first available" falls back to the hair team, and the salon matches the client
+    const e = eligible();
+    const any = (e.length ? e : team().filter((p) => p.cats.includes('braids') || p.cats.includes('cuts'))).slice(0, 8).map((p) => p.name);
+    const pool = st.staff && st.staff !== 'any' ? [st.staff] : any;
     for (const n of pool) {
       const k = `${st.branch!.id}:${n}`;
       if (!busy(k, st.day!, t) && !busy(k, st.day!, t + d - 15)) return n;
@@ -526,7 +524,9 @@ const staff = STAFF;
     if (!st.branch) return;
     const ok = eligible(), okNames = new Set(ok.map((p) => p.name));
     const rest = team().filter((p) => !okNames.has(p.name));
-    $('staffHint').textContent = st.svc ? `Who works on ${st.svc.n.toLowerCase()} at ${st.branch.name}. Pick one, or let us choose whoever is free.` : 'Pick who you want, or let us choose whoever is free.';
+    $('staffHint').textContent = !st.svc ? 'Pick who you want, or let us choose whoever is free.'
+      : ok.length ? `Who does ${st.svc.n.toLowerCase()} at ${st.branch.name}, based on each stylist's listed role. Pick one, or let us choose whoever is free.`
+      : `${st.branch.name} doesn't list a specialist for this one. Choose First available and the salon will match you with the right person.`;
     const card = (id: string, name: string, role: string, cls = '') => {
       const b = document.createElement('button');
       b.type = 'button';

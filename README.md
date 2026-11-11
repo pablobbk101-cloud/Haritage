@@ -42,6 +42,6 @@ python3 scripts/trace-logo.py    # public/img/logo-source.jpg -> logo.svg (needs
 - **Deposit rule is a proposal:** 20% of price, rounded up to R10, min R50, max R200, R100 for quoted prices.
 - **Durations are estimated** from category and price.
 - **Services and prices** were taken from the salons' public My Appointment pages and need the owner's sign-off.
-- **Staff first names and roles** come from the same public booking pages.
+- **Staff first names and roles** come from the same public booking pages. Which stylist does which service is **built from their public role labels** (`STAFF` in `src/data/site.ts`), because My Appointment keeps the exact stylist-to-service links behind its login. Get the salon to confirm, then correct a person's `cats` or add exact assignments in `STAFF_SERVICE_OVERRIDES`. No stylist at Allen's Nek lists wigs, so those services offer "First available" only.
 - **Site URL** is a placeholder (`haritage.pages.dev`).
 - **No salon photography** yet; the site is typographic plus the traced logo. Real photos would lift it most.

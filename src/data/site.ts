@@ -80,50 +80,63 @@ export function catStats(id: string) {
   return { count: list.length, min: prices.length ? Math.min(...prices) : null };
 }
 
-export const STAFF: Record<BranchId, { name: string; role: string }[]> = {
+// What each person does, read strictly from the role label shown on that salon's
+// public My Appointment booking grid. The exact stylist-to-service links sit behind
+// My Appointment's own login, so these are built from the labels and need the salon's
+// confirmation. To correct one, edit that person's `cats`, or add a service override
+// in STAFF_SERVICE_OVERRIDES below.
+const PLAIT = ['braids', 'cornrows', 'straightback'];
+const HAIR = [...PLAIT, 'relax', 'styling', 'care']; // a general "Stylist" or "Hair"
+export type StaffMember = { name: string; role: string; cats: string[] };
+
+export const STAFF: Record<BranchId, StaffMember[]> = {
   westgate: [
-    { name: 'Sandra', role: 'Nail tech' },
-    { name: 'Buhle', role: 'Nail tech' },
-    { name: 'Sabelisiwe', role: 'Nail tech' },
-    { name: 'Nompumelelo', role: 'Nails, make-up' },
-    { name: 'Tebogo', role: 'Stylist, wig install' },
-    { name: 'Ayanda', role: 'Stylist, dreadlocks' },
-    { name: 'Mahadi', role: 'Dreadlocks, wig install' },
-    { name: 'Sibongile', role: 'Stylist' },
-    { name: 'Sindiswa', role: 'Stylist, wig install' },
-    { name: 'Violet', role: 'Stylist' },
-    { name: 'Ncobile', role: 'Stylist, make-up, lashes' },
-    { name: 'Zinhle', role: 'Stylist, wig install' },
-    { name: 'Simangele', role: 'Plaiter' },
-    { name: 'Thabo M', role: 'Stylist, pixie' },
-    { name: 'Tumi', role: 'Stylist, dreadlocks' },
-    { name: 'Thami', role: 'Stylist, pixie' },
-    { name: 'Aubrey', role: 'Stylist, razor cut' },
-    { name: 'Kenny', role: 'Pixie, cuts' },
-    { name: 'Nomsa M', role: 'Stylist, dreadlocks' },
+    { name: 'Sandra', role: 'Nail tech', cats: ['nails'] },
+    { name: 'Buhle', role: 'Nail tech', cats: ['nails'] },
+    { name: 'Sabelisiwe', role: 'Nail tech', cats: ['nails'] },
+    { name: 'Nompumelelo', role: 'Nails, make-up', cats: ['nails', 'makeup'] },
+    { name: 'Tebogo', role: 'Stylist, wig install', cats: [...HAIR, 'wigs'] },
+    { name: 'Ayanda', role: 'Stylist, dreadlocks', cats: [...HAIR, 'locs'] },
+    { name: 'Mahadi', role: 'Dreadlocks, wig install', cats: ['locs', 'wigs'] },
+    { name: 'Sibongile', role: 'Stylist', cats: HAIR },
+    { name: 'Sindiswa', role: 'Stylist, wig install', cats: [...HAIR, 'wigs'] },
+    { name: 'Violet', role: 'Stylist', cats: HAIR },
+    { name: 'Ncobile', role: 'Stylist, make-up, lashes', cats: [...HAIR, 'makeup', 'lashes'] },
+    { name: 'Zinhle', role: 'Stylist, wig install', cats: [...HAIR, 'wigs'] },
+    { name: 'Simangele', role: 'Hair, plaiter', cats: HAIR },
+    { name: 'Thabo M', role: 'Stylist, pixie', cats: [...HAIR, 'cuts'] },
+    { name: 'Tumi', role: 'Stylist, dreadlocks, pixie', cats: [...HAIR, 'locs', 'cuts'] },
+    { name: 'Thami', role: 'Stylist, pixie', cats: [...HAIR, 'cuts'] },
+    { name: 'Aubrey', role: 'Stylist, razor cut', cats: [...HAIR, 'cuts'] },
+    { name: 'Kenny', role: 'Pixie, razor cut, cuts', cats: [...HAIR, 'cuts'] },
+    { name: 'Nomsa M', role: 'Stylist, dreadlocks', cats: [...HAIR, 'locs'] },
   ],
   allensnek: [
-    { name: 'Thubelihle', role: 'Nails, lashes, massage' },
-    { name: 'Zinhle', role: 'Make-up, nail tech' },
-    { name: 'Rebecca', role: 'Nails, hair' },
-    { name: 'Mpho T', role: 'Plaiter, nail tech' },
-    { name: 'Nomsa', role: 'Plaiter stylist' },
-    { name: 'Suku', role: 'Plaiter stylist' },
-    { name: 'Jane', role: 'Plaiter stylist' },
-    { name: 'Thobile', role: 'Plaiter stylist' },
-    { name: 'Zandile', role: 'Dreadlocks stylist' },
-    { name: 'Zanele', role: 'Plaiter stylist' },
-    { name: 'Masentle', role: 'Plaiter stylist' },
-    { name: 'Martina Lavender', role: 'Plaiter stylist' },
-    { name: 'Neli', role: 'Plaiter stylist' },
-    { name: 'Tsholo', role: 'Plaiter stylist' },
-    { name: 'Fana', role: 'Barber, pixie, colour, perming' },
-    { name: 'Jimmy', role: 'Barber, pixie, colour, perming' },
-    { name: 'Siphiwe', role: 'Barber, pixie, colour, perming' },
-    { name: 'Sunny', role: 'Dreadlocks, braids, cuts, colour, relaxer' },
-    { name: 'Promise', role: 'Dreadlocks stylist' },
-    { name: 'Stanley', role: 'Dreadlocks stylist' },
+    { name: 'Thubelihle', role: 'Nails, lashes, massage', cats: ['nails', 'lashes', 'massage'] },
+    { name: 'Zinhle', role: 'Make-up, nail technician', cats: ['makeup', 'nails'] },
+    { name: 'Rebecca', role: 'Nails, hair', cats: ['nails', ...HAIR] },
+    { name: 'Mpho T', role: 'Plaiter, nail tech', cats: [...PLAIT, 'nails'] },
+    { name: 'Nomsa', role: 'Plaiter stylist', cats: PLAIT },
+    { name: 'Suku', role: 'Plaiter stylist', cats: PLAIT },
+    { name: 'Jane', role: 'Plaiter stylist', cats: PLAIT },
+    { name: 'Thobile', role: 'Plaiter stylist', cats: PLAIT },
+    { name: 'Zandile', role: 'Dreadlocks stylist', cats: ['locs'] },
+    { name: 'Zanele', role: 'Plaiter stylist', cats: PLAIT },
+    { name: 'Masentle', role: 'Plaiter stylist', cats: PLAIT },
+    { name: 'Martina Lavender', role: 'Plaiter stylist', cats: PLAIT },
+    { name: 'Neli', role: 'Plaiter stylist', cats: PLAIT },
+    { name: 'Tsholo', role: 'Plaiter stylist', cats: PLAIT },
+    { name: 'Fana', role: 'Barber, pixie, colour, perming', cats: ['cuts', 'styling', 'care', 'relax'] },
+    { name: 'Jimmy', role: 'Barber, pixie, colour, perming', cats: ['cuts', 'styling', 'care', 'relax'] },
+    { name: 'Siphiwe', role: 'Barber, pixie, colour, perming', cats: ['cuts', 'styling', 'care', 'relax'] },
+    { name: 'Sunny', role: 'Dreadlocks, braids, cuts, colour, relaxer', cats: ['locs', 'braids', 'cuts', 'care', 'relax'] },
+    { name: 'Promise', role: 'Dreadlocks stylist', cats: ['locs'] },
+    { name: 'Stanley', role: 'Dreadlocks stylist', cats: ['locs'] },
   ],
 };
+
+// Exact per-service assignments, once the salon confirms them: service id -> names.
+// Anything listed here beats the category rules above.
+export const STAFF_SERVICE_OVERRIDES: Record<number, Partial<Record<BranchId, string[]>>> = {};
 
 export const money = (n: number | null, from = false) => (n ? `${from ? 'from ' : ''}R${n}` : 'Quoted');
