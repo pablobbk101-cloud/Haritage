@@ -320,8 +320,13 @@ const staff = STAFF;
     .svc-tools,.fields{grid-template-columns:1fr}
     .svc-list{max-height:26rem}
     .svc-list button{min-height:3.8rem;font-size:1.02rem}
-    .staff{grid-template-columns:1fr}
-    .stf{min-height:4.4rem}
+    .staff{grid-template-columns:repeat(2,minmax(0,1fr));gap:.5rem}
+    .stf{grid-template-columns:1fr;justify-items:center;text-align:center;gap:.4rem;padding:.8rem .4rem;min-height:7.6rem;align-content:start}
+    .stf .av{width:2.8rem;height:2.8rem;font-size:1.05rem}
+    .stf b{font-size:1rem;overflow-wrap:anywhere}
+    .stf small{font-size:.76rem;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+    .stf.any{grid-template-columns:3rem 1fr;justify-items:start;text-align:left;min-height:4.4rem;padding:.6rem .8rem;align-content:center;gap:.8rem}
+    .stf.any small{-webkit-line-clamp:unset;display:block}
     .cal{padding:.6rem}
     .cal-top{grid-template-columns:3rem 1fr 6rem 3rem}
     .cd{font-size:1.2rem;min-height:2.7rem}
