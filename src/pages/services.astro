@@ -32,7 +32,7 @@ const where = (b: string[]) => (b.length > 1 ? 'Both salons' : b[0] === 'westgat
           <option value="all">All categories ({SERVICES.length})</option>
           {groups.map((g) => <option value={g.id}>{g.label} ({g.items.length})</option>)}
         </select>
-        <div class="cats" role="group" aria-label="Category">
+        <div class="cats" role="group" aria-label="Category" data-lenis-prevent>
           <button class="chip" data-cat="all" aria-pressed="true">All <span class="mono">{SERVICES.length}</span></button>
           {groups.map((g) => <button class="chip" data-cat={g.id} aria-pressed="false">{g.label} <span class="mono">{g.items.length}</span></button>)}
         </div>
