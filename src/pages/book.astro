@@ -1,8 +1,8 @@
 ---
 import Base from '../layouts/Base.astro';
-import { BRANCHES, CATEGORIES, OPEN, SERVICES, STAFF, STAFF_SERVICE_OVERRIDES } from '../data/site';
+import { BRANCHES, CATEGORIES, OPEN, SERVICES, STAFF, MA } from '../data/site';
 
-const services = SERVICES.map((s) => ({ id: s.id, c: s.cat, n: s.name, p: s.price, f: s.from, b: s.branches }));
+const services = SERVICES.map((s) => ({ id: s.id, c: s.cat, n: s.name, p: s.price, f: s.from, b: s.branches, m: s.m }));
 const cats = CATEGORIES.map((c) => ({ id: c.id, l: c.label }));
 const branches = Object.values(BRANCHES).map((b) => ({ id: b.id, name: b.name, tel: b.tel, wa: b.wa, phone: b.phone }));
 const staff = STAFF;
@@ -159,7 +159,7 @@ const staff = STAFF;
     </div>
   </section>
 
-  <script id="book-data" type="application/json" set:html={JSON.stringify({ services, cats, branches, staff, open: OPEN, overrides: STAFF_SERVICE_OVERRIDES })} />
+  <script id="book-data" type="application/json" set:html={JSON.stringify({ services, cats, branches, staff, open: OPEN, ma: MA })} />
 </Base>
 
 <style is:global>
@@ -342,11 +342,11 @@ const staff = STAFF;
   import gsap from 'gsap';
   import { reduce } from '../scripts/engine';
 
-  type Svc = { id: number; c: string; n: string; p: number | null; f: boolean; b: string[] };
+  type Svc = { id: number; c: string; n: string; p: number | null; f: boolean; b: string[]; m?: Record<string, [number, number]> };
   type Br = { id: string; name: string; tel: string; wa: string; phone: string };
-  type Staff = { name: string; role: string; cats: string[] };
+  type Staff = { name: string; role: string; groups: number[] };
   const data = JSON.parse(document.getElementById('book-data')!.textContent!) as {
-    services: Svc[]; cats: { id: string; l: string }[]; branches: Br[]; staff: Record<string, Staff[]>; open: Record<number, [number, number]>; overrides: Record<string, Record<string, string[]>>;
+    services: Svc[]; cats: { id: string; l: string }[]; branches: Br[]; staff: Record<string, Staff[]>; open: Record<number, [number, number]>; ma: Record<string, { groups: { staff: string[] }[] }>;
   };
   const DAYN = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   const MON = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
@@ -380,7 +380,8 @@ const staff = STAFF;
       default: return !p ? 150 : p < 250 ? 90 : p < 450 ? 150 : p < 700 ? 210 : 270;
     }
   }
-  const dur = () => Math.max(30, Math.round(duration(st.svc!) / 15) * 15);
+  // real length from the salon's own My Appointment setup; the estimate is only a fallback
+  const dur = () => Math.max(15, Math.round((st.svc!.m?.[st.branch!.id]?.[1] || duration(st.svc!)) / 15) * 15);
   const durText = () => { const d = dur(); return d >= 60 ? `${+(d / 60).toFixed(2)} h` : `${d} min`; };
   function deposit(s: Svc) { return s.p ? Math.min(200, Math.max(50, Math.ceil((s.p * 0.2) / 10) * 10)) : 100; }
   // deterministic "busy" blocks so the demo is stable per stylist, day and half hour
@@ -391,19 +392,19 @@ const staff = STAFF;
     return ((h >>> 0) % 100) < 28;
   }
 
-  /* who does this service: the salon's own role labels, as category lists (see data/site.ts) */
+  /* who does this service: the stylists My Appointment links to it (see data/site.ts) */
   const team = () => (st.branch ? data.staff[st.branch.id] || [] : []);
   function eligible(): Staff[] {
     if (!st.svc || !st.branch) return team();
-    const ov = data.overrides[String(st.svc.id)]?.[st.branch.id];
-    const m = ov ? team().filter((p) => ov.includes(p.name)) : team().filter((p) => p.cats.includes(st.svc!.c));
-    return m;
+    const gi = st.svc.m?.[st.branch.id]?.[0];
+    if (gi == null) return [];
+    const names = data.ma[st.branch.id].groups[gi].staff;
+    return team().filter((p) => names.includes(p.name));
   }
   function slotWho(t: number): string | null {
     const d = dur();
-    // no one lists this service: "first available" falls back to the hair team, and the salon matches the client
     const e = eligible();
-    const any = (e.length ? e : team().filter((p) => p.cats.includes('braids') || p.cats.includes('cuts'))).slice(0, 8).map((p) => p.name);
+    const any = e.slice(0, 8).map((p) => p.name);
     const pool = st.staff && st.staff !== 'any' ? [st.staff] : any;
     for (const n of pool) {
       const k = `${st.branch!.id}:${n}`;
@@ -525,7 +526,7 @@ const staff = STAFF;
     const ok = eligible(), okNames = new Set(ok.map((p) => p.name));
     const rest = team().filter((p) => !okNames.has(p.name));
     $('staffHint').textContent = !st.svc ? 'Pick who you want, or let us choose whoever is free.'
-      : ok.length ? `Who does ${st.svc.n.toLowerCase()} at ${st.branch.name}, based on each stylist's listed role. Pick one, or let us choose whoever is free.`
+      : ok.length ? `Who does ${st.svc.n.toLowerCase()} at ${st.branch.name}, exactly as the salon lists them. Pick one, or let us choose whoever is free.`
       : `${st.branch.name} doesn't list a specialist for this one. Choose First available and the salon will match you with the right person.`;
     const card = (id: string, name: string, role: string, cls = '') => {
       const b = document.createElement('button');

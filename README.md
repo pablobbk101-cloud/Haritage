@@ -40,8 +40,8 @@ python3 scripts/trace-logo.py    # public/img/logo-source.jpg -> logo.svg (needs
 
 - **Booking is a demo.** Availability is simulated and no payment is taken. It needs a real calendar and a payment provider (Yoco, PayFast or Stripe).
 - **Deposit rule is a proposal:** 20% of price, rounded up to R10, min R50, max R200, R100 for quoted prices.
-- **Durations are estimated** from category and price.
+- **Durations are real**: each service uses the length set in the salon's own My Appointment account (`scripts/ma-data.json`).
 - **Services and prices** were taken from the salons' public My Appointment pages and need the owner's sign-off.
-- **Staff first names and roles** come from the same public booking pages. Which stylist does which service is **built from their public role labels** (`STAFF` in `src/data/site.ts`), because My Appointment keeps the exact stylist-to-service links behind its login. Get the salon to confirm, then correct a person's `cats` or add exact assignments in `STAFF_SERVICE_OVERRIDES`. No stylist at Allen's Nek lists wigs, so those services offer "First available" only.
+- **Stylists and their services are copied from My Appointment's booking form** for each salon: every service group lists exactly the stylists the salon linked to it (`scripts/ma-data.json`, merged by `scripts/build-services.py` into `src/data/services.json` and `src/data/ma.json`). If the salon changes who does what, update `ma-data.json` and re-run the script.
 - **Site URL** is a placeholder (`haritage.pages.dev`).
 - **No salon photography** yet; the site is typographic plus the traced logo. Real photos would lift it most.

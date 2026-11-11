@@ -1,4 +1,5 @@
 import services from './services.json';
+import ma from './ma.json';
 
 export type Service = {
   id: number;
@@ -7,6 +8,8 @@ export type Service = {
   price: number | null;
   from: boolean;
   branches: string[];
+  /** per branch: [index of its My Appointment group, real duration in minutes] */
+  m?: Record<string, [number, number]>;
 };
 
 export const SERVICES = services as Service[];
@@ -80,63 +83,26 @@ export function catStats(id: string) {
   return { count: list.length, min: prices.length ? Math.min(...prices) : null };
 }
 
-// What each person does, read strictly from the role label shown on that salon's
-// public My Appointment booking grid. The exact stylist-to-service links sit behind
-// My Appointment's own login, so these are built from the labels and need the salon's
-// confirmation. To correct one, edit that person's `cats`, or add a service override
-// in STAFF_SERVICE_OVERRIDES below.
-const PLAIT = ['braids', 'cornrows', 'straightback'];
-const HAIR = [...PLAIT, 'relax', 'styling', 'care']; // a general "Stylist" or "Hair"
-export type StaffMember = { name: string; role: string; cats: string[] };
+// Who does what: copied from each salon's own My Appointment booking form (the stylists
+// listed under every service group, and the real duration of every service). Re-run
+// scripts/build-services.py after updating scripts/ma-data.json.
+export type StaffMember = { name: string; role: string; groups: number[] };
+export const MA = ma as Record<string, { staff: string[]; groups: { g: string; cat: string; staff: string[] }[] }>;
 
-export const STAFF: Record<BranchId, StaffMember[]> = {
-  westgate: [
-    { name: 'Sandra', role: 'Nail tech', cats: ['nails'] },
-    { name: 'Buhle', role: 'Nail tech', cats: ['nails'] },
-    { name: 'Sabelisiwe', role: 'Nail tech', cats: ['nails'] },
-    { name: 'Nompumelelo', role: 'Nails, make-up', cats: ['nails', 'makeup'] },
-    { name: 'Tebogo', role: 'Stylist, wig install', cats: [...HAIR, 'wigs'] },
-    { name: 'Ayanda', role: 'Stylist, dreadlocks', cats: [...HAIR, 'locs'] },
-    { name: 'Mahadi', role: 'Dreadlocks, wig install', cats: ['locs', 'wigs'] },
-    { name: 'Sibongile', role: 'Stylist', cats: HAIR },
-    { name: 'Sindiswa', role: 'Stylist, wig install', cats: [...HAIR, 'wigs'] },
-    { name: 'Violet', role: 'Stylist', cats: HAIR },
-    { name: 'Ncobile', role: 'Stylist, make-up, lashes', cats: [...HAIR, 'makeup', 'lashes'] },
-    { name: 'Zinhle', role: 'Stylist, wig install', cats: [...HAIR, 'wigs'] },
-    { name: 'Simangele', role: 'Hair, plaiter', cats: HAIR },
-    { name: 'Thabo M', role: 'Stylist, pixie', cats: [...HAIR, 'cuts'] },
-    { name: 'Tumi', role: 'Stylist, dreadlocks, pixie', cats: [...HAIR, 'locs', 'cuts'] },
-    { name: 'Thami', role: 'Stylist, pixie', cats: [...HAIR, 'cuts'] },
-    { name: 'Aubrey', role: 'Stylist, razor cut', cats: [...HAIR, 'cuts'] },
-    { name: 'Kenny', role: 'Pixie, razor cut, cuts', cats: [...HAIR, 'cuts'] },
-    { name: 'Nomsa M', role: 'Stylist, dreadlocks', cats: [...HAIR, 'locs'] },
-  ],
-  allensnek: [
-    { name: 'Thubelihle', role: 'Nails, lashes, massage', cats: ['nails', 'lashes', 'massage'] },
-    { name: 'Zinhle', role: 'Make-up, nail technician', cats: ['makeup', 'nails'] },
-    { name: 'Rebecca', role: 'Nails, hair', cats: ['nails', ...HAIR] },
-    { name: 'Mpho T', role: 'Plaiter, nail tech', cats: [...PLAIT, 'nails'] },
-    { name: 'Nomsa', role: 'Plaiter stylist', cats: PLAIT },
-    { name: 'Suku', role: 'Plaiter stylist', cats: PLAIT },
-    { name: 'Jane', role: 'Plaiter stylist', cats: PLAIT },
-    { name: 'Thobile', role: 'Plaiter stylist', cats: PLAIT },
-    { name: 'Zandile', role: 'Dreadlocks stylist', cats: ['locs'] },
-    { name: 'Zanele', role: 'Plaiter stylist', cats: PLAIT },
-    { name: 'Masentle', role: 'Plaiter stylist', cats: PLAIT },
-    { name: 'Martina Lavender', role: 'Plaiter stylist', cats: PLAIT },
-    { name: 'Neli', role: 'Plaiter stylist', cats: PLAIT },
-    { name: 'Tsholo', role: 'Plaiter stylist', cats: PLAIT },
-    { name: 'Fana', role: 'Barber, pixie, colour, perming', cats: ['cuts', 'styling', 'care', 'relax'] },
-    { name: 'Jimmy', role: 'Barber, pixie, colour, perming', cats: ['cuts', 'styling', 'care', 'relax'] },
-    { name: 'Siphiwe', role: 'Barber, pixie, colour, perming', cats: ['cuts', 'styling', 'care', 'relax'] },
-    { name: 'Sunny', role: 'Dreadlocks, braids, cuts, colour, relaxer', cats: ['locs', 'braids', 'cuts', 'care', 'relax'] },
-    { name: 'Promise', role: 'Dreadlocks stylist', cats: ['locs'] },
-    { name: 'Stanley', role: 'Dreadlocks stylist', cats: ['locs'] },
-  ],
+const SHORT: Record<string, string> = {
+  braids: 'Braids', cornrows: 'Cornrows', straightback: 'Straight-back', locs: 'Dreadlocks', relax: 'Relaxers',
+  styling: 'Styling', cuts: 'Cuts', care: 'Colour & care', wigs: 'Wigs', nails: 'Nails', lashes: 'Lashes & brows',
+  massage: 'Massage', makeup: 'Make-up',
 };
-
-// Exact per-service assignments, once the salon confirms them: service id -> names.
-// Anything listed here beats the category rules above.
-export const STAFF_SERVICE_OVERRIDES: Record<number, Partial<Record<BranchId, string[]>>> = {};
+function build(b: BranchId): StaffMember[] {
+  const m = MA[b];
+  return m.staff.map((name) => {
+    const groups = m.groups.map((g, i) => (g.staff.includes(name) ? i : -1)).filter((i) => i >= 0);
+    const cats = [...new Set(groups.map((i) => SHORT[m.groups[i].cat]))];
+    const role = cats.length <= 3 ? cats.join(', ') : `${cats.slice(0, 3).join(', ')} +${cats.length - 3} more`;
+    return { name, role, groups };
+  });
+}
+export const STAFF: Record<BranchId, StaffMember[]> = { westgate: build('westgate'), allensnek: build('allensnek') };
 
 export const money = (n: number | null, from = false) => (n ? `${from ? 'from ' : ''}R${n}` : 'Quoted');

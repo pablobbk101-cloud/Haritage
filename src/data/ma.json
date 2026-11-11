@@ -1,0 +1,554 @@
+{
+"westgate": {
+"staff": [
+"Sandra",
+"Buhle",
+"Sabelisiwe",
+"Nompumelelo",
+"Tebogo",
+"Ayanda",
+"Mahadi",
+"Sibongile",
+"Sindiswa",
+"Violet",
+"Ncobile",
+"Zinhle",
+"Simangele",
+"Thabo M",
+"Tumi",
+"Thami",
+"Aubrey",
+"Kenny",
+"Nomsa M"
+],
+"groups": [
+{
+"g": "Hands and Feet",
+"cat": "nails",
+"staff": [
+"Sandra",
+"Buhle",
+"Sabelisiwe",
+"Nompumelelo"
+]
+},
+{
+"g": "Brows",
+"cat": "lashes",
+"staff": [
+"Nompumelelo",
+"Tebogo",
+"Sibongile",
+"Ncobile",
+"Thami"
+]
+},
+{
+"g": "Lashes",
+"cat": "lashes",
+"staff": [
+"Nompumelelo",
+"Tebogo",
+"Sibongile",
+"Ncobile"
+]
+},
+{
+"g": "Makeup",
+"cat": "makeup",
+"staff": [
+"Nompumelelo",
+"Ncobile"
+]
+},
+{
+"g": "Brows and Lashes",
+"cat": "lashes",
+"staff": [
+"Tebogo",
+"Ncobile"
+]
+},
+{
+"g": "Hair - Braids",
+"cat": "braids",
+"staff": [
+"Tebogo",
+"Ayanda",
+"Mahadi",
+"Sibongile",
+"Sindiswa",
+"Violet",
+"Ncobile",
+"Zinhle",
+"Simangele"
+]
+},
+{
+"g": "Hair - Cornrows",
+"cat": "cornrows",
+"staff": [
+"Tebogo",
+"Ayanda",
+"Mahadi",
+"Sibongile",
+"Sindiswa",
+"Violet",
+"Ncobile",
+"Zinhle",
+"Simangele"
+]
+},
+{
+"g": "Hair - Relaxers",
+"cat": "relax",
+"staff": [
+"Tebogo",
+"Ayanda",
+"Mahadi",
+"Sibongile",
+"Sindiswa",
+"Violet",
+"Ncobile",
+"Zinhle",
+"Simangele",
+"Thabo M",
+"Tumi",
+"Thami",
+"Aubrey",
+"Kenny",
+"Nomsa M"
+]
+},
+{
+"g": "Hair - Straightback",
+"cat": "straightback",
+"staff": [
+"Tebogo",
+"Ayanda",
+"Mahadi",
+"Sibongile",
+"Sindiswa",
+"Violet",
+"Ncobile",
+"Zinhle",
+"Simangele"
+]
+},
+{
+"g": "Hair - Twists",
+"cat": "braids",
+"staff": [
+"Tebogo",
+"Ayanda",
+"Mahadi",
+"Sibongile",
+"Sindiswa",
+"Violet",
+"Ncobile",
+"Zinhle",
+"Simangele"
+]
+},
+{
+"g": "Hair - Wigs",
+"cat": "wigs",
+"staff": [
+"Tebogo",
+"Mahadi",
+"Sindiswa",
+"Zinhle"
+]
+},
+{
+"g": "Hair Treatments",
+"cat": "care",
+"staff": [
+"Tebogo",
+"Ayanda",
+"Mahadi",
+"Sibongile",
+"Sindiswa",
+"Violet",
+"Ncobile",
+"Zinhle",
+"Thabo M",
+"Tumi",
+"Thami",
+"Aubrey",
+"Kenny",
+"Nomsa M"
+]
+},
+{
+"g": "Hair - Dreadlocks",
+"cat": "locs",
+"staff": [
+"Ayanda",
+"Mahadi",
+"Sindiswa",
+"Tumi",
+"Nomsa M"
+]
+},
+{
+"g": "Hair Colour",
+"cat": "care",
+"staff": [
+"Ayanda",
+"Sindiswa",
+"Ncobile",
+"Thabo M",
+"Tumi",
+"Thami",
+"Aubrey",
+"Kenny",
+"Nomsa M"
+]
+},
+{
+"g": "Hair - Styling",
+"cat": "styling",
+"staff": [
+"Mahadi",
+"Sindiswa",
+"Zinhle",
+"Thabo M",
+"Tumi",
+"Thami",
+"Aubrey",
+"Kenny"
+]
+},
+{
+"g": "Hair - Technique",
+"cat": "care",
+"staff": [
+"Zinhle",
+"Thabo M",
+"Tumi",
+"Thami",
+"Aubrey",
+"Kenny"
+]
+},
+{
+"g": "Hair - Perming",
+"cat": "relax",
+"staff": [
+"Thabo M",
+"Tumi",
+"Thami",
+"Aubrey"
+]
+},
+{
+"g": "Haircuts",
+"cat": "cuts",
+"staff": [
+"Thabo M",
+"Tumi",
+"Thami",
+"Aubrey",
+"Kenny"
+]
+}
+]
+},
+"allensnek": {
+"staff": [
+"Thubelihle",
+"Zinhle",
+"Rebecca",
+"Mpho T",
+"Nomsa",
+"Suku",
+"Jane",
+"Thobile",
+"Zandile",
+"Zanele",
+"Masentle",
+"Martina",
+"Lavender",
+"Neli",
+"Tsholo",
+"Fana",
+"Jimmy",
+"Siphiwe",
+"Sunny",
+"Promise",
+"Stanley"
+],
+"groups": [
+{
+"g": "Brows",
+"cat": "lashes",
+"staff": [
+"Thubelihle",
+"Mpho T",
+"Martina",
+"Lavender",
+"Fana",
+"Siphiwe"
+]
+},
+{
+"g": "Brows and Lashes",
+"cat": "lashes",
+"staff": [
+"Thubelihle",
+"Rebecca",
+"Mpho T",
+"Martina",
+"Lavender"
+]
+},
+{
+"g": "Hands and Feet",
+"cat": "nails",
+"staff": [
+"Thubelihle",
+"Zinhle",
+"Rebecca",
+"Mpho T",
+"Zanele"
+]
+},
+{
+"g": "Massage",
+"cat": "massage",
+"staff": [
+"Thubelihle"
+]
+},
+{
+"g": "Tinting",
+"cat": "lashes",
+"staff": [
+"Thubelihle",
+"Mpho T",
+"Martina"
+]
+},
+{
+"g": "Promotions",
+"cat": "makeup",
+"staff": [
+"Zinhle"
+]
+},
+{
+"g": "Hair - Braids",
+"cat": "braids",
+"staff": [
+"Rebecca",
+"Mpho T",
+"Nomsa",
+"Suku",
+"Jane",
+"Thobile",
+"Zandile",
+"Zanele",
+"Masentle",
+"Martina",
+"Lavender",
+"Neli",
+"Tsholo",
+"Fana",
+"Sunny",
+"Promise"
+]
+},
+{
+"g": "Hair - Cornrows",
+"cat": "cornrows",
+"staff": [
+"Rebecca",
+"Mpho T",
+"Nomsa",
+"Suku",
+"Jane",
+"Thobile",
+"Zandile",
+"Zanele",
+"Masentle",
+"Martina",
+"Lavender",
+"Neli",
+"Tsholo",
+"Fana",
+"Sunny"
+]
+},
+{
+"g": "Hair - Straightback",
+"cat": "straightback",
+"staff": [
+"Rebecca",
+"Mpho T",
+"Nomsa",
+"Suku",
+"Jane",
+"Thobile",
+"Zanele",
+"Masentle",
+"Martina",
+"Lavender",
+"Neli",
+"Tsholo",
+"Fana",
+"Sunny"
+]
+},
+{
+"g": "Hair - Twists",
+"cat": "braids",
+"staff": [
+"Rebecca",
+"Mpho T",
+"Nomsa",
+"Suku",
+"Jane",
+"Thobile",
+"Zandile",
+"Zanele",
+"Masentle",
+"Lavender",
+"Neli",
+"Tsholo",
+"Fana",
+"Siphiwe",
+"Sunny",
+"Promise"
+]
+},
+{
+"g": "Hair - Relaxers",
+"cat": "relax",
+"staff": [
+"Mpho T",
+"Nomsa",
+"Zanele",
+"Masentle",
+"Martina",
+"Lavender",
+"Neli",
+"Fana",
+"Jimmy",
+"Siphiwe",
+"Sunny",
+"Stanley"
+]
+},
+{
+"g": "Hair - Technique",
+"cat": "care",
+"staff": [
+"Mpho T",
+"Nomsa",
+"Suku",
+"Zanele",
+"Masentle",
+"Martina",
+"Lavender",
+"Fana",
+"Jimmy",
+"Siphiwe",
+"Sunny",
+"Stanley"
+]
+},
+{
+"g": "Hair Colour",
+"cat": "care",
+"staff": [
+"Mpho T",
+"Martina",
+"Sunny",
+"Stanley"
+]
+},
+{
+"g": "Hair Treatments",
+"cat": "care",
+"staff": [
+"Mpho T",
+"Nomsa",
+"Suku",
+"Jane",
+"Thobile",
+"Zandile",
+"Zanele",
+"Masentle",
+"Martina",
+"Lavender",
+"Neli",
+"Tsholo",
+"Fana",
+"Jimmy",
+"Sunny",
+"Promise",
+"Stanley"
+]
+},
+{
+"g": "Hair - Styling",
+"cat": "styling",
+"staff": [
+"Suku",
+"Thobile",
+"Zandile",
+"Zanele",
+"Martina",
+"Fana",
+"Jimmy",
+"Siphiwe",
+"Sunny"
+]
+},
+{
+"g": "Hair - Dreadlocks",
+"cat": "locs",
+"staff": [
+"Zandile",
+"Fana",
+"Sunny",
+"Promise",
+"Stanley"
+]
+},
+{
+"g": "Hair - Wigs",
+"cat": "wigs",
+"staff": [
+"Zanele",
+"Martina",
+"Fana",
+"Siphiwe",
+"Sunny"
+]
+},
+{
+"g": "Hair - Perming",
+"cat": "relax",
+"staff": [
+"Fana",
+"Jimmy",
+"Siphiwe",
+"Sunny"
+]
+},
+{
+"g": "Haircuts",
+"cat": "cuts",
+"staff": [
+"Fana",
+"Jimmy",
+"Siphiwe",
+"Sunny",
+"Stanley"
+]
+}
+]
+}
+}
