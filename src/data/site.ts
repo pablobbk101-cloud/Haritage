@@ -94,13 +94,21 @@ const SHORT: Record<string, string> = {
   styling: 'Styling', cuts: 'Cuts', care: 'Colour & care', wigs: 'Wigs', nails: 'Nails', lashes: 'Lashes & brows',
   massage: 'Massage', makeup: 'Make-up',
 };
+const HAIR = ['braids', 'cornrows', 'straightback', 'locs', 'relax', 'styling', 'cuts', 'care', 'wigs'];
+const LABEL: Record<string, string> = { lashes: 'Lashes & brows' };
+function roleOf(cats: string[]) {
+  const hair = HAIR.filter((c) => cats.includes(c));
+  const rest = ['nails', 'lashes', 'makeup', 'massage'].filter((c) => cats.includes(c)).map((c) => LABEL[c] || SHORT[c]);
+  const parts = hair.length >= 4 ? ['Hair stylist'] : hair.map((c) => SHORT[c]);
+  const all = [...parts, ...rest];
+  return all.length <= 3 ? all.join(', ') : `${all.slice(0, 3).join(', ')} +${all.length - 3}`;
+}
 function build(b: BranchId): StaffMember[] {
   const m = MA[b];
   return m.staff.map((name) => {
     const groups = m.groups.map((g, i) => (g.staff.includes(name) ? i : -1)).filter((i) => i >= 0);
-    const cats = [...new Set(groups.map((i) => SHORT[m.groups[i].cat]))];
-    const role = cats.length <= 3 ? cats.join(', ') : `${cats.slice(0, 3).join(', ')} +${cats.length - 3} more`;
-    return { name, role, groups };
+    const cats = [...new Set(groups.map((i) => m.groups[i].cat))];
+    return { name, role: roleOf(cats), groups };
   });
 }
 export const STAFF: Record<BranchId, StaffMember[]> = { westgate: build('westgate'), allensnek: build('allensnek') };

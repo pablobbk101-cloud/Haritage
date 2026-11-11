@@ -3,7 +3,7 @@
 ## Brief
 - Subject: HAIRitage Salon99, ethnic hair and beauty salons in Roodepoort (Westgate + Allen's Nek).
 - Audience: women, men and parents booking braids, locs, relaxers, wigs, nails and lashes. Mostly on phones.
-- Job: get people to book an exact slot and pay a small deposit, on the salon's own site instead of a third-party listing.
+- Job: get people to book an exact slot (no deposit, pay at the salon), on the salon's own site instead of a third-party listing.
 - Source material: the real logo, hours, addresses, phone numbers, staff and price lists from the salon's two My Appointment pages (see `scripts/raw-services.json`).
 
 ## Concept card
@@ -24,10 +24,9 @@
 - Page transition: barcode curtain (14 bars drop, navigate, lift).
 
 ## Pages
-Home, Services (all 372 services, filter + search), Book (barcode booking + deposit receipt), Salons, Team, 404.
+Home, Services (all 372 services, filter + search), Book (barcode booking + receipt), Salons, Team, 404.
 
 ## Assumptions to replace
-- Deposit rule is a proposal: 20% of price, rounded up to R10, min R50, max R200, R100 when the service is quoted.
 - Availability on /book is simulated (deterministic) and payment is a demo. Connect the salon's calendar and a payment provider (Yoco, PayFast or Stripe) to go live.
 - Service durations are estimates from category and price.
 - Site URL in `astro.config.mjs` is a placeholder.

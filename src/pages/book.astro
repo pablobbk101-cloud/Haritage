@@ -7,10 +7,10 @@ const cats = CATEGORIES.map((c) => ({ id: c.id, l: c.label }));
 const branches = Object.values(BRANCHES).map((b) => ({ id: b.id, name: b.name, tel: b.tel, wa: b.wa, phone: b.phone }));
 const staff = STAFF;
 ---
-<Base title="Book your slot" description="Book your exact slot at HAIRitage Salon99 Westgate or Allen's Nek in Roodepoort. Pick a bar, pay a small deposit, walk in." hd="paper">
+<Base title="Book your slot" description="Book your exact slot at HAIRitage Salon99 Westgate or Allen's Nek in Roodepoort. Pick a bar, book it, walk in." hd="paper">
   <section class="head t-paper sec-bg" data-hd="paper">
     <div class="wrap">
-      <p class="lbl" data-reveal>Westgate + Allen's Nek · deposit comes off your bill</p>
+      <p class="lbl" data-reveal>Westgate + Allen's Nek · no deposit, pay at the salon</p>
       <h1 class="d d-mega" data-lines>
         <span class="ln"><span>Pick a</span></span>
         <span class="ln"><span class="laser">bar.</span></span>
@@ -120,13 +120,9 @@ const staff = STAFF;
               <label class="f"><span class="lbl">Cell number</span><input id="fp" type="tel" inputmode="tel" autocomplete="tel" placeholder="071 234 5678" required /></label>
               <label class="f wide"><span class="lbl">Hair notes (optional)</span><input id="fnote" type="text" placeholder="Length, current style, anything we should know" /></label>
             </div>
-            <div class="paysum">
-              <span class="lbl">Deposit due now</span><strong class="d" id="paysumDep">R0</strong>
-              <span class="lbl" id="paysumBal">Balance is settled at the salon.</span>
-            </div>
             <p class="err" id="err" role="alert"></p>
-            <button class="btn btn--laser pay" id="pay" type="submit" disabled><span id="payTxt">Pay deposit and book</span></button>
-            <p class="demo lbl">Demo mode: availability and payment are simulated until the salon connects its calendar and a payment provider.</p>
+            <button class="btn btn--laser pay" id="pay" type="submit" disabled><span id="payTxt">Book my slot</span></button>
+            <p class="demo lbl">Demo mode: availability is simulated until the salon connects its calendar. No payment is taken online.</p>
           </div>
         </section>
       </form>
@@ -143,8 +139,7 @@ const staff = STAFF;
             <div><dt>Time</dt><dd id="r-time">Not chosen</dd></div>
             <div><dt>Price</dt><dd id="r-price">Not chosen</dd></div>
           </dl>
-          <div class="rc-dep"><span class="lbl">Deposit due now</span><strong id="r-dep" class="d">R0</strong></div>
-          <p class="lbl rc-n" id="r-bal">Balance is settled at the salon.</p>
+          <p class="lbl rc-n" id="r-bal">No deposit. You pay at the salon.</p>
           <svg class="rc-bc" id="rcbc" viewBox="0 0 200 20" preserveAspectRatio="none" aria-hidden="true"></svg>
           <p class="lbl rc-ref" id="r-ref">Ref pending</p>
           <div class="done" id="done" hidden>
@@ -272,8 +267,6 @@ const staff = STAFF;
   .f{display:grid;gap:.2rem}
   .f.wide{grid-column:1 / -1}
   .f input{border:0;border-bottom:2px solid var(--ink);background:transparent;padding:.7rem 0;min-height:3.2rem;font:700 1.05rem var(--f-m);border-radius:0;width:100%;color:var(--ink)}
-  .paysum{display:grid;gap:.15rem;border:1.5px dashed var(--ink);padding:.9rem 1rem;margin-bottom:1rem}
-  .paysum strong{font-size:2.6rem;line-height:.95;color:var(--laser)}
   .err{color:var(--laser);font-weight:600;min-height:1.4em;margin-bottom:.6rem}
   .pay{min-height:3.4rem}
   .demo{color:var(--mute);margin-top:1rem;max-width:34rem}
@@ -383,7 +376,6 @@ const staff = STAFF;
   // real length from the salon's own My Appointment setup; the estimate is only a fallback
   const dur = () => Math.max(15, Math.round((st.svc!.m?.[st.branch!.id]?.[1] || duration(st.svc!)) / 15) * 15);
   const durText = () => { const d = dur(); return d >= 60 ? `${+(d / 60).toFixed(2)} h` : `${d} min`; };
-  function deposit(s: Svc) { return s.p ? Math.min(200, Math.max(50, Math.ceil((s.p * 0.2) / 10) * 10)) : 100; }
   // deterministic "busy" blocks so the demo is stable per stylist, day and half hour
   function busy(key0: string, day: Date, minutes: number) {
     let h = 2166136261;
@@ -679,16 +671,10 @@ const staff = STAFF;
     setText('r-day', st.day ? dayLabel(st.day) : 'Not chosen');
     setText('r-time', st.start != null ? `${hhmm(st.start)} to about ${hhmm(st.start + dur())}` : 'Not chosen');
     setText('r-price', s ? price(s) : 'Not chosen');
-    setText('r-dep', s ? `R${deposit(s)}` : 'R0');
-    const bal = s?.p ? `Balance of about R${Math.max(0, s.p - deposit(s))} is settled at the salon.` : 'Balance is quoted and settled at the salon.';
-    $('r-bal').textContent = bal;
-    $('paysumDep').textContent = s ? `R${deposit(s)}` : 'R0';
-    $('paysumBal').textContent = bal;
     drawRcBars();
     const nameOk = fn.value.trim().length > 1;
     const phoneOk = fp.value.replace(/\D/g, '').length >= 9;
     pay.disabled = !(st.branch && s && st.staff && st.day && st.start != null && nameOk && phoneOk);
-    $('payTxt').textContent = s ? `Pay R${deposit(s)} deposit and book` : 'Pay deposit and book';
     show();
   }
   function drawRcBars(ref = '') {
@@ -713,7 +699,7 @@ const staff = STAFF;
     drawRcBars(ref);
     const when = `${dayLabel(st.day)} at ${hhmm(st.start)}`;
     const who = st.staff === 'any' ? (st.who || 'first available stylist') : st.staff;
-    const msg = `Hi HAIRitage ${st.branch.name}, I booked online (${ref}): ${st.svc.n} with ${who} on ${when}. Name: ${fn.value.trim()}. Deposit R${deposit(st.svc)}.${fnote.value ? ' Notes: ' + fnote.value : ''}`;
+    const msg = `Hi HAIRitage ${st.branch.name}, I booked online (${ref}): ${st.svc.n} with ${who} on ${when}. Name: ${fn.value.trim()}.${fnote.value ? ' Notes: ' + fnote.value : ''}`;
     ($('wa') as HTMLAnchorElement).href = `https://wa.me/${st.branch.wa}?text=${encodeURIComponent(msg)}`;
     const p = (n: number) => String(n).padStart(2, '0');
     const dt = (m: number) => `${st.day!.getFullYear()}${p(st.day!.getMonth() + 1)}${p(st.day!.getDate())}T${p(Math.floor(m / 60))}${p(m % 60)}00`;

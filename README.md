@@ -1,6 +1,6 @@
 # HAIRitage Salon99 — concept site
 
-Own-brand site with online booking and deposits for HAIRitage Salon99, Roodepoort (Westgate + Allen's Nek).
+Own-brand site with online booking for HAIRitage Salon99, Roodepoort (Westgate + Allen's Nek).
 Concept: **"Every bar is a slot."** The logo's afro sheds a barcode; every bar is a 30-minute start time; booking is a scan.
 
 Built by Mr Point Productions as a pitch concept. See `DESIGN.md` for the brief, concept card and system.
@@ -39,7 +39,7 @@ python3 scripts/trace-logo.py    # public/img/logo-source.jpg -> logo.svg (needs
 ## Placeholders and assumptions (replace before going live)
 
 - **Booking is a demo.** Availability is simulated and no payment is taken. It needs a real calendar and a payment provider (Yoco, PayFast or Stripe).
-- **Deposit rule is a proposal:** 20% of price, rounded up to R10, min R50, max R200, R100 for quoted prices.
+- **No deposit:** clients book a slot and pay at the salon. A payment provider can be added later if the salon wants deposits.
 - **Durations are real**: each service uses the length set in the salon's own My Appointment account (`scripts/ma-data.json`).
 - **Services and prices** were taken from the salons' public My Appointment pages and need the owner's sign-off.
 - **Stylists and their services are copied from My Appointment's booking form** for each salon: every service group lists exactly the stylists the salon linked to it (`scripts/ma-data.json`, merged by `scripts/build-services.py` into `src/data/services.json` and `src/data/ma.json`). If the salon changes who does what, update `ma-data.json` and re-run the script.
