@@ -1,9 +1,9 @@
 ---
 import Base from '../layouts/Base.astro';
-import { CATEGORIES, SERVICES, money } from '../data/site';
+import { CATEGORIES, SERVICES, money, catStats } from '../data/site';
 
-const groups = CATEGORIES.map((c) => ({ ...c, items: SERVICES.filter((s) => s.cat === c.id) }));
-const tag = (b: string[]) => b.map((x) => (x === 'westgate' ? 'WG' : 'AN')).join(' · ');
+const groups = CATEGORIES.map((c) => ({ ...c, items: SERVICES.filter((s) => s.cat === c.id), min: catStats(c.id).min }));
+const where = (b: string[]) => (b.length > 1 ? 'Both salons' : b[0] === 'westgate' ? 'Westgate only' : "Allen's Nek only");
 ---
 <Base title="Services & prices" description={`All ${SERVICES.length} services and prices at HAIRitage Salon99: braids, locs, relaxers, wigs, nails, lashes and massage at Westgate and Allen's Nek, Roodepoort.`} hd="paper">
   <section class="head t-paper sec-bg" data-hd="paper">
@@ -21,12 +21,17 @@ const tag = (b: string[]) => b.map((x) => (x === 'westgate' ? 'WG' : 'AN')).join
     <div class="ctrl" id="ctrl">
       <div class="wrap ctrl-in">
         <label class="sr" for="q">Search services</label>
-        <input id="q" class="q" type="search" placeholder="Search: knotless, gel, wig, fade..." autocomplete="off" />
+        <input id="q" class="q" type="search" placeholder="Search knotless, gel, wig" autocomplete="off" enterkeyhint="search" />
         <div class="br" role="group" aria-label="Salon">
           <button class="chip" data-b="all" aria-pressed="true">Both salons</button>
           <button class="chip" data-b="westgate" aria-pressed="false">Westgate</button>
           <button class="chip" data-b="allensnek" aria-pressed="false">Allen's Nek</button>
         </div>
+        <label class="sr" for="catSel">Category</label>
+        <select id="catSel" class="catsel">
+          <option value="all">All categories ({SERVICES.length})</option>
+          {groups.map((g) => <option value={g.id}>{g.label} ({g.items.length})</option>)}
+        </select>
         <div class="cats" role="group" aria-label="Category">
           <button class="chip" data-cat="all" aria-pressed="true">All <span class="mono">{SERVICES.length}</span></button>
           {groups.map((g) => <button class="chip" data-cat={g.id} aria-pressed="false">{g.label} <span class="mono">{g.items.length}</span></button>)}
@@ -35,26 +40,28 @@ const tag = (b: string[]) => b.map((x) => (x === 'westgate' ? 'WG' : 'AN')).join
     </div>
 
     <div class="wrap body">
-      <p class="lbl status" id="status" role="status" aria-live="polite">Showing all {SERVICES.length}. WG = Westgate · AN = Allen's Nek</p>
+      <p class="lbl status" id="status" role="status" aria-live="polite">Showing all {SERVICES.length}</p>
       {groups.map((g) => (
-        <section class="grp" data-grp={g.id} aria-labelledby={`h-${g.id}`}>
-          <header>
+        <details class="grp" data-grp={g.id} open>
+          <summary>
             <h2 class="d d-l" id={`h-${g.id}`}>{g.label}</h2>
-            <p class="muted">{g.blurb}</p>
-          </header>
+            <span class="gm"><span class="gc mono" data-count>{g.items.length}</span>{g.min ? <span class="gf lbl">from R{g.min}</span> : null}</span>
+            <span class="chev" aria-hidden="true"></span>
+          </summary>
+          <p class="muted gb">{g.blurb}</p>
           <ul>
             {g.items.map((s) => (
               <li data-cat={s.cat} data-b={s.branches.join(' ')} data-n={s.name.toLowerCase()}>
                 <a class="sweep srow" href={`/book/?svc=${s.id}`}>
                   <span class="sn">{s.name}</span>
-                  <span class="sb lbl">{tag(s.branches)}</span>
+                  <span class="sb lbl">{where(s.branches)}</span>
                   <span class="sp mono">{money(s.price, s.from)}</span>
                   <span class="sg lbl">Book</span>
                 </a>
               </li>
             ))}
           </ul>
-        </section>
+        </details>
       ))}
       <p class="empty" id="empty" hidden>
         <span class="d d-l">Nothing on that bar.</span>
@@ -73,43 +80,76 @@ const tag = (b: string[]) => b.map((x) => (x === 'westgate' ? 'WG' : 'AN')).join
   .q::placeholder{color:var(--mute);font-weight:400}
   .br,.cats{display:flex;flex-wrap:wrap;gap:.45rem}
   .cats{grid-column:1 / -1;max-height:5.6rem;overflow:auto}
+  .catsel{display:none}
   .chip{border:1.5px solid var(--ink);padding:.45rem .8rem;font:700 .7rem var(--f-m);letter-spacing:.07em;text-transform:uppercase;transition:background .25s,color .25s}
   .chip:hover{background:var(--ink);color:var(--paper)}
   .chip[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
   .chip .mono{opacity:.6;margin-left:.25rem}
   .body{padding-block:2rem clamp(4rem,9vw,8rem)}
   .status{margin-bottom:2rem;color:var(--mute)}
-  .grp{margin-bottom:clamp(2.5rem,6vw,5rem)}
-  .grp header{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:.4rem 2rem;border-top:3px solid var(--ink);padding-top:.8rem;margin-bottom:.4rem}
+  .grp{margin-bottom:clamp(2.5rem,6vw,5rem);border-top:3px solid var(--ink)}
+  .grp summary{list-style:none;display:flex;align-items:baseline;gap:1rem 1.4rem;padding-top:.8rem;cursor:default}
+  .grp summary::-webkit-details-marker{display:none}
+  .grp summary h2{margin:0}
+  .gm{display:flex;align-items:baseline;gap:.8rem;margin-left:auto}
+  .gc{font-weight:700}
+  .gf{color:var(--mute);white-space:nowrap}
+  .chev{display:none}
+  .gb{margin:.3rem 0 .6rem}
   .grp ul{list-style:none}
   .grp[hidden],.grp li[hidden]{display:none}
-  .srow{display:grid;grid-template-columns:minmax(0,1fr) 6.5rem 6rem 3.2rem;gap:1rem;align-items:center;padding:.85rem .5rem;border-bottom:1px solid var(--line)}
+  .srow{display:grid;grid-template-columns:minmax(0,1fr) 9rem 6rem 3.2rem;gap:1rem;align-items:center;padding:.85rem .5rem;border-bottom:1px solid var(--line)}
   .sn{font-weight:500}
   .sp{text-align:right;font-weight:700}
-  .sg{text-align:right;opacity:.0;transition:opacity .3s}
+  .sg{text-align:right;opacity:0;transition:opacity .3s}
   .srow:hover .sg,.srow:focus-visible .sg{opacity:1}
   .sb{opacity:.65}
   .empty{display:grid;gap:1rem;padding:3rem 0}
   .empty[hidden]{display:none}
+
+  /* phone: short page, big controls, categories fold away */
   @media(max-width:720px){
-    .ctrl-in{grid-template-columns:1fr}
-    .cats{flex-wrap:nowrap;overflow-x:auto;max-height:none;padding-bottom:.3rem}
-    .chip{white-space:nowrap}
-    .srow{grid-template-columns:minmax(0,1fr) auto;row-gap:.1rem}
-    .sb{grid-row:2;grid-column:1}
-    .sp{grid-row:1;grid-column:2}
+    .head{padding-top:calc(var(--hd) + 1.2rem);padding-bottom:1.2rem}
+    .head .lbl,.head .lede{display:none}
+    .head h1{font-size:clamp(3.4rem,17vw,5rem);margin:0}
+    .ctrl{position:static}
+    .ctrl-in{grid-template-columns:1fr;gap:.7rem;padding-block:1rem}
+    .q{border:2px solid var(--ink);padding:.8rem 1rem;min-height:3.4rem;font-size:1rem;outline-offset:3px}
+    .br{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.4rem}
+    .br .chip{min-height:3rem;padding:.4rem .2rem;font-size:.66rem;letter-spacing:.04em;text-align:center}
+    .cats{display:none}
+    .catsel{display:block;width:100%;min-height:3.2rem;border:2px solid var(--ink);background:var(--paper);color:var(--ink);padding:.5rem 1rem;font:700 .9rem var(--f-m);border-radius:0}
+    .body{padding-top:1rem}
+    .status{margin-bottom:1rem}
+    .grp{margin-bottom:0;border-top:2px solid var(--ink)}
+    .grp:last-of-type{border-bottom:2px solid var(--ink)}
+    .grp summary{cursor:pointer;min-height:4.2rem;align-items:center;padding:.6rem 0;gap:.7rem}
+    .grp summary h2{font-size:clamp(1.7rem,8vw,2.3rem);line-height:.95}
+    .gm{flex-direction:column;align-items:flex-end;gap:.1rem}
+    .gc{font-size:.95rem}
+    .gf{font-size:.64rem}
+    .chev{display:block;width:.7rem;height:.7rem;border-right:2.5px solid var(--ink);border-bottom:2.5px solid var(--ink);rotate:45deg;margin:0 .3rem 0 .2rem;transition:rotate .3s var(--ease);flex:none}
+    .grp[open] .chev{rotate:225deg}
+    .gb{font-size:.9rem;margin:0 0 .6rem}
+    .srow{grid-template-columns:minmax(0,1fr) auto;gap:.15rem 1rem;padding:.9rem .1rem;min-height:3.6rem;align-items:start}
+    .sn{font-size:1.02rem;line-height:1.3}
+    .sb{grid-row:2;grid-column:1;font-size:.64rem}
+    .sp{grid-row:1;grid-column:2;font-size:1rem}
     .sg{display:none}
   }
 </style>
 
 <script>
   const items = Array.from(document.querySelectorAll<HTMLLIElement>('.grp li'));
-  const groups = Array.from(document.querySelectorAll<HTMLElement>('.grp'));
+  const groups = Array.from(document.querySelectorAll<HTMLDetailsElement>('.grp'));
   const q = document.getElementById('q') as HTMLInputElement;
+  const sel = document.getElementById('catSel') as HTMLSelectElement;
   const status = document.getElementById('status')!;
   const empty = document.getElementById('empty')!;
   const params = new URLSearchParams(location.search);
   const state = { q: '', b: 'all', cat: params.get('cat') || 'all' };
+  const phone = matchMedia('(max-width:720px)');
+  let wasFocus = false;
 
   const press = (sel: string, attr: string, val: string) =>
     document.querySelectorAll<HTMLElement>(sel).forEach((el) => el.setAttribute('aria-pressed', String(el.dataset[attr] === val)));
@@ -125,17 +165,32 @@ const tag = (b: string[]) => b.map((x) => (x === 'westgate' ? 'WG' : 'AN')).join
       li.hidden = !ok;
       if (ok) shown++;
     });
-    groups.forEach((g) => (g.hidden = !g.querySelector('li:not([hidden])')));
+    // phone: folded unless the visitor is searching or has chosen a category
+    const focus = !!term || state.cat !== 'all';
+    groups.forEach((g) => {
+      const n = g.querySelectorAll('li:not([hidden])').length;
+      g.hidden = n === 0;
+      (g.querySelector('[data-count]') as HTMLElement).textContent = String(n);
+      if (!phone.matches) g.open = true;
+      else if (focus) g.open = true;
+      else if (wasFocus) g.open = false;
+    });
+    wasFocus = focus;
     empty.hidden = shown > 0;
-    status.textContent = `Showing ${shown} of ${items.length}. WG = Westgate · AN = Allen's Nek`;
+    status.textContent = shown === items.length ? `Showing all ${items.length}` : `Showing ${shown} of ${items.length}`;
     press('.cats .chip', 'cat', state.cat);
     press('.br .chip', 'b', state.b);
+    sel.value = state.cat;
     const u = new URL(location.href);
     state.cat === 'all' ? u.searchParams.delete('cat') : u.searchParams.set('cat', state.cat);
     history.replaceState(null, '', u);
   }
 
   q.addEventListener('input', () => { state.q = q.value; apply(); });
+  sel.addEventListener('change', () => {
+    state.cat = sel.value; apply();
+    if (state.cat !== 'all') document.querySelector(`[data-grp="${state.cat}"]`)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
   document.querySelector('.br')!.addEventListener('click', (e) => {
     const b = (e.target as HTMLElement).closest<HTMLElement>('[data-b]');
     if (b) { state.b = b.dataset.b!; apply(); }
@@ -144,5 +199,9 @@ const tag = (b: string[]) => b.map((x) => (x === 'westgate' ? 'WG' : 'AN')).join
     const b = (e.target as HTMLElement).closest<HTMLElement>('[data-cat]');
     if (b) { state.cat = b.dataset.cat!; apply(); }
   });
+  // desktop keeps every group open; phone folds them
+  groups.forEach((g) => g.querySelector('summary')!.addEventListener('click', (e) => { if (!phone.matches) e.preventDefault(); }));
+  phone.addEventListener('change', () => { wasFocus = false; groups.forEach((g) => (g.open = !phone.matches)); apply(); });
+  if (phone.matches) groups.forEach((g) => (g.open = false));
   apply();
 </script>

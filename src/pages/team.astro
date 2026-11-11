@@ -47,4 +47,11 @@ const total = STAFF.westgate.length + STAFF.allensnek.length;
   .person{display:grid;gap:.5rem;padding:1.1rem 1rem 1.2rem;min-height:8.2rem;align-content:space-between}
   .person .d{font-size:clamp(1.8rem,3vw,2.6rem)}
   .person .lbl{opacity:.75}
+  @media(max-width:600px){
+    .head{padding-top:calc(var(--hd) + 1.2rem);padding-bottom:1.5rem}
+    .people{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .person{min-height:5.6rem;padding:.8rem .75rem;gap:.35rem}
+    .person .d{font-size:1.5rem;line-height:.95;overflow-wrap:anywhere}
+    .person .lbl{font-size:.62rem;line-height:1.35}
+  }
 </style>

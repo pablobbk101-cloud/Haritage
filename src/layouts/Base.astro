@@ -111,8 +111,8 @@ const ld = {
       {nav.map((n) => <a class="big" href={n.href} aria-current={here(n.href) ? 'page' : undefined}>{n.label}</a>)}
     </div>
     <div class="lbl">
-      <p>Westgate · {BRANCHES.westgate.phone}</p>
-      <p>Allen's Nek · {BRANCHES.allensnek.phone}</p>
+      <p><a class="tel" href={`tel:${BRANCHES.westgate.tel}`}>Westgate · {BRANCHES.westgate.phone}</a></p>
+      <p><a class="tel" href={`tel:${BRANCHES.allensnek.tel}`}>Allen's Nek · {BRANCHES.allensnek.phone}</a></p>
     </div>
   </div>
 
