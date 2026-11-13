@@ -6,18 +6,14 @@ const groups = CATEGORIES.map((c) => ({ ...c, items: SERVICES.filter((s) => s.ca
 const where = (b: string[]) => (b.length > 1 ? 'Both salons' : b[0] === 'westgate' ? 'Westgate only' : "Allen's Nek only");
 ---
 <Base title="Services & prices" description={`All ${SERVICES.length} services and prices at HAIRitage Salon99: braids, locs, relaxers, wigs, nails, lashes and massage at Westgate and Allen's Nek, Roodepoort.`} hd="paper">
-  <section class="head t-paper sec-bg" data-hd="paper">
+  <section class="head">
     <div class="wrap">
-      <p class="lbl" data-reveal>{SERVICES.length} services · Westgate + Allen's Nek</p>
-      <h1 class="d d-mega" data-lines>
-        <span class="ln"><span>The price</span></span>
-        <span class="ln"><span class="laser">list.</span></span>
-      </h1>
-      <p class="lede" data-reveal>Straight from the salons' booking lists. Hair is priced by length and style, and anything without a price is quoted in the chair. Tap a row to book it.</p>
+      <h1 class="d d-mega">Services and prices</h1>
+      <p class="lede">{SERVICES.length} services from the salons' own lists. Tap a row to book it. No price means it is quoted in the chair.</p>
     </div>
   </section>
 
-  <section class="list t-paper sec-bg" data-hd="paper">
+  <section class="list">
     <div class="ctrl" id="ctrl">
       <div class="wrap ctrl-in">
         <label class="sr" for="q">Search services</label>
@@ -32,7 +28,7 @@ const where = (b: string[]) => (b.length > 1 ? 'Both salons' : b[0] === 'westgat
           <option value="all">All categories ({SERVICES.length})</option>
           {groups.map((g) => <option value={g.id}>{g.label} ({g.items.length})</option>)}
         </select>
-        <div class="cats" role="group" aria-label="Category" data-lenis-prevent>
+        <div class="cats" role="group" aria-label="Category" >
           <button class="chip" data-cat="all" aria-pressed="true">All <span class="mono">{SERVICES.length}</span></button>
           {groups.map((g) => <button class="chip" data-cat={g.id} aria-pressed="false">{g.label} <span class="mono">{g.items.length}</span></button>)}
         </div>
@@ -45,18 +41,18 @@ const where = (b: string[]) => (b.length > 1 ? 'Both salons' : b[0] === 'westgat
         <details class="grp" data-grp={g.id} open>
           <summary>
             <h2 class="d d-l" id={`h-${g.id}`}>{g.label}</h2>
-            <span class="gm"><span class="gc mono" data-count>{g.items.length}</span>{g.min ? <span class="gf lbl">from R{g.min}</span> : null}</span>
+            <span class="gm"><span class="gc mono" data-count>{g.items.length}</span>{g.min ? <span class="gf">from R{g.min}</span> : null}</span>
             <span class="chev" aria-hidden="true"></span>
           </summary>
           <p class="muted gb">{g.blurb}</p>
           <ul>
             {g.items.map((s) => (
               <li data-cat={s.cat} data-b={s.branches.join(' ')} data-n={s.name.toLowerCase()}>
-                <a class="sweep srow" href={`/book/?svc=${s.id}`}>
+                <a class="srow" href={`/book/?svc=${s.id}`}>
                   <span class="sn">{s.name}</span>
                   <span class="sb lbl">{where(s.branches)}</span>
                   <span class="sp mono">{money(s.price, s.from)}</span>
-                  <span class="sg lbl">Book</span>
+                  <span class="sg">Book</span>
                 </a>
               </li>
             ))}
@@ -64,77 +60,72 @@ const where = (b: string[]) => (b.length > 1 ? 'Both salons' : b[0] === 'westgat
         </details>
       ))}
       <p class="empty" id="empty" hidden>
-        <span class="d d-l">Nothing on that bar.</span>
-        <span>Try a shorter word, or clear the filters. Anything custom, ask the salon: Westgate 068 523 8088 · Allen's Nek 072 997 4937.</span>
+        <span class="d d-l">Nothing matches that.</span>
+        <span>Try a shorter word, or clear the filters. Anything custom, ask the salon: Westgate 068 523 8088, Allen's Nek 072 997 4937.</span>
       </p>
     </div>
   </section>
 </Base>
 
 <style>
-  .head{padding-top:calc(var(--hd) + clamp(2.5rem,6vw,5rem));padding-bottom:clamp(2.5rem,6vw,4rem)}
-  .head h1{margin:1rem 0 1.6rem}
+  .head{padding-block:clamp(2rem,5vw,3.5rem) clamp(1rem,3vw,2rem)}
+  .head h1{margin-bottom:.8rem}
   .ctrl{position:sticky;top:var(--hd);z-index:40;background:var(--paper);border-block:1px solid var(--line)}
-  .ctrl-in{display:grid;grid-template-columns:minmax(220px,1fr) auto;gap:.8rem 1.5rem;padding-block:.9rem}
-  .q{width:100%;background:transparent;border:0;border-bottom:2px solid var(--ink);padding:.7rem 0;font:700 clamp(1.1rem,2vw,1.5rem) var(--f-m);outline-offset:6px;border-radius:0}
-  .q::placeholder{color:var(--mute);font-weight:400}
+  .ctrl-in{display:grid;grid-template-columns:minmax(220px,1fr) auto;gap:.8rem 1.2rem;padding-block:.9rem}
+  .q{width:100%;background:var(--card);border:1.5px solid var(--line);border-radius:var(--pill);padding:.75rem 1.2rem;min-height:3rem;font-size:1rem}
+  .q::placeholder{color:var(--mute)}
+  .q:focus-visible{border-color:var(--accent);outline-offset:2px}
   .br,.cats{display:flex;flex-wrap:wrap;gap:.45rem}
-  .cats{grid-column:1 / -1;max-height:5.6rem;overflow:auto}
+  .cats{grid-column:1 / -1;max-height:6.4rem;overflow:auto}
   .catsel{display:none}
-  .chip{border:1.5px solid var(--ink);padding:.45rem .8rem;font:700 .7rem var(--f-m);letter-spacing:.07em;text-transform:uppercase;transition:background .25s,color .25s}
-  .chip:hover{background:var(--ink);color:var(--paper)}
-  .chip[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
-  .chip .mono{opacity:.6;margin-left:.25rem}
-  .body{padding-block:2rem clamp(4rem,9vw,8rem)}
-  .status{margin-bottom:2rem;color:var(--mute)}
-  .grp{margin-bottom:clamp(2.5rem,6vw,5rem);border-top:3px solid var(--ink)}
-  .grp summary{list-style:none;display:flex;align-items:baseline;gap:1rem 1.4rem;padding-top:.8rem;cursor:default}
+  .chip{border:1.5px solid var(--line);background:var(--card);border-radius:var(--pill);padding:.45rem .95rem;min-height:2.5rem;font-size:.92rem;font-weight:500;transition:background-color .2s var(--ease),color .2s var(--ease),border-color .2s var(--ease)}
+  .chip:hover{border-color:var(--ink)}
+  .chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+  .chip .mono{opacity:.6;margin-left:.2rem}
+  .body{padding-block:1.4rem clamp(4rem,9vw,7rem)}
+  .status{margin-bottom:1.4rem}
+  .grp{margin-bottom:2.2rem}
+  .grp summary{list-style:none;display:flex;align-items:baseline;gap:1rem;padding-bottom:.6rem;border-bottom:2px solid var(--ink);cursor:default}
   .grp summary::-webkit-details-marker{display:none}
   .grp summary h2{margin:0}
-  .gm{display:flex;align-items:baseline;gap:.8rem;margin-left:auto}
-  .gc{font-weight:700}
-  .gf{color:var(--mute);white-space:nowrap}
+  .gm{display:flex;align-items:baseline;gap:.8rem;margin-left:auto;color:var(--mute);font-size:.92rem}
+  .gc{font-weight:600;color:var(--ink)}
+  .gf{white-space:nowrap}
   .chev{display:none}
-  .gb{margin:.3rem 0 .6rem}
+  .gb{margin:.6rem 0 .3rem;font-size:.95rem}
   .grp ul{list-style:none}
   .grp[hidden],.grp li[hidden]{display:none}
-  .srow{display:grid;grid-template-columns:minmax(0,1fr) 9rem 6rem 3.2rem;gap:1rem;align-items:center;padding:.85rem .5rem;border-bottom:1px solid var(--line)}
+  .srow{display:grid;grid-template-columns:minmax(0,1fr) 9rem 6rem 3.2rem;gap:1rem;align-items:center;padding:.85rem .6rem;border-bottom:1px solid var(--line);text-decoration:none;border-radius:var(--r-s);transition:background-color .2s var(--ease)}
+  .srow:hover,.srow:focus-visible{background:var(--sand)}
   .sn{font-weight:500}
-  .sp{text-align:right;font-weight:700}
-  .sg{text-align:right;opacity:0;transition:opacity .3s}
+  .sp{text-align:right;font-weight:600}
+  .sg{text-align:right;color:var(--accent);font-weight:600;opacity:0;transition:opacity .2s var(--ease)}
   .srow:hover .sg,.srow:focus-visible .sg{opacity:1}
-  .sb{opacity:.65}
+  .sb{color:var(--mute);font-size:.88rem}
   .empty{display:grid;gap:1rem;padding:3rem 0}
   .empty[hidden]{display:none}
 
-  /* phone: short page, big controls, categories fold away */
   @media(max-width:720px){
-    .head{padding-top:calc(var(--hd) + 1.2rem);padding-bottom:1.2rem}
-    .head .lbl,.head .lede{display:none}
-    .head h1{font-size:clamp(3.4rem,17vw,5rem);margin:0}
+    .head{padding-top:1.4rem}
+    .head .lede{display:none}
     .ctrl{position:static}
-    .ctrl-in{grid-template-columns:1fr;gap:.7rem;padding-block:1rem}
-    .q{border:2px solid var(--ink);padding:.8rem 1rem;min-height:3.4rem;font-size:1rem;outline-offset:3px}
+    .ctrl-in{grid-template-columns:minmax(0,1fr);gap:.7rem;padding-block:1rem}
     .br{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.4rem}
-    .br .chip{min-height:3rem;padding:.4rem .2rem;font-size:.66rem;letter-spacing:.04em;text-align:center}
+    .br .chip{min-height:2.9rem;padding:.4rem .2rem;text-align:center;font-size:.85rem}
     .cats{display:none}
-    .catsel{display:block;width:100%;min-height:3.2rem;border:2px solid var(--ink);background:var(--paper);color:var(--ink);padding:.5rem 1rem;font:700 .9rem var(--f-m);border-radius:0}
-    .body{padding-top:1rem}
-    .status{margin-bottom:1rem}
-    .grp{margin-bottom:0;border-top:2px solid var(--ink)}
-    .grp:last-of-type{border-bottom:2px solid var(--ink)}
-    .grp summary{cursor:pointer;min-height:4.2rem;align-items:center;padding:.6rem 0;gap:.7rem}
-    .grp summary h2{font-size:clamp(1.7rem,8vw,2.3rem);line-height:.95}
-    .gm{flex-direction:column;align-items:flex-end;gap:.1rem}
-    .gc{font-size:.95rem}
-    .gf{font-size:.64rem}
-    .chev{display:block;width:.7rem;height:.7rem;border-right:2.5px solid var(--ink);border-bottom:2.5px solid var(--ink);rotate:45deg;margin:0 .3rem 0 .2rem;transition:rotate .3s var(--ease);flex:none}
+    .catsel{display:block;width:100%;min-height:3rem;border:1.5px solid var(--line);background:var(--card);border-radius:var(--pill);padding:.5rem 1.1rem;font-weight:500}
+    .body{padding-top:.6rem}
+    .grp{margin-bottom:0;border-bottom:1px solid var(--line)}
+    .grp summary{cursor:pointer;min-height:3.8rem;align-items:center;padding:.6rem 0;gap:.7rem;border-bottom:0}
+    .grp summary h2{font-size:1.3rem}
+    .gm{flex-direction:column;align-items:flex-end;gap:0;font-size:.82rem}
+    .chev{display:block;width:.65rem;height:.65rem;border-right:2.5px solid var(--ink);border-bottom:2.5px solid var(--ink);rotate:45deg;margin:0 .3rem 0 .2rem;transition:rotate .25s var(--ease);flex:none}
     .grp[open] .chev{rotate:225deg}
-    .gb{font-size:.9rem;margin:0 0 .6rem}
-    .srow{grid-template-columns:minmax(0,1fr) auto;gap:.15rem 1rem;padding:.9rem .1rem;min-height:3.6rem;align-items:start}
+    .gb{margin:0 0 .5rem}
+    .srow{grid-template-columns:minmax(0,1fr) auto;gap:.1rem 1rem;padding:.85rem .2rem;min-height:3.6rem;align-items:start}
     .sn{font-size:1.02rem;line-height:1.3}
-    .sb{grid-row:2;grid-column:1;font-size:.64rem}
-    .sp{grid-row:1;grid-column:2;font-size:1rem}
+    .sb{grid-row:2;grid-column:1;font-size:.82rem}
+    .sp{grid-row:1;grid-column:2}
     .sg{display:none}
   }
 </style>

@@ -21,9 +21,9 @@ def clean(n):
     n = re.sub(r'\(?\s*'+RP+r'(/\w+)?\s*\)?', '', n, flags=re.I)
     n = re.sub(r'\(?(?<![-\d])\d{2,4}\)?\s*$', '', n)
     n = re.sub(r'\s+', ' ', n).strip(' -(')
-    n = re.sub(r'\s+-\s*|\s*-\s+', ' · ', n)
+    n = re.sub(r'\s+-\s*|\s*-\s+', ' - ', n)
     if n.isupper() or sum(c.isupper() for c in n) > len(n)*.6: n = n.title()
-    return n.strip(' ·')
+    return n.strip(' -')
 ma = json.load(open('scripts/ma-data.json'))   # real stylist-to-group links + durations from My Appointment
 svc = {}
 for b, cats in raw.items():

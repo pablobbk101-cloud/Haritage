@@ -1,13 +1,8 @@
 ---
-import '@fontsource/big-shoulders-display/700';
-import '@fontsource/big-shoulders-display/800';
-import '@fontsource/big-shoulders-display/900';
+import '@fontsource-variable/fraunces';
 import '@fontsource-variable/inter';
-import '@fontsource/space-mono/400';
-import '@fontsource/space-mono/700';
 import '../styles/global.css';
 import logoRaw from '../../public/img/logo.svg?raw';
-import Barcode from '../components/Barcode.astro';
 import { BRANCHES, HOURS, SITE } from '../data/site';
 
 interface Props {
@@ -60,7 +55,7 @@ const ld = {
   <meta name="description" content={description} />
   <link rel="canonical" href={canonical} />
   {noindex && <meta name="robots" content="noindex" />}
-  <meta name="theme-color" content="#0b0b0a" />
+  <meta name="theme-color" content="#fbf7f1" />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content={SITE.name} />
@@ -70,14 +65,8 @@ const ld = {
   <meta property="og:image" content={ogImage} />
   <meta name="twitter:card" content="summary_large_image" />
   <script type="application/ld+json" set:html={JSON.stringify(ld)} />
-  <script is:inline>
-    (function(){
-      var d=document.documentElement;
-      d.classList.add('js');
-      if(!matchMedia('(prefers-reduced-motion: reduce)').matches) d.classList.add('cover');
-    })();
-  </script>
-  <noscript><style>.js .ln>span{transform:none!important}.js [data-reveal]{opacity:1!important}.js [data-scan]{clip-path:none!important}html.cover .curtain{display:none}</style></noscript>
+  <script is:inline>document.documentElement.classList.add('js');</script>
+  <noscript><style>.js [data-reveal]{opacity:1!important;translate:0 0!important}</style></noscript>
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
@@ -86,23 +75,19 @@ const ld = {
     <defs><path id="hs-logo-path" fill="currentColor" fill-rule="evenodd" d={logoPath} /></defs>
   </svg>
 
-  <div class="curtain" aria-hidden="true">
-    {Array.from({ length: 14 }).map(() => <i />)}
-    <svg class="mark" viewBox="0 1040 884 150"><use href="#hs-logo-path" /></svg>
-    <span class="scan"></span>
-  </div>
-
   <header class="hd" id="hd">
-    <a href="/" aria-label="HAIRitage Salon home">
-      <svg class="wm" viewBox="0 1040 884 150" role="img" aria-label="HAIRitage Salon"><use href="#hs-logo-path" /></svg>
-    </a>
-    <nav aria-label="Main">
-      {nav.filter((n) => n.href !== '/book/').map((n) => (
-        <a href={n.href} aria-current={here(n.href) ? 'page' : undefined}>{n.label}</a>
-      ))}
-      <a class="btn btn--sm" href="/book/"><span>Book a slot</span></a>
-      <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mnav">Menu</button>
-    </nav>
+    <div class="wrap hd-in">
+      <a href="/" aria-label="HAIRitage Salon home">
+        <svg class="wm" viewBox="0 1040 884 150" role="img" aria-label="HAIRitage Salon"><use href="#hs-logo-path" /></svg>
+      </a>
+      <nav aria-label="Main">
+        {nav.filter((n) => n.href !== '/book/').map((n) => (
+          <a href={n.href} aria-current={here(n.href) ? 'page' : undefined}>{n.label}</a>
+        ))}
+        <a class="btn btn--primary btn--sm" href="/book/">Book a slot</a>
+        <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mnav">Menu</button>
+      </nav>
+    </div>
   </header>
 
   <div class="mnav" id="mnav" aria-label="Menu">
@@ -110,46 +95,46 @@ const ld = {
       <a class="big" href="/" aria-current={path === '/' ? 'page' : undefined}>Home</a>
       {nav.map((n) => <a class="big" href={n.href} aria-current={here(n.href) ? 'page' : undefined}>{n.label}</a>)}
     </div>
-    <div class="lbl">
-      <p><a class="tel" href={`tel:${BRANCHES.westgate.tel}`}>Westgate · {BRANCHES.westgate.phone}</a></p>
-      <p><a class="tel" href={`tel:${BRANCHES.allensnek.tel}`}>Allen's Nek · {BRANCHES.allensnek.phone}</a></p>
+    <div>
+      <p><a class="tel" href={`tel:${BRANCHES.westgate.tel}`}>Westgate {BRANCHES.westgate.phone}</a></p>
+      <p><a class="tel" href={`tel:${BRANCHES.allensnek.tel}`}>Allen's Nek {BRANCHES.allensnek.phone}</a></p>
     </div>
   </div>
 
   <main id="main"><slot /></main>
 
-  <footer class="ft" data-hd="ink">
-    <Barcode seed={11} bars={140} class="ftbc" />
-    <a class="cta" href="/book/" style="margin-top:2rem" aria-label="Scan in: book your slot">Scan in.</a>
-    <div class="cols">
-      <div>
-        <h3>{BRANCHES.westgate.name}</h3>
-        <p>{BRANCHES.westgate.address.join(', ')}</p>
-        <p class="muted" style="color:rgba(239,237,230,.6)">{BRANCHES.westgate.where}</p>
-        <p style="margin-top:.5rem"><a href={`tel:${BRANCHES.westgate.tel}`}>{BRANCHES.westgate.phone}</a></p>
+  <footer class="ft">
+    <div class="wrap">
+      <div class="cols">
+        <div>
+          <h3>{BRANCHES.westgate.name}</h3>
+          <p>{BRANCHES.westgate.address.join(', ')}</p>
+          <p>{BRANCHES.westgate.where}</p>
+          <p><a href={`tel:${BRANCHES.westgate.tel}`}>{BRANCHES.westgate.phone}</a></p>
+        </div>
+        <div>
+          <h3>{BRANCHES.allensnek.name}</h3>
+          <p>{BRANCHES.allensnek.address.join(', ')}</p>
+          <p><a href={`tel:${BRANCHES.allensnek.tel}`}>{BRANCHES.allensnek.phone}</a></p>
+        </div>
+        <div>
+          <h3>Hours, both salons</h3>
+          <ul>{HOURS.map(([d, h]) => <li>{d}: {h}</li>)}</ul>
+        </div>
+        <div>
+          <h3>Pages</h3>
+          <ul>
+            <li><a href="/services/">Services and prices</a></li>
+            <li><a href="/book/">Book a slot</a></li>
+            <li><a href="/salons/">Salons</a></li>
+            <li><a href="/team/">Team</a></li>
+          </ul>
+        </div>
       </div>
-      <div>
-        <h3>{BRANCHES.allensnek.name}</h3>
-        <p>{BRANCHES.allensnek.address.join(', ')}</p>
-        <p style="margin-top:.5rem"><a href={`tel:${BRANCHES.allensnek.tel}`}>{BRANCHES.allensnek.phone}</a></p>
+      <div class="credit">
+        <span>© {new Date().getFullYear()} HAIRitage Salon99, Roodepoort</span>
+        <span>Concept site by <a href={SITE.credit.url}>{SITE.credit.name}</a>, {SITE.credit.phone}</span>
       </div>
-      <div>
-        <h3>Hours, both salons</h3>
-        <ul>{HOURS.map(([d, h]) => <li>{d}: {h}</li>)}</ul>
-      </div>
-      <div>
-        <h3>Pages</h3>
-        <ul>
-          <li><a href="/services/">Services &amp; prices</a></li>
-          <li><a href="/book/">Book a slot</a></li>
-          <li><a href="/salons/">Salons</a></li>
-          <li><a href="/team/">Team</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="credit">
-      <span>© {new Date().getFullYear()} HAIRitage Salon99, Roodepoort</span>
-      <span>Concept site by <a href={SITE.credit.url}>{SITE.credit.name}</a> · {SITE.credit.phone}</span>
     </div>
   </footer>
 

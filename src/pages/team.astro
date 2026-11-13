@@ -4,29 +4,26 @@ import { BRANCHES, STAFF } from '../data/site';
 const total = STAFF.westgate.length + STAFF.allensnek.length;
 ---
 <Base title="The team" description={`Meet the ${total} stylists, plaiters, locticians, barbers and nail techs across HAIRitage Salon99 Westgate and Allen's Nek in Roodepoort.`} hd="paper">
-  <section class="head t-paper sec-bg" data-hd="paper">
+  <section class="head">
     <div class="wrap">
-      <p class="lbl" data-reveal>Stylists, plaiters, locticians, barbers, nail techs</p>
-      <h1 class="d d-mega" data-lines>
-        <span class="ln"><span>{total} pairs</span></span>
-        <span class="ln"><span class="laser">of hands.</span></span>
-      </h1>
-      <p class="lede" data-reveal>The names and specialities below are the ones listed on each salon's booking page. Ask for a stylist by name when you book, or let the salon match you to the right hands.</p>
+      <h1 class="d d-mega">{total} pairs of hands</h1>
+      <p class="lede">Names and specialities come from each salon's own booking page. Ask for a stylist by name when you book.</p>
     </div>
   </section>
 
   {(['westgate', 'allensnek'] as const).map((id, i) => (
-    <section class={`crew ${i ? 't-ink' : 't-bone'} sec-bg`} data-hd={i ? 'ink' : 'paper'}>
+    <section class={`crew ${i ? 't-sand' : 't-paper'} sec-bg`}>
       <div class="wrap">
         <header>
-          <h2 class="d d-xl" data-lines><span class="ln"><span>{BRANCHES[id].name}</span></span></h2>
+          <h2 class="d d-xl">{BRANCHES[id].name}</h2>
           <p class="lbl">{STAFF[id].length} on the team</p>
         </header>
         <ul class="people">
           {STAFF[id].map((p) => (
-            <li data-reveal>
-              <a class="sweep person" href={`/book/?branch=${id}`}>
-                <span class="d d-m">{p.name}</span>
+            <li>
+              <a class="person card" href={`/book/?branch=${id}`}>
+                <span class="av" aria-hidden="true">{p.name[0]}</span>
+                <span class="nm">{p.name}</span>
                 <span class="lbl">{p.role}</span>
               </a>
             </li>
@@ -38,20 +35,17 @@ const total = STAFF.westgate.length + STAFF.allensnek.length;
 </Base>
 
 <style>
-  .head{padding-top:calc(var(--hd) + clamp(2.5rem,6vw,5rem));padding-bottom:clamp(2.5rem,6vw,4rem)}
-  .head h1{margin:1rem 0 1.6rem}
-  .crew{padding-block:clamp(3.5rem,8vw,7rem)}
-  .crew header{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:1rem;margin-bottom:clamp(1.5rem,4vw,3rem)}
-  .people{list-style:none;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,250px),1fr));border-top:1px solid var(--line);border-left:1px solid var(--line)}
-  .people li{border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
-  .person{display:grid;gap:.5rem;padding:1.1rem 1rem 1.2rem;min-height:8.2rem;align-content:space-between}
-  .person .d{font-size:clamp(1.8rem,3vw,2.6rem)}
-  .person .lbl{opacity:.75}
+  .head{padding-block:clamp(2rem,5vw,3.5rem) clamp(1rem,3vw,2rem)}
+  .head h1{margin-bottom:.8rem}
+  .crew{padding-block:clamp(2rem,5vw,3.5rem)}
+  .crew header{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:.5rem 1rem;margin-bottom:1.4rem}
+  .people{list-style:none;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,230px),1fr));gap:.8rem}
+  .person{display:grid;grid-template-columns:auto minmax(0,1fr);grid-template-areas:'a n' 'a r';column-gap:.9rem;row-gap:.1rem;align-items:center;text-decoration:none;padding:.9rem 1rem;transition:border-color .2s var(--ease),transform .2s var(--ease)}
+  .person:hover{border-color:var(--accent);transform:translateY(-2px)}
+  .av{grid-area:a;width:2.8rem;height:2.8rem;border-radius:50%;background:var(--accent-soft);color:var(--accent-d);display:grid;place-items:center;font:600 1.15rem var(--f-d)}
+  .nm{grid-area:n;font-weight:600;line-height:1.2}
+  .person .lbl{grid-area:r;line-height:1.3;font-size:.84rem}
   @media(max-width:600px){
-    .head{padding-top:calc(var(--hd) + 1.2rem);padding-bottom:1.5rem}
-    .people{grid-template-columns:repeat(2,minmax(0,1fr))}
-    .person{min-height:5.6rem;padding:.8rem .75rem;gap:.35rem}
-    .person .d{font-size:1.5rem;line-height:.95;overflow-wrap:anywhere}
-    .person .lbl{font-size:.62rem;line-height:1.35}
+    .people{grid-template-columns:minmax(0,1fr)}
   }
 </style>

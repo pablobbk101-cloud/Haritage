@@ -1,28 +1,22 @@
 ---
 import Base from '../layouts/Base.astro';
-import Barcode from '../components/Barcode.astro';
 ---
-<Base title="Page not found" description="That page could not be scanned." hd="ink" noindex>
-  <section class="nf t-ink sec-bg" data-hd="ink">
+<Base title="Page not found" description="That page could not be found." hd="paper" noindex>
+  <section class="nf">
     <div class="wrap">
-      <p class="lbl" data-reveal>Error 404</p>
-      <h1 class="d d-mega" data-lines>
-        <span class="ln"><span>Bar not</span></span>
-        <span class="ln"><span class="laser">found.</span></span>
-      </h1>
-      <p class="lede" data-reveal>The scanner read that address and came back empty. Try the home page, or go straight to a slot.</p>
-      <div class="cta" data-reveal data-delay="0.15">
-        <a class="btn btn--laser" href="/book/"><span>Book a slot</span></a>
-        <a class="btn" href="/"><span>Home</span></a>
-        <a class="btn" href="/services/"><span>Services</span></a>
+      <h1 class="d d-mega">We can't find that page</h1>
+      <p class="lede">Try the home page, or go straight to booking.</p>
+      <div class="cta">
+        <a class="btn btn--primary" href="/book/">Book a slot</a>
+        <a class="btn" href="/">Home</a>
+        <a class="btn" href="/services/">Services</a>
       </div>
-      <Barcode seed={404} bars={120} />
     </div>
   </section>
 </Base>
 
 <style>
-  .nf{min-height:100svh;padding-top:calc(var(--hd) + 4rem);padding-bottom:3rem;display:grid;align-items:center}
-  .nf h1{margin:1rem 0 1.5rem}
-  .cta{display:flex;flex-wrap:wrap;gap:.7rem;margin:2rem 0 3rem}
+  .nf{padding-block:clamp(3rem,10vw,7rem);min-height:60svh;display:grid;align-items:center}
+  .nf h1{margin-bottom:1rem}
+  .cta{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.8rem}
 </style>

@@ -22,7 +22,7 @@
 },
 {
 "cat": "lashes",
-"name": "Lashes · Cluster Lashes",
+"name": "Lashes - Cluster Lashes",
 "price": 200,
 "from": false,
 "branches": [
@@ -43,7 +43,7 @@
 },
 {
 "cat": "lashes",
-"name": "Lashes · Cluster Lashes Own",
+"name": "Lashes - Cluster Lashes Own",
 "price": 150,
 "from": false,
 "branches": [
@@ -64,7 +64,7 @@
 },
 {
 "cat": "lashes",
-"name": "Lashes · Soak Off",
+"name": "Lashes - Soak Off",
 "price": 80,
 "from": false,
 "branches": [
@@ -85,7 +85,7 @@
 },
 {
 "cat": "braids",
-"name": "Afro Twist Adult · Short bob",
+"name": "Afro Twist Adult - Short bob",
 "price": 650,
 "from": false,
 "branches": [
@@ -101,7 +101,7 @@
 },
 {
 "cat": "braids",
-"name": "Afro Twist Kids · bra strap length",
+"name": "Afro Twist Kids - bra strap length",
 "price": 750,
 "from": false,
 "branches": [
@@ -117,7 +117,7 @@
 },
 {
 "cat": "braids",
-"name": "Afro Twist Kids · Short",
+"name": "Afro Twist Kids - Short",
 "price": 500,
 "from": false,
 "branches": [
@@ -138,7 +138,7 @@
 },
 {
 "cat": "braids",
-"name": "Box Braids Adult · Long",
+"name": "Box Braids Adult - Long",
 "price": 850,
 "from": false,
 "branches": [
@@ -159,7 +159,7 @@
 },
 {
 "cat": "braids",
-"name": "Box Braids Adult · Medium",
+"name": "Box Braids Adult - Medium",
 "price": 650,
 "from": false,
 "branches": [
@@ -180,7 +180,7 @@
 },
 {
 "cat": "braids",
-"name": "Box Braids Adult · Mohawk Bra Line",
+"name": "Box Braids Adult - Mohawk Bra Line",
 "price": 400,
 "from": false,
 "branches": [
@@ -201,7 +201,7 @@
 },
 {
 "cat": "braids",
-"name": "Box Braids Adult · Mohawk Waist",
+"name": "Box Braids Adult - Mohawk Waist",
 "price": 600,
 "from": false,
 "branches": [
@@ -222,7 +222,7 @@
 },
 {
 "cat": "braids",
-"name": "Box Braids Kids · Long",
+"name": "Box Braids Kids - Long",
 "price": 750,
 "from": false,
 "branches": [
@@ -243,7 +243,7 @@
 },
 {
 "cat": "braids",
-"name": "Box Braids Kids · Medium",
+"name": "Box Braids Kids - Medium",
 "price": 550,
 "from": false,
 "branches": [
@@ -264,7 +264,7 @@
 },
 {
 "cat": "braids",
-"name": "Box Braids Kids · Mohawk Bra Line",
+"name": "Box Braids Kids - Mohawk Bra Line",
 "price": 300,
 "from": false,
 "branches": [
@@ -285,7 +285,7 @@
 },
 {
 "cat": "braids",
-"name": "Box Braids Kids · Mohawk Waist",
+"name": "Box Braids Kids - Mohawk Waist",
 "price": 500,
 "from": false,
 "branches": [
@@ -338,7 +338,7 @@
 },
 {
 "cat": "braids",
-"name": "Braids · Crochet",
+"name": "Braids - Crochet",
 "price": 550,
 "from": false,
 "branches": [
@@ -359,7 +359,7 @@
 },
 {
 "cat": "braids",
-"name": "Braids · Faux Locs",
+"name": "Braids - Faux Locs",
 "price": 750,
 "from": false,
 "branches": [
@@ -380,7 +380,7 @@
 },
 {
 "cat": "braids",
-"name": "Braids Adult · Bob",
+"name": "Braids Adult - Bob",
 "price": 500,
 "from": false,
 "branches": [
@@ -401,7 +401,7 @@
 },
 {
 "cat": "braids",
-"name": "Braids Adult · Pick & Drop",
+"name": "Braids Adult - Pick & Drop",
 "price": 550,
 "from": false,
 "branches": [
@@ -417,7 +417,7 @@
 },
 {
 "cat": "braids",
-"name": "Braids Kids · Bob",
+"name": "Braids Kids - Bob",
 "price": 400,
 "from": false,
 "branches": [
@@ -438,7 +438,7 @@
 },
 {
 "cat": "braids",
-"name": "Braids Kids · Pick & Drop",
+"name": "Braids Kids - Pick & Drop",
 "price": 450,
 "from": false,
 "branches": [
@@ -454,7 +454,7 @@
 },
 {
 "cat": "braids",
-"name": "Butterfly Locs · Bra Strap",
+"name": "Butterfly Locs - Bra Strap",
 "price": 1100,
 "from": false,
 "branches": [
@@ -475,7 +475,7 @@
 },
 {
 "cat": "braids",
-"name": "Butterfly Locs · Crochet",
+"name": "Butterfly Locs - Crochet",
 "price": 900,
 "from": false,
 "branches": [
@@ -496,7 +496,7 @@
 },
 {
 "cat": "braids",
-"name": "Butterfly Locs · Waist Length",
+"name": "Butterfly Locs - Waist Length",
 "price": 1400,
 "from": false,
 "branches": [
@@ -517,7 +517,7 @@
 },
 {
 "cat": "braids",
-"name": "Butterfly Locs Crochet · Shoulder",
+"name": "Butterfly Locs Crochet - Shoulder",
 "price": 900,
 "from": false,
 "branches": [
@@ -533,7 +533,7 @@
 },
 {
 "cat": "braids",
-"name": "French curls · Shoulder long",
+"name": "French curls - Shoulder long",
 "price": 800,
 "from": false,
 "branches": [
@@ -549,7 +549,7 @@
 },
 {
 "cat": "braids",
-"name": "French curls · Waistline long",
+"name": "French curls - Waistline long",
 "price": 1200,
 "from": false,
 "branches": [
@@ -565,7 +565,7 @@
 },
 {
 "cat": "braids",
-"name": "Gel up · Straight Hairpiece",
+"name": "Gel up - Straight Hairpiece",
 "price": null,
 "from": false,
 "branches": [
@@ -776,7 +776,7 @@
 },
 {
 "cat": "braids",
-"name": "Knotless Braids · Tribal",
+"name": "Knotless Braids - Tribal",
 "price": 950,
 "from": false,
 "branches": [
@@ -797,7 +797,7 @@
 },
 {
 "cat": "braids",
-"name": "Knotless Braids · Tribal Bra Stra",
+"name": "Knotless Braids - Tribal Bra Stra",
 "price": 750,
 "from": false,
 "branches": [
@@ -818,7 +818,7 @@
 },
 {
 "cat": "braids",
-"name": "Knotless Braids Adult · Bra Line",
+"name": "Knotless Braids Adult - Bra Line",
 "price": 700,
 "from": false,
 "branches": [
@@ -839,7 +839,7 @@
 },
 {
 "cat": "braids",
-"name": "Knotless Braids Adult · Waist Line",
+"name": "Knotless Braids Adult - Waist Line",
 "price": 900,
 "from": false,
 "branches": [
@@ -860,7 +860,7 @@
 },
 {
 "cat": "braids",
-"name": "Knotless Braids Kids · Bra Line",
+"name": "Knotless Braids Kids - Bra Line",
 "price": 600,
 "from": false,
 "branches": [
@@ -881,7 +881,7 @@
 },
 {
 "cat": "braids",
-"name": "Knotless Braids Kids · Waist Line",
+"name": "Knotless Braids Kids - Waist Line",
 "price": 800,
 "from": false,
 "branches": [
@@ -939,7 +939,7 @@
 },
 {
 "cat": "braids",
-"name": "Soft dread · short",
+"name": "Soft dread - short",
 "price": 550,
 "from": false,
 "branches": [
@@ -955,7 +955,7 @@
 },
 {
 "cat": "braids",
-"name": "Twist Braids Adult · Bra Line",
+"name": "Twist Braids Adult - Bra Line",
 "price": 800,
 "from": false,
 "branches": [
@@ -976,7 +976,7 @@
 },
 {
 "cat": "braids",
-"name": "Twist Braids Adult · Waist Line",
+"name": "Twist Braids Adult - Waist Line",
 "price": 1000,
 "from": false,
 "branches": [
@@ -997,7 +997,7 @@
 },
 {
 "cat": "braids",
-"name": "Twist Braids Kids · Bra Line",
+"name": "Twist Braids Kids - Bra Line",
 "price": 600,
 "from": false,
 "branches": [
@@ -1018,7 +1018,7 @@
 },
 {
 "cat": "braids",
-"name": "Twist Braids Kids · Waist Line",
+"name": "Twist Braids Kids - Waist Line",
 "price": 800,
 "from": false,
 "branches": [
@@ -1039,7 +1039,7 @@
 },
 {
 "cat": "cornrows",
-"name": "Beads · Add for",
+"name": "Beads - Add for",
 "price": 20,
 "from": false,
 "branches": [
@@ -1055,7 +1055,7 @@
 },
 {
 "cat": "cornrows",
-"name": "Benny & Betty · Kids",
+"name": "Benny & Betty - Kids",
 "price": 150,
 "from": false,
 "branches": [
@@ -1076,7 +1076,7 @@
 },
 {
 "cat": "cornrows",
-"name": "Benny & Betty · Tribal",
+"name": "Benny & Betty - Tribal",
 "price": 200,
 "from": false,
 "branches": [
@@ -1097,7 +1097,7 @@
 },
 {
 "cat": "cornrows",
-"name": "Boys Cornrows Half Head · Tribal",
+"name": "Boys Cornrows Half Head - Tribal",
 "price": null,
 "from": false,
 "branches": [
@@ -1129,7 +1129,7 @@
 },
 {
 "cat": "cornrows",
-"name": "Fishbone Adult · 2Line no Hairpiece",
+"name": "Fishbone Adult - 2Line no Hairpiece",
 "price": 330,
 "from": false,
 "branches": [
@@ -1150,7 +1150,7 @@
 },
 {
 "cat": "cornrows",
-"name": "Fishbone Adult · 2Line w Hairpiece",
+"name": "Fishbone Adult - 2Line w Hairpiece",
 "price": 380,
 "from": false,
 "branches": [
@@ -1171,7 +1171,7 @@
 },
 {
 "cat": "cornrows",
-"name": "Fishbone Kids · 2Line no Hairpiece",
+"name": "Fishbone Kids - 2Line no Hairpiece",
 "price": 250,
 "from": false,
 "branches": [
@@ -1192,7 +1192,7 @@
 },
 {
 "cat": "cornrows",
-"name": "Fishbone Kids · 2Line w Hairpiece",
+"name": "Fishbone Kids - 2Line w Hairpiece",
 "price": 350,
 "from": false,
 "branches": [
@@ -1213,7 +1213,7 @@
 },
 {
 "cat": "cornrows",
-"name": "Freehand · Add a Hair Piece",
+"name": "Freehand - Add a Hair Piece",
 "price": 280,
 "from": false,
 "branches": [
@@ -1234,7 +1234,7 @@
 },
 {
 "cat": "cornrows",
-"name": "Freehand · HalfHead 8Lines or Less",
+"name": "Freehand - HalfHead 8Lines or Less",
 "price": 150,
 "from": false,
 "branches": [
@@ -1255,7 +1255,7 @@
 },
 {
 "cat": "cornrows",
-"name": "Freehand · HalfHead 8Lines or More",
+"name": "Freehand - HalfHead 8Lines or More",
 "price": 180,
 "from": false,
 "branches": [
@@ -1276,7 +1276,7 @@
 },
 {
 "cat": "cornrows",
-"name": "Freehand · Medium Lines",
+"name": "Freehand - Medium Lines",
 "price": 220,
 "from": false,
 "branches": [
@@ -1297,7 +1297,7 @@
 },
 {
 "cat": "cornrows",
-"name": "Freehand · Thin Lines",
+"name": "Freehand - Thin Lines",
 "price": 250,
 "from": false,
 "branches": [
@@ -1318,7 +1318,7 @@
 },
 {
 "cat": "cornrows",
-"name": "Freehand · Wig Lines",
+"name": "Freehand - Wig Lines",
 "price": 180,
 "from": false,
 "branches": [
@@ -1339,7 +1339,7 @@
 },
 {
 "cat": "cornrows",
-"name": "Freehand Adult · Ending w Braids",
+"name": "Freehand Adult - Ending w Braids",
 "price": 400,
 "from": false,
 "branches": [
@@ -1360,7 +1360,7 @@
 },
 {
 "cat": "cornrows",
-"name": "Freehand Adult · Tribal",
+"name": "Freehand Adult - Tribal",
 "price": 280,
 "from": false,
 "branches": [
@@ -1381,7 +1381,7 @@
 },
 {
 "cat": "cornrows",
-"name": "Freehand Kids · 2 Buns",
+"name": "Freehand Kids - 2 Buns",
 "price": 250,
 "from": false,
 "branches": [
@@ -1402,7 +1402,7 @@
 },
 {
 "cat": "cornrows",
-"name": "Freehand Kids · 2Bun End Hairpiece",
+"name": "Freehand Kids - 2Bun End Hairpiece",
 "price": 350,
 "from": false,
 "branches": [
@@ -1423,7 +1423,7 @@
 },
 {
 "cat": "cornrows",
-"name": "Freehand Kids · Ending w Braids",
+"name": "Freehand Kids - Ending w Braids",
 "price": 300,
 "from": false,
 "branches": [
@@ -1444,7 +1444,7 @@
 },
 {
 "cat": "cornrows",
-"name": "Freehand Kids · Tribal",
+"name": "Freehand Kids - Tribal",
 "price": 250,
 "from": false,
 "branches": [
@@ -1465,7 +1465,7 @@
 },
 {
 "cat": "cornrows",
-"name": "Gel up · double hairpiece",
+"name": "Gel up - double hairpiece",
 "price": null,
 "from": false,
 "branches": [
@@ -1497,7 +1497,7 @@
 },
 {
 "cat": "cornrows",
-"name": "Needle · Plait",
+"name": "Needle - Plait",
 "price": 250,
 "from": false,
 "branches": [
@@ -1518,7 +1518,7 @@
 },
 {
 "cat": "cornrows",
-"name": "Unplait · Benny & Betty & 10 Lines",
+"name": "Unplait - Benny & Betty & 10 Lines",
 "price": 40,
 "from": false,
 "branches": [
@@ -1539,7 +1539,7 @@
 },
 {
 "cat": "cornrows",
-"name": "Unplait · Braids",
+"name": "Unplait - Braids",
 "price": 100,
 "from": false,
 "branches": [
@@ -1560,7 +1560,7 @@
 },
 {
 "cat": "cornrows",
-"name": "Unplait · Freehand",
+"name": "Unplait - Freehand",
 "price": 90,
 "from": false,
 "branches": [
@@ -1581,7 +1581,7 @@
 },
 {
 "cat": "cornrows",
-"name": "Unplait · Twist or Faux Locs",
+"name": "Unplait - Twist or Faux Locs",
 "price": 150,
 "from": false,
 "branches": [
@@ -1602,7 +1602,7 @@
 },
 {
 "cat": "locs",
-"name": "Dreadlocks · Add Own Lock",
+"name": "Dreadlocks - Add Own Lock",
 "price": 10,
 "from": false,
 "branches": [
@@ -1623,7 +1623,7 @@
 },
 {
 "cat": "locs",
-"name": "Dreadlocks · Crochet",
+"name": "Dreadlocks - Crochet",
 "price": 350,
 "from": true,
 "branches": [
@@ -1644,7 +1644,7 @@
 },
 {
 "cat": "locs",
-"name": "Dreadlocks · Crochet Start Up",
+"name": "Dreadlocks - Crochet Start Up",
 "price": 550,
 "from": false,
 "branches": [
@@ -1665,7 +1665,7 @@
 },
 {
 "cat": "locs",
-"name": "Dreadlocks · Hot Oil Treatment",
+"name": "Dreadlocks - Hot Oil Treatment",
 "price": 100,
 "from": false,
 "branches": [
@@ -1681,7 +1681,7 @@
 },
 {
 "cat": "locs",
-"name": "Dreadlocks · Own Hair Piece (Minus",
+"name": "Dreadlocks - Own Hair Piece (Minus",
 "price": null,
 "from": false,
 "branches": [
@@ -1697,7 +1697,7 @@
 },
 {
 "cat": "locs",
-"name": "Dreadlocks · Style Only Flower & Double",
+"name": "Dreadlocks - Style Only Flower & Double",
 "price": null,
 "from": false,
 "branches": [
@@ -1718,7 +1718,7 @@
 },
 {
 "cat": "locs",
-"name": "Dreadlocks · Style Only No Wash",
+"name": "Dreadlocks - Style Only No Wash",
 "price": 150,
 "from": false,
 "branches": [
@@ -1739,7 +1739,7 @@
 },
 {
 "cat": "locs",
-"name": "Dreadlocks · Style Only Spiral",
+"name": "Dreadlocks - Style Only Spiral",
 "price": 200,
 "from": false,
 "branches": [
@@ -1760,7 +1760,7 @@
 },
 {
 "cat": "locs",
-"name": "Dreadlocks · Trimming",
+"name": "Dreadlocks - Trimming",
 "price": 150,
 "from": false,
 "branches": [
@@ -1781,7 +1781,7 @@
 },
 {
 "cat": "locs",
-"name": "Dreadlocks · Twist & Style",
+"name": "Dreadlocks - Twist & Style",
 "price": 270,
 "from": false,
 "branches": [
@@ -1802,7 +1802,7 @@
 },
 {
 "cat": "locs",
-"name": "Dreadlocks · Twist & Style Double",
+"name": "Dreadlocks - Twist & Style Double",
 "price": 250,
 "from": false,
 "branches": [
@@ -1823,7 +1823,7 @@
 },
 {
 "cat": "locs",
-"name": "Dreadlocks · Twist & Style Flower",
+"name": "Dreadlocks - Twist & Style Flower",
 "price": 350,
 "from": false,
 "branches": [
@@ -1844,7 +1844,7 @@
 },
 {
 "cat": "locs",
-"name": "Dreadlocks · Twist & Style w Cut",
+"name": "Dreadlocks - Twist & Style w Cut",
 "price": 300,
 "from": false,
 "branches": [
@@ -1865,7 +1865,7 @@
 },
 {
 "cat": "locs",
-"name": "Dreadlocks · Twist &Style HalfHead",
+"name": "Dreadlocks - Twist &Style HalfHead",
 "price": 200,
 "from": false,
 "branches": [
@@ -1886,7 +1886,7 @@
 },
 {
 "cat": "locs",
-"name": "Dreadlocks · Twist Start Up",
+"name": "Dreadlocks - Twist Start Up",
 "price": 400,
 "from": false,
 "branches": [
@@ -1907,7 +1907,7 @@
 },
 {
 "cat": "locs",
-"name": "Dreadlocks · Wash Only",
+"name": "Dreadlocks - Wash Only",
 "price": 150,
 "from": false,
 "branches": [
@@ -1928,7 +1928,7 @@
 },
 {
 "cat": "locs",
-"name": "Dreadlocks Adult · Join w OwnLock",
+"name": "Dreadlocks Adult - Join w OwnLock",
 "price": 1000,
 "from": false,
 "branches": [
@@ -1949,7 +1949,7 @@
 },
 {
 "cat": "locs",
-"name": "Dreadlocks Kids · Join w Own Lock",
+"name": "Dreadlocks Kids - Join w Own Lock",
 "price": 900,
 "from": false,
 "branches": [
@@ -1970,7 +1970,7 @@
 },
 {
 "cat": "relax",
-"name": "Hair · Perming",
+"name": "Hair - Perming",
 "price": 450,
 "from": false,
 "branches": [
@@ -2076,7 +2076,7 @@
 },
 {
 "cat": "relax",
-"name": "Relaxers · Dark n Lovely & Treat",
+"name": "Relaxers - Dark n Lovely & Treat",
 "price": 350,
 "from": false,
 "branches": [
@@ -2097,7 +2097,7 @@
 },
 {
 "cat": "relax",
-"name": "Relaxers · Dark n Lovely",
+"name": "Relaxers - Dark n Lovely",
 "price": 250,
 "from": false,
 "branches": [
@@ -2118,7 +2118,7 @@
 },
 {
 "cat": "relax",
-"name": "Relaxers · Mizani Regular",
+"name": "Relaxers - Mizani Regular",
 "price": 400,
 "from": false,
 "branches": [
@@ -2139,7 +2139,7 @@
 },
 {
 "cat": "relax",
-"name": "Relaxers · Mizani Sensitive",
+"name": "Relaxers - Mizani Sensitive",
 "price": 450,
 "from": false,
 "branches": [
@@ -2176,7 +2176,7 @@
 },
 {
 "cat": "relax",
-"name": "StraightBack Adult · Thick Lines 7-12",
+"name": "StraightBack Adult - Thick Lines 7-12",
 "price": null,
 "from": false,
 "branches": [
@@ -2192,7 +2192,7 @@
 },
 {
 "cat": "straightback",
-"name": "1/2 Straightback · Small Singles Bra",
+"name": "1/2 Straightback - Small Singles Bra",
 "price": null,
 "from": false,
 "branches": [
@@ -2213,7 +2213,7 @@
 },
 {
 "cat": "straightback",
-"name": "1/2 Straightback · Small Singles Waist",
+"name": "1/2 Straightback - Small Singles Waist",
 "price": null,
 "from": false,
 "branches": [
@@ -2234,7 +2234,7 @@
 },
 {
 "cat": "straightback",
-"name": "1/2 Straightback Adult · Long",
+"name": "1/2 Straightback Adult - Long",
 "price": 850,
 "from": false,
 "branches": [
@@ -2250,7 +2250,7 @@
 },
 {
 "cat": "straightback",
-"name": "1/2 Straightback Adult · Medium",
+"name": "1/2 Straightback Adult - Medium",
 "price": 600,
 "from": false,
 "branches": [
@@ -2266,7 +2266,7 @@
 },
 {
 "cat": "straightback",
-"name": "1/2 Straightback Adult · Shorter",
+"name": "1/2 Straightback Adult - Shorter",
 "price": 500,
 "from": false,
 "branches": [
@@ -2282,7 +2282,7 @@
 },
 {
 "cat": "straightback",
-"name": "1/2 Straightback Adult · XLong",
+"name": "1/2 Straightback Adult - XLong",
 "price": 1000,
 "from": false,
 "branches": [
@@ -2298,7 +2298,7 @@
 },
 {
 "cat": "straightback",
-"name": "1/2 Straightback Kids · Long",
+"name": "1/2 Straightback Kids - Long",
 "price": 750,
 "from": false,
 "branches": [
@@ -2314,7 +2314,7 @@
 },
 {
 "cat": "straightback",
-"name": "1/2 Straightback Kids · Medium",
+"name": "1/2 Straightback Kids - Medium",
 "price": 500,
 "from": false,
 "branches": [
@@ -2330,7 +2330,7 @@
 },
 {
 "cat": "straightback",
-"name": "1/2 Straightback Kids · Shorter",
+"name": "1/2 Straightback Kids - Shorter",
 "price": 400,
 "from": false,
 "branches": [
@@ -2346,7 +2346,7 @@
 },
 {
 "cat": "straightback",
-"name": "1/2 Straightback Kids · XLong",
+"name": "1/2 Straightback Kids - XLong",
 "price": 900,
 "from": false,
 "branches": [
@@ -2362,7 +2362,7 @@
 },
 {
 "cat": "straightback",
-"name": "Straight Up · Bantu Knots w Hairpiece",
+"name": "Straight Up - Bantu Knots w Hairpiece",
 "price": null,
 "from": false,
 "branches": [
@@ -2383,7 +2383,7 @@
 },
 {
 "cat": "straightback",
-"name": "Straight Up · Thin Lines Bra Strap",
+"name": "Straight Up - Thin Lines Bra Strap",
 "price": 480,
 "from": false,
 "branches": [
@@ -2404,7 +2404,7 @@
 },
 {
 "cat": "straightback",
-"name": "Straight Up · Thin Lines Waist",
+"name": "Straight Up - Thin Lines Waist",
 "price": 550,
 "from": false,
 "branches": [
@@ -2425,7 +2425,7 @@
 },
 {
 "cat": "straightback",
-"name": "Straight Up Adult · Long Lines",
+"name": "Straight Up Adult - Long Lines",
 "price": 480,
 "from": false,
 "branches": [
@@ -2446,7 +2446,7 @@
 },
 {
 "cat": "straightback",
-"name": "Straight Up Adult · Medium Line",
+"name": "Straight Up Adult - Medium Line",
 "price": 430,
 "from": false,
 "branches": [
@@ -2467,7 +2467,7 @@
 },
 {
 "cat": "straightback",
-"name": "Straight Up Adult · Stitch Lines",
+"name": "Straight Up Adult - Stitch Lines",
 "price": 400,
 "from": false,
 "branches": [
@@ -2488,7 +2488,7 @@
 },
 {
 "cat": "straightback",
-"name": "Straight Up Adult · Thick Lines",
+"name": "Straight Up Adult - Thick Lines",
 "price": 350,
 "from": false,
 "branches": [
@@ -2509,7 +2509,7 @@
 },
 {
 "cat": "straightback",
-"name": "Straight Up Adult · Tribal",
+"name": "Straight Up Adult - Tribal",
 "price": 550,
 "from": false,
 "branches": [
@@ -2530,7 +2530,7 @@
 },
 {
 "cat": "straightback",
-"name": "Straight Up Kids · Long Lines",
+"name": "Straight Up Kids - Long Lines",
 "price": 450,
 "from": false,
 "branches": [
@@ -2551,7 +2551,7 @@
 },
 {
 "cat": "straightback",
-"name": "Straight Up Kids · Medium Line",
+"name": "Straight Up Kids - Medium Line",
 "price": 380,
 "from": false,
 "branches": [
@@ -2572,7 +2572,7 @@
 },
 {
 "cat": "straightback",
-"name": "Straight Up Kids · Stitch Lines",
+"name": "Straight Up Kids - Stitch Lines",
 "price": 380,
 "from": false,
 "branches": [
@@ -2593,7 +2593,7 @@
 },
 {
 "cat": "straightback",
-"name": "Straight Up Kids · Thick Lines",
+"name": "Straight Up Kids - Thick Lines",
 "price": 300,
 "from": false,
 "branches": [
@@ -2614,7 +2614,7 @@
 },
 {
 "cat": "straightback",
-"name": "Straight Up Kids · Tribal",
+"name": "Straight Up Kids - Tribal",
 "price": 450,
 "from": false,
 "branches": [
@@ -2635,7 +2635,7 @@
 },
 {
 "cat": "straightback",
-"name": "StraightBack · Plain 2 Lines",
+"name": "StraightBack - Plain 2 Lines",
 "price": 200,
 "from": false,
 "branches": [
@@ -2651,7 +2651,7 @@
 },
 {
 "cat": "straightback",
-"name": "StraightBack · Tribal 2 Lines &Gel",
+"name": "StraightBack - Tribal 2 Lines &Gel",
 "price": 250,
 "from": false,
 "branches": [
@@ -2672,7 +2672,7 @@
 },
 {
 "cat": "straightback",
-"name": "StraightBack · Tribal 2 Lines",
+"name": "StraightBack - Tribal 2 Lines",
 "price": 220,
 "from": false,
 "branches": [
@@ -2693,7 +2693,7 @@
 },
 {
 "cat": "straightback",
-"name": "StraightBack Adult · Medium",
+"name": "StraightBack Adult - Medium",
 "price": 380,
 "from": false,
 "branches": [
@@ -2714,7 +2714,7 @@
 },
 {
 "cat": "straightback",
-"name": "StraightBack Adult · ThickLines 6or Less",
+"name": "StraightBack Adult - ThickLines 6or Less",
 "price": null,
 "from": false,
 "branches": [
@@ -2735,7 +2735,7 @@
 },
 {
 "cat": "straightback",
-"name": "StraightBack Adult · Tribal",
+"name": "StraightBack Adult - Tribal",
 "price": 480,
 "from": false,
 "branches": [
@@ -2751,7 +2751,7 @@
 },
 {
 "cat": "straightback",
-"name": "StraightBack Adult · Waistline",
+"name": "StraightBack Adult - Waistline",
 "price": 430,
 "from": false,
 "branches": [
@@ -2772,7 +2772,7 @@
 },
 {
 "cat": "straightback",
-"name": "StraightBack Kids · Medium",
+"name": "StraightBack Kids - Medium",
 "price": 350,
 "from": false,
 "branches": [
@@ -2793,7 +2793,7 @@
 },
 {
 "cat": "straightback",
-"name": "StraightBack Kids · Thick Lines 6or Less",
+"name": "StraightBack Kids - Thick Lines 6or Less",
 "price": null,
 "from": false,
 "branches": [
@@ -2814,7 +2814,7 @@
 },
 {
 "cat": "straightback",
-"name": "StraightBack Kids · Thick Lines 7-12",
+"name": "StraightBack Kids - Thick Lines 7-12",
 "price": null,
 "from": false,
 "branches": [
@@ -2835,7 +2835,7 @@
 },
 {
 "cat": "straightback",
-"name": "StraightBack Kids · Tribal",
+"name": "StraightBack Kids - Tribal",
 "price": 450,
 "from": false,
 "branches": [
@@ -2856,7 +2856,7 @@
 },
 {
 "cat": "straightback",
-"name": "StraightBack Kids · Waistline",
+"name": "StraightBack Kids - Waistline",
 "price": 400,
 "from": false,
 "branches": [
@@ -2877,7 +2877,7 @@
 },
 {
 "cat": "styling",
-"name": "Blow Out · Sta Soft Fro",
+"name": "Blow Out - Sta Soft Fro",
 "price": 200,
 "from": false,
 "branches": [
@@ -2898,7 +2898,7 @@
 },
 {
 "cat": "styling",
-"name": "Blow Wave · Natural Hair",
+"name": "Blow Wave - Natural Hair",
 "price": 300,
 "from": false,
 "branches": [
@@ -2919,7 +2919,7 @@
 },
 {
 "cat": "styling",
-"name": "Blow Wave · Relaxed Hair",
+"name": "Blow Wave - Relaxed Hair",
 "price": 250,
 "from": false,
 "branches": [
@@ -2940,7 +2940,7 @@
 },
 {
 "cat": "styling",
-"name": "Blow Wave Adult · Caucasian Long",
+"name": "Blow Wave Adult - Caucasian Long",
 "price": 600,
 "from": false,
 "branches": [
@@ -2961,7 +2961,7 @@
 },
 {
 "cat": "styling",
-"name": "Blow Wave Adult · Caucasian Med",
+"name": "Blow Wave Adult - Caucasian Med",
 "price": 450,
 "from": false,
 "branches": [
@@ -2982,7 +2982,7 @@
 },
 {
 "cat": "styling",
-"name": "Blow Wave Adult · Caucasian Short",
+"name": "Blow Wave Adult - Caucasian Short",
 "price": 350,
 "from": false,
 "branches": [
@@ -3003,7 +3003,7 @@
 },
 {
 "cat": "styling",
-"name": "Blow Wave Kids · Caucasian Long",
+"name": "Blow Wave Kids - Caucasian Long",
 "price": 550,
 "from": false,
 "branches": [
@@ -3024,7 +3024,7 @@
 },
 {
 "cat": "styling",
-"name": "Blow Wave Kids · Caucasian Med",
+"name": "Blow Wave Kids - Caucasian Med",
 "price": 400,
 "from": false,
 "branches": [
@@ -3045,7 +3045,7 @@
 },
 {
 "cat": "styling",
-"name": "Bob Cut · Full Service",
+"name": "Bob Cut - Full Service",
 "price": 450,
 "from": false,
 "branches": [
@@ -3066,7 +3066,7 @@
 },
 {
 "cat": "styling",
-"name": "Bob Cut · Style Only · No Relaxer",
+"name": "Bob Cut - Style Only - No Relaxer",
 "price": 250,
 "from": false,
 "branches": [
@@ -3082,7 +3082,7 @@
 },
 {
 "cat": "styling",
-"name": "Bob cut style · no cutting",
+"name": "Bob cut style - no cutting",
 "price": null,
 "from": false,
 "branches": [
@@ -3098,7 +3098,7 @@
 },
 {
 "cat": "styling",
-"name": "Chinese bob · Full head",
+"name": "Chinese bob - Full head",
 "price": null,
 "from": false,
 "branches": [
@@ -3114,7 +3114,7 @@
 },
 {
 "cat": "styling",
-"name": "Cut and paste · pixie · micro rings",
+"name": "Cut and paste - pixie - micro rings",
 "price": null,
 "from": false,
 "branches": [
@@ -3130,7 +3130,7 @@
 },
 {
 "cat": "styling",
-"name": "Dry Curl · Relaxed Hair",
+"name": "Dry Curl - Relaxed Hair",
 "price": 250,
 "from": false,
 "branches": [
@@ -3151,7 +3151,7 @@
 },
 {
 "cat": "styling",
-"name": "Dry Curl Adult · Natural Hair",
+"name": "Dry Curl Adult - Natural Hair",
 "price": 300,
 "from": false,
 "branches": [
@@ -3172,7 +3172,7 @@
 },
 {
 "cat": "styling",
-"name": "Dry Curl Kids · Natural Hair",
+"name": "Dry Curl Kids - Natural Hair",
 "price": 250,
 "from": false,
 "branches": [
@@ -3209,7 +3209,7 @@
 },
 {
 "cat": "styling",
-"name": "Pop corn · no relaxer",
+"name": "Pop corn - no relaxer",
 "price": null,
 "from": false,
 "branches": [
@@ -3289,7 +3289,7 @@
 },
 {
 "cat": "styling",
-"name": "Styling · Braids Only",
+"name": "Styling - Braids Only",
 "price": 120,
 "from": false,
 "branches": [
@@ -3310,7 +3310,7 @@
 },
 {
 "cat": "styling",
-"name": "Styling · Finger Coil",
+"name": "Styling - Finger Coil",
 "price": 300,
 "from": false,
 "branches": [
@@ -3331,7 +3331,7 @@
 },
 {
 "cat": "styling",
-"name": "Styling · Finger Wave",
+"name": "Styling - Finger Wave",
 "price": 200,
 "from": false,
 "branches": [
@@ -3352,7 +3352,7 @@
 },
 {
 "cat": "styling",
-"name": "Styling · Gel Human Hair w Fringe",
+"name": "Styling - Gel Human Hair w Fringe",
 "price": 500,
 "from": false,
 "branches": [
@@ -3373,7 +3373,7 @@
 },
 {
 "cat": "styling",
-"name": "Styling · Gel Up & Hairpiece",
+"name": "Styling - Gel Up & Hairpiece",
 "price": 350,
 "from": false,
 "branches": [
@@ -3389,7 +3389,7 @@
 },
 {
 "cat": "styling",
-"name": "Styling · Gel Up Own Piece",
+"name": "Styling - Gel Up Own Piece",
 "price": 250,
 "from": false,
 "branches": [
@@ -3405,7 +3405,7 @@
 },
 {
 "cat": "styling",
-"name": "Styling · GelUp Straight Hairpiece",
+"name": "Styling - GelUp Straight Hairpiece",
 "price": 400,
 "from": false,
 "branches": [
@@ -3426,7 +3426,7 @@
 },
 {
 "cat": "styling",
-"name": "Styling · Mizani Silk Press",
+"name": "Styling - Mizani Silk Press",
 "price": 450,
 "from": false,
 "branches": [
@@ -3447,7 +3447,7 @@
 },
 {
 "cat": "styling",
-"name": "Styling · Wash & Wrap NO Relaxer",
+"name": "Styling - Wash & Wrap NO Relaxer",
 "price": 150,
 "from": false,
 "branches": [
@@ -3484,7 +3484,7 @@
 },
 {
 "cat": "care",
-"name": "Technique · Bleach per App",
+"name": "Technique - Bleach per App",
 "price": 150,
 "from": false,
 "branches": [
@@ -3505,7 +3505,7 @@
 },
 {
 "cat": "care",
-"name": "Technique · Colour DNL/Inecto",
+"name": "Technique - Colour DNL/Inecto",
 "price": 180,
 "from": false,
 "branches": [
@@ -3526,7 +3526,7 @@
 },
 {
 "cat": "care",
-"name": "Technique · Colour Grey & Cut",
+"name": "Technique - Colour Grey & Cut",
 "price": 450,
 "from": false,
 "branches": [
@@ -3547,7 +3547,7 @@
 },
 {
 "cat": "care",
-"name": "Technique · Mizani Strength Fusion Treat",
+"name": "Technique - Mizani Strength Fusion Treat",
 "price": null,
 "from": false,
 "branches": [
@@ -3563,7 +3563,7 @@
 },
 {
 "cat": "care",
-"name": "Technique · Mizani Wash",
+"name": "Technique - Mizani Wash",
 "price": 150,
 "from": false,
 "branches": [
@@ -3584,7 +3584,7 @@
 },
 {
 "cat": "care",
-"name": "Technique · S Curl & Cut",
+"name": "Technique - S Curl & Cut",
 "price": 250,
 "from": false,
 "branches": [
@@ -3605,7 +3605,7 @@
 },
 {
 "cat": "care",
-"name": "Technique · S Curl",
+"name": "Technique - S Curl",
 "price": 200,
 "from": false,
 "branches": [
@@ -3626,7 +3626,7 @@
 },
 {
 "cat": "care",
-"name": "Technique · Sew in Installation your bundles",
+"name": "Technique - Sew in Installation your bundles",
 "price": 350,
 "from": false,
 "branches": [
@@ -3658,7 +3658,7 @@
 },
 {
 "cat": "braids",
-"name": "Own Hair · Twist Half Head",
+"name": "Own Hair - Twist Half Head",
 "price": 200,
 "from": false,
 "branches": [
@@ -3679,7 +3679,7 @@
 },
 {
 "cat": "braids",
-"name": "Own Hair · Twist/3 Braid FreeHand",
+"name": "Own Hair - Twist/3 Braid FreeHand",
 "price": 250,
 "from": false,
 "branches": [
@@ -3780,7 +3780,7 @@
 },
 {
 "cat": "wigs",
-"name": "Wig Bleaching · Excluding Treatment",
+"name": "Wig Bleaching - Excluding Treatment",
 "price": null,
 "from": false,
 "branches": [
@@ -3892,7 +3892,7 @@
 },
 {
 "cat": "wigs",
-"name": "Wigs · Curls Styling Long",
+"name": "Wigs - Curls Styling Long",
 "price": 400,
 "from": false,
 "branches": [
@@ -3913,7 +3913,7 @@
 },
 {
 "cat": "wigs",
-"name": "Wigs · Curls Styling S & M",
+"name": "Wigs - Curls Styling S & M",
 "price": 350,
 "from": false,
 "branches": [
@@ -3934,7 +3934,7 @@
 },
 {
 "cat": "wigs",
-"name": "Wigs · Curly Treatment",
+"name": "Wigs - Curly Treatment",
 "price": 270,
 "from": false,
 "branches": [
@@ -3955,7 +3955,7 @@
 },
 {
 "cat": "wigs",
-"name": "Wigs · Cut & Paste with Own Piece",
+"name": "Wigs - Cut & Paste with Own Piece",
 "price": 450,
 "from": false,
 "branches": [
@@ -3976,7 +3976,7 @@
 },
 {
 "cat": "wigs",
-"name": "Wigs · Cut and Paste",
+"name": "Wigs - Cut and Paste",
 "price": 600,
 "from": false,
 "branches": [
@@ -3997,7 +3997,7 @@
 },
 {
 "cat": "wigs",
-"name": "Wigs · Installation",
+"name": "Wigs - Installation",
 "price": 250,
 "from": true,
 "branches": [
@@ -4018,7 +4018,7 @@
 },
 {
 "cat": "wigs",
-"name": "Wigs · Installation Sew In",
+"name": "Wigs - Installation Sew In",
 "price": 350,
 "from": false,
 "branches": [
@@ -4039,7 +4039,7 @@
 },
 {
 "cat": "wigs",
-"name": "Wigs · Installation with Closure",
+"name": "Wigs - Installation with Closure",
 "price": 400,
 "from": false,
 "branches": [
@@ -4055,7 +4055,7 @@
 },
 {
 "cat": "wigs",
-"name": "Wigs · Making with Own Piece",
+"name": "Wigs - Making with Own Piece",
 "price": 450,
 "from": false,
 "branches": [
@@ -4076,7 +4076,7 @@
 },
 {
 "cat": "wigs",
-"name": "Wigs · Plucking",
+"name": "Wigs - Plucking",
 "price": 150,
 "from": false,
 "branches": [
@@ -4097,7 +4097,7 @@
 },
 {
 "cat": "wigs",
-"name": "Wigs · Straighten Only",
+"name": "Wigs - Straighten Only",
 "price": 150,
 "from": false,
 "branches": [
@@ -4118,7 +4118,7 @@
 },
 {
 "cat": "wigs",
-"name": "Wigs · Style 2 Lines",
+"name": "Wigs - Style 2 Lines",
 "price": 150,
 "from": false,
 "branches": [
@@ -4139,7 +4139,7 @@
 },
 {
 "cat": "wigs",
-"name": "Wigs · Treat & Straighten Long",
+"name": "Wigs - Treat & Straighten Long",
 "price": 300,
 "from": false,
 "branches": [
@@ -4160,7 +4160,7 @@
 },
 {
 "cat": "wigs",
-"name": "Wigs · Treat & Straighten S & M",
+"name": "Wigs - Treat & Straighten S & M",
 "price": 270,
 "from": false,
 "branches": [
@@ -4181,7 +4181,7 @@
 },
 {
 "cat": "care",
-"name": "Cut & Color · Inecto/Dark and Lovely",
+"name": "Cut & Color - Inecto/Dark and Lovely",
 "price": 280,
 "from": false,
 "branches": [
@@ -4197,7 +4197,7 @@
 },
 {
 "cat": "care",
-"name": "Hair Colour · Dark n Lovely",
+"name": "Hair Colour - Dark n Lovely",
 "price": 50,
 "from": false,
 "branches": [
@@ -4292,7 +4292,7 @@
 },
 {
 "cat": "care",
-"name": "Treatments · Aunt Jackies",
+"name": "Treatments - Aunt Jackies",
 "price": 220,
 "from": false,
 "branches": [
@@ -4313,7 +4313,7 @@
 },
 {
 "cat": "care",
-"name": "Treatments · Cholesterol",
+"name": "Treatments - Cholesterol",
 "price": 220,
 "from": false,
 "branches": [
@@ -4334,7 +4334,7 @@
 },
 {
 "cat": "care",
-"name": "Treatments · Dark n Lovely",
+"name": "Treatments - Dark n Lovely",
 "price": 250,
 "from": false,
 "branches": [
@@ -4350,7 +4350,7 @@
 },
 {
 "cat": "care",
-"name": "Treatments · DeepPenetrating Scalp",
+"name": "Treatments - DeepPenetrating Scalp",
 "price": 220,
 "from": false,
 "branches": [
@@ -4371,7 +4371,7 @@
 },
 {
 "cat": "care",
-"name": "Treatments · Design Essentials Scalp",
+"name": "Treatments - Design Essentials Scalp",
 "price": 280,
 "from": false,
 "branches": [
@@ -4392,7 +4392,7 @@
 },
 {
 "cat": "care",
-"name": "Treatments · Hair Mayonnaise",
+"name": "Treatments - Hair Mayonnaise",
 "price": 220,
 "from": false,
 "branches": [
@@ -4413,7 +4413,7 @@
 },
 {
 "cat": "care",
-"name": "Treatments · Hot Oil",
+"name": "Treatments - Hot Oil",
 "price": 220,
 "from": false,
 "branches": [
@@ -4434,7 +4434,7 @@
 },
 {
 "cat": "care",
-"name": "Treatments · Mizani Wash",
+"name": "Treatments - Mizani Wash",
 "price": 150,
 "from": false,
 "branches": [
@@ -4450,7 +4450,7 @@
 },
 {
 "cat": "care",
-"name": "Treatments · Own",
+"name": "Treatments - Own",
 "price": 180,
 "from": false,
 "branches": [
@@ -4471,7 +4471,7 @@
 },
 {
 "cat": "cuts",
-"name": "Cuts · Chiskop & Shave Clipper",
+"name": "Cuts - Chiskop & Shave Clipper",
 "price": 130,
 "from": false,
 "branches": [
@@ -4492,7 +4492,7 @@
 },
 {
 "cat": "cuts",
-"name": "Cuts · Chiskop & Shave Powder",
+"name": "Cuts - Chiskop & Shave Powder",
 "price": 150,
 "from": false,
 "branches": [
@@ -4513,7 +4513,7 @@
 },
 {
 "cat": "cuts",
-"name": "Cuts · Chiskop with Powder",
+"name": "Cuts - Chiskop with Powder",
 "price": 150,
 "from": false,
 "branches": [
@@ -4529,7 +4529,7 @@
 },
 {
 "cat": "cuts",
-"name": "Cuts · Chiskop with Treatment",
+"name": "Cuts - Chiskop with Treatment",
 "price": 130,
 "from": false,
 "branches": [
@@ -4550,7 +4550,7 @@
 },
 {
 "cat": "cuts",
-"name": "Cuts · Fade & Shave",
+"name": "Cuts - Fade & Shave",
 "price": 130,
 "from": false,
 "branches": [
@@ -4571,7 +4571,7 @@
 },
 {
 "cat": "cuts",
-"name": "Cuts · Shave Only Clipper",
+"name": "Cuts - Shave Only Clipper",
 "price": 30,
 "from": false,
 "branches": [
@@ -4592,7 +4592,7 @@
 },
 {
 "cat": "cuts",
-"name": "Cuts · Shave Only Powder",
+"name": "Cuts - Shave Only Powder",
 "price": 40,
 "from": false,
 "branches": [
@@ -4613,7 +4613,7 @@
 },
 {
 "cat": "cuts",
-"name": "Cuts · Trim Edges",
+"name": "Cuts - Trim Edges",
 "price": 30,
 "from": false,
 "branches": [
@@ -4634,7 +4634,7 @@
 },
 {
 "cat": "cuts",
-"name": "Cuts · Trimming Split Ends",
+"name": "Cuts - Trimming Split Ends",
 "price": 50,
 "from": false,
 "branches": [
@@ -4655,7 +4655,7 @@
 },
 {
 "cat": "cuts",
-"name": "Cuts Adult · Chiskop Clipper/Brush",
+"name": "Cuts Adult - Chiskop Clipper/Brush",
 "price": 100,
 "from": false,
 "branches": [
@@ -4676,7 +4676,7 @@
 },
 {
 "cat": "cuts",
-"name": "Cuts Adult · Fade 3 Step",
+"name": "Cuts Adult - Fade 3 Step",
 "price": 100,
 "from": false,
 "branches": [
@@ -4697,7 +4697,7 @@
 },
 {
 "cat": "cuts",
-"name": "Cuts Kids · Chiskop Clipper/Brush",
+"name": "Cuts Kids - Chiskop Clipper/Brush",
 "price": 90,
 "from": false,
 "branches": [
@@ -4718,7 +4718,7 @@
 },
 {
 "cat": "cuts",
-"name": "Cuts Kids · Fade 3 Step",
+"name": "Cuts Kids - Fade 3 Step",
 "price": 90,
 "from": false,
 "branches": [
@@ -4739,7 +4739,7 @@
 },
 {
 "cat": "cuts",
-"name": "Executive Cut · With facial steaming",
+"name": "Executive Cut - With facial steaming",
 "price": null,
 "from": false,
 "branches": [
@@ -4755,7 +4755,7 @@
 },
 {
 "cat": "nails",
-"name": "3D Art · Per Nail",
+"name": "3D Art - Per Nail",
 "price": 20,
 "from": false,
 "branches": [
@@ -4824,7 +4824,7 @@
 },
 {
 "cat": "nails",
-"name": "Feet · Gel",
+"name": "Feet - Gel",
 "price": 200,
 "from": false,
 "branches": [
@@ -4845,7 +4845,7 @@
 },
 {
 "cat": "nails",
-"name": "Feet · Gel Spa Pedicure",
+"name": "Feet - Gel Spa Pedicure",
 "price": 350,
 "from": false,
 "branches": [
@@ -4866,7 +4866,7 @@
 },
 {
 "cat": "nails",
-"name": "Feet · Pedicure Scrub",
+"name": "Feet - Pedicure Scrub",
 "price": 200,
 "from": false,
 "branches": [
@@ -4887,7 +4887,7 @@
 },
 {
 "cat": "nails",
-"name": "Feet · Princess Pedicure",
+"name": "Feet - Princess Pedicure",
 "price": 120,
 "from": false,
 "branches": [
@@ -4940,7 +4940,7 @@
 },
 {
 "cat": "nails",
-"name": "Hands · Express Manicure",
+"name": "Hands - Express Manicure",
 "price": 80,
 "from": false,
 "branches": [
@@ -4956,7 +4956,7 @@
 },
 {
 "cat": "nails",
-"name": "Hands · Gel & Acrylic Dip w Tips",
+"name": "Hands - Gel & Acrylic Dip w Tips",
 "price": 350,
 "from": false,
 "branches": [
@@ -4977,7 +4977,7 @@
 },
 {
 "cat": "nails",
-"name": "Hands · Gel",
+"name": "Hands - Gel",
 "price": 220,
 "from": false,
 "branches": [
@@ -4993,7 +4993,7 @@
 },
 {
 "cat": "nails",
-"name": "Hands · Gel Overlay",
+"name": "Hands - Gel Overlay",
 "price": 250,
 "from": false,
 "branches": [
@@ -5014,7 +5014,7 @@
 },
 {
 "cat": "nails",
-"name": "Hands · Gel Spa Manicure",
+"name": "Hands - Gel Spa Manicure",
 "price": 300,
 "from": false,
 "branches": [
@@ -5030,7 +5030,7 @@
 },
 {
 "cat": "nails",
-"name": "Hands · Gel XL Tips",
+"name": "Hands - Gel XL Tips",
 "price": 450,
 "from": false,
 "branches": [
@@ -5051,7 +5051,7 @@
 },
 {
 "cat": "nails",
-"name": "Hands · Kids Gel Princess Manicure",
+"name": "Hands - Kids Gel Princess Manicure",
 "price": 120,
 "from": false,
 "branches": [
@@ -5067,7 +5067,7 @@
 },
 {
 "cat": "nails",
-"name": "Hands · Nail Repair Gel",
+"name": "Hands - Nail Repair Gel",
 "price": 20,
 "from": false,
 "branches": [
@@ -5088,7 +5088,7 @@
 },
 {
 "cat": "nails",
-"name": "Hands · Nail Repair Tip",
+"name": "Hands - Nail Repair Tip",
 "price": 40,
 "from": false,
 "branches": [
@@ -5109,7 +5109,7 @@
 },
 {
 "cat": "nails",
-"name": "Hands · Ombre",
+"name": "Hands - Ombre",
 "price": 400,
 "from": false,
 "branches": [
@@ -5130,7 +5130,7 @@
 },
 {
 "cat": "nails",
-"name": "Hands/Feet · Buff & Shield",
+"name": "Hands/Feet - Buff & Shield",
 "price": 150,
 "from": false,
 "branches": [
@@ -5146,7 +5146,7 @@
 },
 {
 "cat": "nails",
-"name": "Hands/Feet · Buff & Shine",
+"name": "Hands/Feet - Buff & Shine",
 "price": 100,
 "from": false,
 "branches": [
@@ -5199,7 +5199,7 @@
 },
 {
 "cat": "nails",
-"name": "Nail Tips · Toes",
+"name": "Nail Tips - Toes",
 "price": 300,
 "from": false,
 "branches": [
@@ -5215,7 +5215,7 @@
 },
 {
 "cat": "nails",
-"name": "Refill · Acrylic",
+"name": "Refill - Acrylic",
 "price": 250,
 "from": false,
 "branches": [
@@ -5236,7 +5236,7 @@
 },
 {
 "cat": "nails",
-"name": "Refill · Art per Nail",
+"name": "Refill - Art per Nail",
 "price": 10,
 "from": false,
 "branches": [
@@ -5257,7 +5257,7 @@
 },
 {
 "cat": "nails",
-"name": "Refill · Gel Dip",
+"name": "Refill - Gel Dip",
 "price": 250,
 "from": false,
 "branches": [
@@ -5278,7 +5278,7 @@
 },
 {
 "cat": "nails",
-"name": "Soak Off · Acrylic",
+"name": "Soak Off - Acrylic",
 "price": 100,
 "from": false,
 "branches": [
@@ -5299,7 +5299,7 @@
 },
 {
 "cat": "nails",
-"name": "Soak Off · Acrylic with New App",
+"name": "Soak Off - Acrylic with New App",
 "price": 70,
 "from": false,
 "branches": [
@@ -5395,7 +5395,7 @@
 },
 {
 "cat": "lashes",
-"name": "Lashes · Individual Lash Ext",
+"name": "Lashes - Individual Lash Ext",
 "price": 400,
 "from": false,
 "branches": [
@@ -5411,7 +5411,7 @@
 },
 {
 "cat": "lashes",
-"name": "Lashes · Refill",
+"name": "Lashes - Refill",
 "price": 200,
 "from": false,
 "branches": [
@@ -5459,7 +5459,7 @@
 },
 {
 "cat": "braids",
-"name": "1/2 Straightback · Small Singles Bra",
+"name": "1/2 Straightback - Small Singles Bra",
 "price": null,
 "from": false,
 "branches": [
@@ -5475,7 +5475,7 @@
 },
 {
 "cat": "braids",
-"name": "Afro Twist Adult · Mid Back",
+"name": "Afro Twist Adult - Mid Back",
 "price": 800,
 "from": false,
 "branches": [
@@ -5491,7 +5491,7 @@
 },
 {
 "cat": "braids",
-"name": "Afro Twist Adult · Short",
+"name": "Afro Twist Adult - Short",
 "price": 650,
 "from": false,
 "branches": [
@@ -5507,7 +5507,7 @@
 },
 {
 "cat": "braids",
-"name": "Afro Twist Kids · Mid Back",
+"name": "Afro Twist Kids - Mid Back",
 "price": 750,
 "from": false,
 "branches": [
@@ -5523,7 +5523,7 @@
 },
 {
 "cat": "braids",
-"name": "Big Block Knotless · waistline",
+"name": "Big Block Knotless - waistline",
 "price": 750,
 "from": false,
 "branches": [
@@ -5539,7 +5539,7 @@
 },
 {
 "cat": "braids",
-"name": "Big Blocks Knotless · Bra strap",
+"name": "Big Blocks Knotless - Bra strap",
 "price": 650,
 "from": false,
 "branches": [
@@ -5571,7 +5571,7 @@
 },
 {
 "cat": "braids",
-"name": "Braids Adult · MEDIUM Pick & Drop",
+"name": "Braids Adult - MEDIUM Pick & Drop",
 "price": 550,
 "from": false,
 "branches": [
@@ -5587,7 +5587,7 @@
 },
 {
 "cat": "braids",
-"name": "Braids Adult · MINI Pick & Drop",
+"name": "Braids Adult - MINI Pick & Drop",
 "price": 550,
 "from": false,
 "branches": [
@@ -5619,7 +5619,7 @@
 },
 {
 "cat": "braids",
-"name": "Braids Kids · Pick & Drop Xpress",
+"name": "Braids Kids - Pick & Drop Xpress",
 "price": 450,
 "from": false,
 "branches": [
@@ -5635,7 +5635,7 @@
 },
 {
 "cat": "braids",
-"name": "Butterfly Locs · Shoulder",
+"name": "Butterfly Locs - Shoulder",
 "price": 900,
 "from": false,
 "branches": [
@@ -5683,7 +5683,7 @@
 },
 {
 "cat": "braids",
-"name": "Fulani braid · bum-length",
+"name": "Fulani braid - bum-length",
 "price": 1200,
 "from": false,
 "branches": [
@@ -5699,7 +5699,7 @@
 },
 {
 "cat": "braids",
-"name": "Fulani braid · waist-length",
+"name": "Fulani braid - waist-length",
 "price": 1000,
 "from": false,
 "branches": [
@@ -5747,7 +5747,7 @@
 },
 {
 "cat": "braids",
-"name": "Goddess knotless kids · bum",
+"name": "Goddess knotless kids - bum",
 "price": 1050,
 "from": false,
 "branches": [
@@ -5779,7 +5779,7 @@
 },
 {
 "cat": "braids",
-"name": "Half Head Braids Repair · incl wash",
+"name": "Half Head Braids Repair - incl wash",
 "price": 450,
 "from": false,
 "branches": [
@@ -5843,7 +5843,7 @@
 },
 {
 "cat": "braids",
-"name": "Knotless Braids Kids Tibal · Bra Line",
+"name": "Knotless Braids Kids Tibal - Bra Line",
 "price": null,
 "from": false,
 "branches": [
@@ -5939,7 +5939,7 @@
 },
 {
 "cat": "braids",
-"name": "Pick n drop · SMALL",
+"name": "Pick n drop - SMALL",
 "price": null,
 "from": false,
 "branches": [
@@ -5971,7 +5971,7 @@
 },
 {
 "cat": "braids",
-"name": "Thick Block Braids · Bra strap",
+"name": "Thick Block Braids - Bra strap",
 "price": 550,
 "from": false,
 "branches": [
@@ -5987,7 +5987,7 @@
 },
 {
 "cat": "braids",
-"name": "Thick Block Braids · waistline",
+"name": "Thick Block Braids - waistline",
 "price": 650,
 "from": false,
 "branches": [
@@ -6019,7 +6019,7 @@
 },
 {
 "cat": "braids",
-"name": "Thick knotless waist · length",
+"name": "Thick knotless waist - length",
 "price": null,
 "from": false,
 "branches": [
@@ -6035,7 +6035,7 @@
 },
 {
 "cat": "cornrows",
-"name": "Beads only · Add for",
+"name": "Beads only - Add for",
 "price": 20,
 "from": false,
 "branches": [
@@ -6051,7 +6051,7 @@
 },
 {
 "cat": "cornrows",
-"name": "Benny & Betty · Adult Plain blocks",
+"name": "Benny & Betty - Adult Plain blocks",
 "price": 150,
 "from": false,
 "branches": [
@@ -6067,7 +6067,7 @@
 },
 {
 "cat": "cornrows",
-"name": "UNPLAIT · French curls/singles/pickndrop",
+"name": "UNPLAIT - French curls/singles/pickndrop",
 "price": null,
 "from": false,
 "branches": [
@@ -6083,7 +6083,7 @@
 },
 {
 "cat": "locs",
-"name": "Dreadlocks · Interlocking",
+"name": "Dreadlocks - Interlocking",
 "price": 350,
 "from": false,
 "branches": [
@@ -6131,7 +6131,7 @@
 },
 {
 "cat": "relax",
-"name": "Relaxers · Design Essential",
+"name": "Relaxers - Design Essential",
 "price": 350,
 "from": false,
 "branches": [
@@ -6163,7 +6163,7 @@
 },
 {
 "cat": "relax",
-"name": "Technique · Mizani with Treatment",
+"name": "Technique - Mizani with Treatment",
 "price": 600,
 "from": false,
 "branches": [
@@ -6211,7 +6211,7 @@
 },
 {
 "cat": "straightback",
-"name": "StraightBack Adult · Thick Lines 7-12",
+"name": "StraightBack Adult - Thick Lines 7-12",
 "price": null,
 "from": false,
 "branches": [
@@ -6227,7 +6227,7 @@
 },
 {
 "cat": "straightback",
-"name": "StraightBack Adult · Tribal Waist",
+"name": "StraightBack Adult - Tribal Waist",
 "price": 480,
 "from": false,
 "branches": [
@@ -6243,7 +6243,7 @@
 },
 {
 "cat": "straightback",
-"name": "tribal StraightBack · bra strap length",
+"name": "tribal StraightBack - bra strap length",
 "price": null,
 "from": false,
 "branches": [
@@ -6259,7 +6259,7 @@
 },
 {
 "cat": "styling",
-"name": "Blow Wave Kids · Caucasian Short",
+"name": "Blow Wave Kids - Caucasian Short",
 "price": 300,
 "from": false,
 "branches": [
@@ -6275,7 +6275,7 @@
 },
 {
 "cat": "styling",
-"name": "Bob Cut · Style Only No Relaxer",
+"name": "Bob Cut - Style Only No Relaxer",
 "price": 250,
 "from": false,
 "branches": [
@@ -6291,7 +6291,7 @@
 },
 {
 "cat": "styling",
-"name": "Styling · Gel Up Pondo & Hairpiece",
+"name": "Styling - Gel Up Pondo & Hairpiece",
 "price": 350,
 "from": false,
 "branches": [
@@ -6307,7 +6307,7 @@
 },
 {
 "cat": "styling",
-"name": "Styling · GelUp Pondo Own Piece",
+"name": "Styling - GelUp Pondo Own Piece",
 "price": 250,
 "from": false,
 "branches": [
@@ -6355,7 +6355,7 @@
 },
 {
 "cat": "care",
-"name": "Technique · Mizani Moisture",
+"name": "Technique - Mizani Moisture",
 "price": 280,
 "from": false,
 "branches": [
@@ -6595,7 +6595,7 @@
 },
 {
 "cat": "care",
-"name": "Treatments · Hair Wash",
+"name": "Treatments - Hair Wash",
 "price": 120,
 "from": false,
 "branches": [
@@ -6723,7 +6723,7 @@
 },
 {
 "cat": "nails",
-"name": "GEL(200) · Hands only",
+"name": "GEL(200) - Hands only",
 "price": null,
 "from": false,
 "branches": [
@@ -6739,7 +6739,7 @@
 },
 {
 "cat": "nails",
-"name": "Hands · Princess Manicure",
+"name": "Hands - Princess Manicure",
 "price": 120,
 "from": false,
 "branches": [
@@ -6787,7 +6787,7 @@
 },
 {
 "cat": "massage",
-"name": "Massage · Aromatherapy FB 60m",
+"name": "Massage - Aromatherapy FB 60m",
 "price": 300,
 "from": false,
 "branches": [
@@ -6803,7 +6803,7 @@
 },
 {
 "cat": "massage",
-"name": "Massage · Back Neck Shoulder 30m",
+"name": "Massage - Back Neck Shoulder 30m",
 "price": 200,
 "from": false,
 "branches": [
@@ -6819,7 +6819,7 @@
 },
 {
 "cat": "massage",
-"name": "Massage · Back Neck Shoulder 45m",
+"name": "Massage - Back Neck Shoulder 45m",
 "price": 250,
 "from": false,
 "branches": [
@@ -6835,7 +6835,7 @@
 },
 {
 "cat": "massage",
-"name": "Massage · Foot 15m",
+"name": "Massage - Foot 15m",
 "price": 100,
 "from": false,
 "branches": [
@@ -6867,7 +6867,7 @@
 },
 {
 "cat": "lashes",
-"name": "Brows · Shape & Tint",
+"name": "Brows - Shape & Tint",
 "price": 120,
 "from": false,
 "branches": [
