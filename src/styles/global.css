@@ -94,6 +94,22 @@ body.menu-open{overflow:hidden}
 .js [data-reveal]{opacity:0;translate:0 14px;transition:opacity .6s var(--ease),translate .6s var(--ease)}
 .js [data-reveal].in{opacity:1;translate:0 0}
 
+/* first-visit intro: the barcode builds, then the screen lifts. Only runs once per session. */
+.loader{position:fixed;inset:0;z-index:300;background:var(--paper);display:none;flex-direction:column;align-items:center;justify-content:center;gap:1.6rem;transition:translate .8s var(--ease)}
+html.loading .loader{display:flex}
+html.loading.lift .loader{translate:0 -100%;pointer-events:none}
+.ld-mark{width:min(64vw,300px);height:auto;color:var(--ink);animation:ldFade .6s var(--ease) both}
+.ld-bars{display:flex;align-items:flex-end;gap:5px;height:64px}
+.ld-bars i{display:block;width:5px;height:var(--h);background:var(--accent);border-radius:var(--pill) var(--pill) 2px 2px;transform-origin:bottom;transform:scaleY(0);animation:ldBar .5s var(--ease) both;animation-delay:calc(.15s + var(--i) * 32ms)}
+@keyframes ldFade{from{opacity:0;translate:0 8px}to{opacity:1;translate:0 0}}
+@keyframes ldBar{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+html.loading.lift .ld-bars i{animation:none;transform:scaleY(1)}
+/* hold the page's own animations until the intro lifts */
+html.loading:not(.lift) .lg-top,html.loading:not(.lift) .lg-bar,html.loading:not(.lift) .lg-word{animation-play-state:paused}
+/* every other page view: a quick fade in */
+main{animation:pageIn .5s var(--ease) both}
+@keyframes pageIn{from{opacity:0}to{opacity:1}}
+
 @media(max-width:860px){
   .hd nav a:not(.btn){display:none}
   .hd nav .btn{display:none}
@@ -104,4 +120,6 @@ body.menu-open{overflow:hidden}
   html{scroll-behavior:auto}
   *,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important}
   .js [data-reveal]{opacity:1;translate:0 0}
+  .loader{display:none!important}
+  main{animation:none}
 }

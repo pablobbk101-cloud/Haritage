@@ -65,8 +65,18 @@ const ld = {
   <meta property="og:image" content={ogImage} />
   <meta name="twitter:card" content="summary_large_image" />
   <script type="application/ld+json" set:html={JSON.stringify(ld)} />
-  <script is:inline>document.documentElement.classList.add('js');</script>
-  <noscript><style>.js [data-reveal]{opacity:1!important;translate:0 0!important}</style></noscript>
+  <script is:inline>
+    (function () {
+      var d = document.documentElement;
+      d.classList.add('js');
+      try {
+        var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (!reduce && !sessionStorage.getItem('hs-seen')) d.classList.add('loading');
+        sessionStorage.setItem('hs-seen', '1');
+      } catch (e) {}
+    })();
+  </script>
+  <noscript><style>.js [data-reveal]{opacity:1!important;translate:0 0!important}.loader{display:none!important}</style></noscript>
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
@@ -74,6 +84,11 @@ const ld = {
   <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
     <defs><path id="hs-logo-path" fill="currentColor" fill-rule="evenodd" d={logoPath} /></defs>
   </svg>
+
+  <div class="loader" aria-hidden="true">
+    <svg class="ld-mark" viewBox="0 1040 884 150"><use href="#hs-logo-path" /></svg>
+    <div class="ld-bars">{Array.from({ length: 28 }).map((_, i) => <i style={`--i:${i};--h:${42 + ((i * 37) % 58)}%`} />)}</div>
+  </div>
 
   <header class="hd" id="hd">
     <div class="wrap hd-in">
@@ -138,6 +153,21 @@ const ld = {
     </div>
   </footer>
 
+  <script is:inline>
+    (function () {
+      var d = document.documentElement;
+      if (!d.classList.contains('loading')) return;
+      var t0 = performance.now();
+      function lift() {
+        if (d.classList.contains('lift')) return;
+        d.classList.add('lift');
+        setTimeout(function () { d.classList.remove('loading', 'lift'); }, 900);
+      }
+      function ready() { setTimeout(lift, Math.max(0, 1500 - (performance.now() - t0))); }
+      if (document.readyState === 'complete') ready(); else addEventListener('load', ready);
+      setTimeout(lift, 3500);
+    })();
+  </script>
   <script>
     import '../scripts/engine';
   </script>

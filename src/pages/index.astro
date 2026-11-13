@@ -184,6 +184,6 @@ const steps = [
     document.getElementById('spSkip')?.addEventListener('click', () => { set('hs-skip', '1', true); dlg.close(); });
     document.getElementById('chgSalon')?.addEventListener('click', open);
     showMine();
-    if (!get('hs-salon') && !get('hs-skip', true)) setTimeout(open, 600);
+    if (!get('hs-salon') && !get('hs-skip', true)) setTimeout(open, document.documentElement.classList.contains('loading') ? 4300 : 600);
   }
 </script>
