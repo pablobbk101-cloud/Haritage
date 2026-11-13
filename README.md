@@ -1,13 +1,13 @@
 # HAIRitage Salon99 — concept site
 
 Own-brand site with online booking for HAIRitage Salon99, Roodepoort (Westgate + Allen's Nek).
-Concept: **"Every bar is a slot."** The logo's afro sheds a barcode; every bar is a 30-minute start time; booking is a scan.
+Look: **warm studio**. Cream and clay palette, Fraunces and Inter, rounded cards. The logo is the hero and booking shows the day as 15-minute time bars.
 
 Built by Mr Point Productions as a pitch concept. See `DESIGN.md` for the brief, concept card and system.
 
 ## Stack
 
-Astro (static) · GSAP + ScrollTrigger · Lenis · self-hosted fonts (Big Shoulders Display, Inter, Space Mono).
+Astro (static) · GSAP (booking bars only) · self-hosted fonts (Fraunces, Inter).
 
 ## Run
 
