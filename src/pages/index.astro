@@ -4,6 +4,9 @@ import { BRANCHES, CATEGORIES, HOURS, SERVICES, catStats } from '../data/site';
 
 const total = SERVICES.length;
 const cats = CATEGORIES.map((c) => ({ ...c, min: catStats(c.id).min }));
+// logo load animation: the hair and faces fade in, then the barcode drops bar by bar, then the wordmark.
+const BAR_TOP = 796, BAR_BOTTOM = 1036, X0 = 196, STRIP = 10;
+const strips = Array.from({ length: Math.ceil((692 - X0) / STRIP) }, (_, i) => X0 + i * STRIP);
 const steps = [
   ['Choose a service', 'Search the full price list or browse by category.'],
   ['Pick your stylist', 'See who does your style at your salon, or let us choose.'],
@@ -23,7 +26,17 @@ const steps = [
         <p class="lbl my-salon" id="mySalon" hidden>Your salon: <strong id="mySalonN"></strong>. <button type="button" class="link" id="chgSalon">Change</button></p>
       </div>
       <div class="hero-logo">
-        <svg viewBox="0 0 884 1200" role="img" aria-label="HAIRitage Salon logo: two faces in an afro that sheds a barcode"><use href="#hs-logo-path" /></svg>
+        <svg viewBox="0 0 884 1200" role="img" aria-label="HAIRitage Salon logo: two faces in an afro that sheds a barcode">
+          <defs>
+            <clipPath id="lg-top"><rect x="0" y="0" width="884" height={BAR_TOP} /></clipPath>
+            <clipPath id="lg-zone"><rect x="0" y={BAR_TOP} width="884" height={BAR_BOTTOM - BAR_TOP} /></clipPath>
+            <clipPath id="lg-word"><rect x="0" y={BAR_BOTTOM} width="884" height={1200 - BAR_BOTTOM} /></clipPath>
+            {strips.map((x, i) => <clipPath id={`lg-s${i}`}><rect x={x} y={BAR_TOP} width={STRIP + 1} height={BAR_BOTTOM - BAR_TOP} /></clipPath>)}
+          </defs>
+          <g clip-path="url(#lg-top)"><use class="lg-top" href="#hs-logo-path" /></g>
+          {strips.map((_, i) => <g clip-path={`url(#lg-s${i})`}><g class="lg-bar" style={`--i:${i}`} clip-path="url(#lg-zone)"><use href="#hs-logo-path" /></g></g>)}
+          <g clip-path="url(#lg-word)"><use class="lg-word" href="#hs-logo-path" /></g>
+        </svg>
       </div>
     </div>
   </section>
@@ -106,6 +119,13 @@ const steps = [
   .my-salon{margin-top:1.2rem}
   .hero-logo{background:var(--accent-soft);border-radius:calc(var(--r) * 1.6);padding:clamp(1.5rem,4vw,3rem);display:grid;place-items:center;color:var(--ink)}
   .hero-logo svg{width:min(100%,360px);height:auto}
+  /* load animation: hair fades in, barcode drops bar by bar, wordmark follows. Transform and opacity only. */
+  .lg-top{animation:lgFade .7s var(--ease) both}
+  .lg-bar{transform-box:view-box;transform-origin:0 796px;animation:lgDrop .8s var(--ease) both;animation-delay:calc(.45s + var(--i) * 16ms)}
+  .lg-word{animation:lgFade .6s var(--ease) 1.7s both}
+  @keyframes lgFade{from{opacity:0}to{opacity:1}}
+  @keyframes lgDrop{from{transform:scaleY(0);opacity:.2}to{transform:scaleY(1);opacity:1}}
+  @media(prefers-reduced-motion:reduce){.lg-top,.lg-bar,.lg-word{animation:none}}
 
   .steps{list-style:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;margin-top:1.6rem}
   .steps .n{display:grid;place-items:center;width:2.6rem;height:2.6rem;border-radius:50%;background:var(--accent);color:var(--on-accent);font-size:1.2rem;margin-bottom:.9rem}

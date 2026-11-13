@@ -277,7 +277,7 @@ const staff = STAFF;
   .rc-l dd{text-align:right;font-weight:600}
   .rc-n{margin-top:.8rem}
   .rc-bc{width:100%;height:40px;margin-top:1rem}
-  .rc-bc rect{fill:var(--ink)}
+  .rc-bc rect{fill:var(--ink);transform-box:fill-box}
   .rc-ref{text-align:center;margin-top:.4rem;}
   .done{margin-top:1rem;text-align:center}
   .done[hidden]{display:none}
@@ -594,6 +594,8 @@ const staff = STAFF;
   $('calNext').addEventListener('click', () => { cal.m++; if (cal.m > 11) { cal.m = 0; cal.y++; } renderCal(); });
 
   /* ---- step 5: the barcode, every bar labelled, 15 minutes apart ---- */
+  let lastBarsKey = '';
+  let lastRcKey = '';
   function renderBars() {
     const bars = $('bars'), nofree = $('nofree');
     bars.innerHTML = '';
@@ -624,7 +626,9 @@ const staff = STAFF;
       bars.appendChild(b);
     }
     nofree.hidden = free > 0;
-    if (!reduce) gsap.from('#bars .bar i', { scaleY: 0, duration: 0.7, ease: 'expo.out', stagger: 0.012, clearProps: 'transform' });
+    const barsKey = `${st.branch?.id}|${st.svc?.id}|${st.staff}|${st.day?.getTime()}`;
+    const fresh = barsKey !== lastBarsKey; lastBarsKey = barsKey;
+    if (!reduce && fresh) { gsap.from('#bars .bar i', { scaleY: 0, duration: 0.9, ease: 'power3.out', stagger: { each: 0.02, from: 'start' }, clearProps: 'transform' }); gsap.from('#bars .tm', { opacity: 0, y: 6, duration: 0.5, ease: 'power2.out', stagger: { each: 0.02, from: 'start' }, clearProps: 'all' }); }
   }
   // laser follows the pointer over the barcode
   const bc = $('bcday');
@@ -670,6 +674,8 @@ const staff = STAFF;
     let x = 0, out = '';
     while (x < 196) { h = (h * 9301 + 49297) % 233280; const w = 1 + (h % 4); out += `<rect x="${x}" y="0" width="${w}" height="20"/>`; x += w + 1 + (h % 3); }
     svg.innerHTML = out;
+    const fresh = key !== lastRcKey; lastRcKey = key;
+    if (!reduce && fresh) gsap.from('#rcbc rect', { scaleY: 0, transformOrigin: '50% 0%', duration: 0.6, ease: 'power3.out', stagger: 0.008, clearProps: 'transform' });
   }
 
   $('form').addEventListener('submit', (e) => {
